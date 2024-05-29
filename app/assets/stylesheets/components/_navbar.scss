@@ -1,9 +1,15 @@
 .navbar-lewagon {
   justify-content: space-between;
+  z-index: 3;
+  position: fixed;
+  top: 0;
   background: #0A2733;
+  box-shadow: 0 0 50px grey;
+  width: 100%;
 
-  h1 {
+  h2 {
     color: #FFEDC7;
+    padding-top: 10px;
   }
 }
 
@@ -18,9 +24,10 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 60px;
   border-radius: 4px;
-  margin-right: 30px; // Add some space between the logo and the text
+  margin-right: 25px;
+  margin-left: 15px;
 }
 
 .nav-link {
