@@ -3,6 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_many :events
+  has_many :event_users
+  has_many :reviews
 
   # This is made in order to validate the user's preferences
   validates :favorite_genres, presence: true
