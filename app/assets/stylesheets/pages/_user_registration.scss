@@ -1,0 +1,50 @@
+.container-sign-up-form {
+  margin: 50px;
+  padding: 50px;
+  border: 10px solid black;
+  background-color: rgb(230, 141, 17);
+}
+
+.sign-up-title {
+
+}
+
+
+body {
+  background: #fff;
+}
+
+.wrapper {
+  animation: scroll 100s linear infinite;
+  background: url("regular-contrast-endless-pattern-with-intertwine-three-dimensional-figures-continuous-illusory-geometric-background"),
+    #111111;
+  color: #eee;
+  height: 100vh;
+  min-width: 360px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+}
+
+@keyframes scroll {
+  100% {
+    background-position: 0px -400%;
+  }
+}
+
+/* Fallback if the operatring system prefers reduced motion*/
+
+@media (prefers-reduced-motion) {
+  .wrapper {
+    animation: scroll 800s linear infinite;
+  }
+}
+
+@media (min-width: 670px) {
+  .title {
+    font-size: 5rem;
+  }
+}
