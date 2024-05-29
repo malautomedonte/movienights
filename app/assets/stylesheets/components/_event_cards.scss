@@ -1,0 +1,29 @@
+.event-cards-container {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 2rem;
+  overflow-y: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+
+  // display: flex;
+  // gap: 2rem;
+  // overflow: scroll;
+  // scroll-snap-type: x mandatory;
+  // scroll-padding: 50%;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #B5CBD5;
+  width: 20rem;
+  padding: 2rem;
+  border-radius: 8px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+.event-page {
+ margin: 3rem;
+}
