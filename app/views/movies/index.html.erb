@@ -1,20 +1,25 @@
-<div class="container-movies-index">
-
-  <div class="container-events-index">
-    <h2>What your friends are watching - Recommendations</h2>
-    <%= render "shared/event_cards" %>
-  </div>
-
-  <div class="container-popular-movies-index">
-    <h2>Popular movies</h2>
-
-  </div>
-
-  <div class="container-upcoming-movies-index">
-    <h2>Upcoming Movies</h2>
-
-  </div>
+<div class="container ">
+    <div class="col-sm-12">
+     <%= form_with url: movies_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Type a keyword"
+        %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <% end %>
+      <div class="movies">
 
 
+          <% @movies.each do |movie| %>
 
+        <div class="movie-card">
+            <%= image_tag movie.poster_url %>
+            <h3><%= movie.title %></h3>
+            <p><%= movie.description %></p>
+        </div>
+          <% end %>
+
+      </div>
+    </div>
 </div>
