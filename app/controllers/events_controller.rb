@@ -23,9 +23,15 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @event = Event.find(params[:id])
   end
 
   def update
+    @movie = Movie.find(params[:event][:movie])
+    @event = Event.find(params[:id])
+    @event.movie = @movie
+    @event.update(event_params)
+    redirect_to events_path
   end
 
   private
