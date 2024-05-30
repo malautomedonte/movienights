@@ -5,10 +5,12 @@
 <h1 class="event-page">Upcoming movienights</h1>
 
 <div class="event-cards-container" data-controller="scroll">
-  <button class="scroll-button left" data-action="click->scroll#scrollLeft">&lt;</button>
+  <button class="scroll-button left" data-action="click->scroll#scrollLeft">
+    <i class="fas fa-circle-chevron-left"></i>
+    </button>
   <% if @events.any? %>
     <% @events.each do |event| %>
-      <div class="event-card" >
+      <div class="event-card card" >
         <h4><%= link_to event.title, event_path(event) %></h4>
        <h4><%= event.movie.title %></h4>
         <p><%= event.description %></p>
@@ -23,7 +25,7 @@
     <% else %>
       <em>Sorry, no offers found.</em>
     <% end %>
-    <button class="scroll-button right" data-action="click->scroll#scrollRight">&gt;</button>
+    <button class="scroll-button right" data-action="click->scroll#scrollRight"><i class="fas fa-circle-chevron-right"></i></button>
 </div>
 
 <h1 class="event-page">Create a new Event</h1>
