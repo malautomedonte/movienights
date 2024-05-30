@@ -22,7 +22,7 @@
     <% eventjoin = current_user.event_users.find_by(event_id: @event.id) if current_user %>
     <% if current_user && @event.user_id == current_user.id %>
     <p>This is your event!</p>
-    <%= link_to "Cancel", event_user_path(eventuser_id: eventjoin, event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <%= link_to "Cancel", event_path(event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
     <% elsif eventjoin %>
     <p>You are attending!</p>
     <%= link_to "Cancel", event_user_path(eventuser_id: eventjoin, event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "cancel-button" %>
