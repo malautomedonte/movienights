@@ -23,7 +23,7 @@ puts "Creating users"
 User.create!(email: 'jeremy.rome93@gmail.com', password: '123456', username: "RomieRome", location: "Berlin")
 User.create!(email: 'clemence.lc@gmail.com', password: '123456', username: "Clemantine", location: "Hamburg")
 User.create!(email: 'picture@marcobaass.com', password: '123456', username: "Marcito", location: "Munich")
-user = User.new(email: 'sertopico@gmail.com', password: '123456', username: "El Professore", location: "Milan")
+user = User.new(email: 'sertopico@gmail.com', password: '123456', username: "Il Professore", location: "Rome")
 user.save!
 puts 'Users created'
 
