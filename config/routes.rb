@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   # resources :bookmarks, only:[:create, :destroy, :index ]
   resources :movies, only:[:index]
   resources :events
+  resources :event_users, only: %i[create update destroy]
+
 end

@@ -1,0 +1,19 @@
+=> 
+[[32m#<EventUser:0x00007f058901d908[0m
+  id: [34m[1m21[0m,
+  user_id: [34m[1m7[0m,
+  event_id: [34m[1m1[0m,
+  created_at: Thu, 30 May 2024 13:00:30.275059000 UTC +00:00,
+  updated_at: Thu, 30 May 2024 13:00:30.275059000 UTC +00:00[32m>[0m,
+ [32m#<EventUser:0x00007f0589026918[0m
+  id: [34m[1m22[0m,
+  user_id: [34m[1m7[0m,
+  event_id: [34m[1m1[0m,
+  created_at: Thu, 30 May 2024 13:01:25.095293000 UTC +00:00,
+  updated_at: Thu, 30 May 2024 13:01:25.095293000 UTC +00:00[32m>[0m,
+ [32m#<EventUser:0x00007f05890266c0[0m
+  id: [34m[1m23[0m,
+  user_id: [34m[1m7[0m,
+  event_id: [34m[1m1[0m,
+  created_at: Thu, 30 May 2024 13:07:59.963593000 UTC +00:00,
+  updated_at: Thu, 30 May 2024 13:07:59.963593000 UTC +00:00[32m>[0m]
