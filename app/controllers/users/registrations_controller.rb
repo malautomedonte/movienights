@@ -42,7 +42,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:favorite_genres, :favorite_directors, :favorite_actors])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:favorite_genres, :favorite_directors, :favorite_actors, :username])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -51,9 +51,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    super(resource)
+
+    params[:user][:favorite_genres].each do |genre_id|
+      UserGenre.create(user: resource, genre_id: genre_id)
+    end
+    params[:user][:favorite_directors].each do |director_id|
+      UserDirector.create(user: resource, director_id: director_id)
+    end
+    params[:user][:favorite_actors].each do |actor_id|
+      UserActor.create(user: resource, actor_id: actor_id)
+    end
+    root_path
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
