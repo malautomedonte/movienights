@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :user_actors
   has_many :user_directors
   has_many :user_genres
-
+  
   has_many :actors, through: :user_actors
   has_many :directors, through: :user_directors
   has_many :genres, through: :user_genres
