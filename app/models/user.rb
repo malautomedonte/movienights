@@ -8,9 +8,9 @@ class User < ApplicationRecord
   has_many :reviews
 
   # This is made in order to validate the user's preferences
-  validates :favorite_genres, presence: true
-  validates :favorite_directors, presence: true
-  validates :favorite_actors, presence: true
+  # validates :favorite_genres, presence: true
+  # validates :favorite_directors, presence: true
+  # validates :favorite_actors, presence: true
 
   def find_movie_buddies
     User.where.not(id: self.id)
