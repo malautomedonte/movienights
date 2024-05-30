@@ -10,9 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_29_102249) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_30_093648) do
+  
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actor_genres", force: :cascade do |t|
+    t.bigint "actor_id", null: false
+    t.bigint "genre_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["actor_id"], name: "index_actor_genres_on_actor_id"
+    t.index ["genre_id"], name: "index_actor_genres_on_genre_id"
+  end
+
+  create_table "actors", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "bookmarks", force: :cascade do |t|
     t.string "movie_type", null: false
@@ -25,6 +42,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_29_102249) do
     t.index ["event_type", "event_id"], name: "index_bookmarks_on_event"
     t.index ["movie_type", "movie_id"], name: "index_bookmarks_on_movie"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "director_genres", force: :cascade do |t|
+    t.bigint "director_id", null: false
+    t.bigint "genre_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["director_id"], name: "index_director_genres_on_director_id"
+    t.index ["genre_id"], name: "index_director_genres_on_genre_id"
+  end
+
+  create_table "directors", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "event_users", force: :cascade do |t|
@@ -49,6 +82,39 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_29_102249) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "movie_actors", force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "actor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["actor_id"], name: "index_movie_actors_on_actor_id"
+    t.index ["movie_id"], name: "index_movie_actors_on_movie_id"
+  end
+
+  create_table "movie_directors", force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "director_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["director_id"], name: "index_movie_directors_on_director_id"
+    t.index ["movie_id"], name: "index_movie_directors_on_movie_id"
+  end
+
+  create_table "movie_genres", force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "genre_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_movie_genres_on_genre_id"
+    t.index ["movie_id"], name: "index_movie_genres_on_movie_id"
+  end
+
   create_table "movies", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -71,6 +137,33 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_29_102249) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "user_actors", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "actor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["actor_id"], name: "index_user_actors_on_actor_id"
+    t.index ["user_id"], name: "index_user_actors_on_user_id"
+  end
+
+  create_table "user_directors", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "director_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["director_id"], name: "index_user_directors_on_director_id"
+    t.index ["user_id"], name: "index_user_directors_on_user_id"
+  end
+
+  create_table "user_genres", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "genre_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_user_genres_on_genre_id"
+    t.index ["user_id"], name: "index_user_genres_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -88,11 +181,27 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_29_102249) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "actor_genres", "actors"
+  add_foreign_key "actor_genres", "genres"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "director_genres", "directors"
+  add_foreign_key "director_genres", "genres"
   add_foreign_key "event_users", "events"
   add_foreign_key "event_users", "users"
   add_foreign_key "events", "movies"
   add_foreign_key "events", "users"
+  add_foreign_key "movie_actors", "actors"
+  add_foreign_key "movie_actors", "movies"
+  add_foreign_key "movie_directors", "directors"
+  add_foreign_key "movie_directors", "movies"
+  add_foreign_key "movie_genres", "genres"
+  add_foreign_key "movie_genres", "movies"
   add_foreign_key "reviews", "movies"
   add_foreign_key "reviews", "users"
+  add_foreign_key "user_actors", "actors"
+  add_foreign_key "user_actors", "users"
+  add_foreign_key "user_directors", "directors"
+  add_foreign_key "user_directors", "users"
+  add_foreign_key "user_genres", "genres"
+  add_foreign_key "user_genres", "users"
 end

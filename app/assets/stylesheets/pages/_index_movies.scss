@@ -1,31 +1,12 @@
 html {
   background-color: #B5CBD5;
 }
-
-.container-movies-index {
-  display: flex;
-  flex-direction: column;
-  margin-top: 100px;
+.container{
+  margin-top: 25px;
 }
 
-.container-events-index {
-  padding: 20px 0 20px 0;
-  margin: 0 15px 0 15px;
-  background-color: green;
-  flex-flow: row wrap;
-
-}
-
-.container-popular-movies-index {
-  padding: 20px 0 20px 0;
-  margin: 0 15px 0 15px;
-  background-color: red;
-  flex-flow: row wrap;
-}
-
-.container-upcoming-movies-index {
-  padding: 20px 0 20px 0;
-  margin: 0 15px 0 15px;
-  background-color: orange ;
-  flex-flow: row wrap;
+.movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 20px;
 }

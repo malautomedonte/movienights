@@ -1,0 +1,13 @@
+.movies-horizontal-list {
+  display: flex;
+  flex-direction: row;
+  overflow-y: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+
+  // display: flex;
+  // gap: 2rem;
+  // overflow: scroll;
+  // scroll-snap-type: x mandatory;
+  // scroll-padding: 50%;
+}

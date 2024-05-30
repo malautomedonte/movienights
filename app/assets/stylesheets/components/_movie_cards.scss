@@ -1,0 +1,29 @@
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  margin: 10px; /* Adjust margin as needed */
+  padding: 10px; /* Adjust padding as needed */
+  background-color: $light-gray; /* Light gray background */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid $medium-gray;
+  box-shadow : 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  text-align : center; /* Center text within the card */
+}
+
+.movie-card img {
+  width: 100%; /* Image fills the card width */
+  height: 200px; /* Adjust image height as needed */
+  object-fit: contain; /* Crop image to fit within container */
+}
+
+.movie-card h3 {
+  margin-top: 10px; /* Margin between image and title */
+  font-size: 18px; /* Adjust title font size */
+  font-weight: bold; /* Bold title text */
+}
+
+.movie-card p {
+  font-size: 14px; /* Adjust description font size */
+  line-height: 1.5; /* Adjust line spacing for better readability */
+  color: $darker-gray; /* Gray text color */
+}
