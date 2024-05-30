@@ -1,0 +1,21 @@
+<div class="container-event-show">
+
+  <div>
+    <%= image_tag(@event.movie.poster_url) %>
+  </div>
+
+  <div>
+    <h1><%= @event.movie.title %></h1>
+    <h5><i class="fa-solid fa-location-dot"></i> <%= @event.location %></h3>
+    <h5><i class="fa-regular fa-calendar"></i> <%= @event.date.strftime("%d/%m/%Y")  %></h3>
+    <h5><i class="fa-regular fa-clock"></i> <%= @event.date.strftime("%H:%M")%></h3>
+    <p><%= @event.description %></p>
+    <h5>Participants 8 (max 10 attendees)</h5>
+  </div>
+
+  <div class="event-button">
+    <h1>Button</h1>
+  </div>
+
+
+</div>
