@@ -1,8 +1,10 @@
 <div class="event-cards-container" data-controller="scroll">
-  <button class="scroll-button left" data-action="click->scroll#scrollLeft">&lt;</button>
+  <button class="scroll-button left" data-action="click->scroll#scrollLeft">
+    <i class="fas fa-circle-chevron-left"></i>
+    </button>
   <% if @events_today.any? %>
     <% @events_today.each do |event| %>
-      <div class="event-card" >
+      <div class="event-card card" >
         <h4><%= event.title %></h4>
         <h4><%= event.movie.title %></h4>
         <p><%= event.description %></p>
@@ -17,5 +19,5 @@
     <% else %>
       <em>Sorry, no offers found.</em>
     <% end %>
-    <button class="scroll-button right" data-action="click->scroll#scrollRight">&gt;</button>
+    <button class="scroll-button right" data-action="click->scroll#scrollRight"><i class="fas fa-circle-chevron-right"></i></button>
 </div>

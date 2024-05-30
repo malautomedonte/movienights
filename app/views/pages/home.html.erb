@@ -1,27 +1,31 @@
-<h1>Todays' movienights</h1>
 
-<div class="events">
+<section class="events m-y-24">
+  <h1 class="p-l-24">Todays' movienights</h1>
   <%= render 'shared/event_cards' %>
-</div>
+</section>
 
-<h1>These people might be interessting for you</h1>
 
-<div class="user-reommendations">
+<section class="user-reommendations m-y-24 ">
+  <h1 class="p-l-24">These people might be interessting for you</h1>
+</section>
 
-</div>
+<section class="movie-recommendations m-y-24">
+  <h1 class="p-l-24">Movie recommendations</h1>
 
-<div class="movie-recommendations">
-  <h1>Movie recommendations</h1>
-  <% if @movies.any? %>
-    <div class="movies-horizontal-list">
-      <% @movies.each do |movie| %>
-        <div class="movie-card">
-          <%= image_tag movie.poster_url %>
-          <h3><%= movie.title %></h3>
-        </div>
-      <% end %>
-      <% else %>
-      <em>Sorry, there's no movie recommendation yet.</em>
-  <% end %>
+  <div class="movies-horizontal-list" data-controller="scroll">
+    <button class="scroll-button left" data-action="click->scroll#scrollLeft">
+    <i class="fas fa-circle-chevron-left"></i>
+    </button>
+    <% if @movies.any? %>
+        <% @movies.each do |movie| %>
+          <div class="movie-card card">
+            <%= image_tag movie.poster_url %>
+            <h3><%= movie.title %></h3>
+          </div>
+        <% end %>
+        <% else %>
+        <em>Sorry, there's no movie recommendation yet.</em>
+    <% end %>
+    <button class="scroll-button right" data-action="click->scroll#scrollRight"><i class="fas fa-circle-chevron-right"></i></button>
   </div>
-</div>
+</section>
