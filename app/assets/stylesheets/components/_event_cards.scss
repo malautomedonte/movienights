@@ -1,10 +1,14 @@
 .event-cards-container {
   display: grid;
+  position: relative;
   grid-auto-flow: column;
   gap: 2rem;
   overflow-y: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
   // display: flex;
   // gap: 2rem;
@@ -22,6 +26,36 @@
   border-radius: 8px;
   flex-shrink: 0;
   scroll-snap-align: start;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.event-cards-container::-webkit-scrollbar { /* WebKit */
+  display: none;
+}
+
+.scroll-button {
+  background-color: #426d80c0;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 50%;
+  height: 4rem;
+  width: 4rem;
+  cursor: pointer;
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.scroll-button.left {
+  left: 1rem;
+}
+
+.scroll-button.right {
+  right: 1rem;
 }
 
 .event-page {

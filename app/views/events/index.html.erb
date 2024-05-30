@@ -1,27 +1,14 @@
 <h1 class="event-page">Today's movienights</h1>
 
-<div class="event-cards-container">
-  <% if @events_today.any? %>
-    <% @events_today.each do |event| %>
-      <div class="event-card">
-        <h4><%= event.title %></h4>
-        <p><%= event.description %></p>
-        <p><%= event.location %></p>
-        <p><%= event.date %></p>
-        <p><%= event.user.id %> </p>
-      </div>
-    <% end %>
-    <% else %>
-      <em>Sorry, no offers found.</em>
-  <% end %>
-</div>
+<%= render "shared/event_cards" %>
 
 <h1 class="event-page">Upcoming movienights</h1>
 
-<div class="event-cards-container">
+<div class="event-cards-container" data-controller="scroll">
+  <button class="scroll-button left" data-action="click->scroll#scrollLeft">&lt;</button>
   <% if @events.any? %>
     <% @events.each do |event| %>
-      <div class="event-card">
+      <div class="event-card" >
         <h4><%= event.title %></h4>
         <p><%= event.description %></p>
         <p><%= event.location %></p>
@@ -31,7 +18,8 @@
     <% end %>
     <% else %>
       <em>Sorry, no offers found.</em>
-  <% end %>
+    <% end %>
+    <button class="scroll-button right" data-action="click->scroll#scrollRight">&gt;</button>
 </div>
 
 <h1 class="event-page">Create a new Event</h1>
