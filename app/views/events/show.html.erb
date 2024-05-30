@@ -10,7 +10,7 @@
     <h5><i class="fa-regular fa-calendar"></i> <%= @event.date.strftime("%d/%m/%Y")  %></h3>
     <h5><i class="fa-regular fa-clock"></i> <%= @event.date.strftime("%H:%M")%></h3>
     <p><%= @event.description %></p>
-    <h5>Participants 8 (max 10 attendees)</h5>
+    <h5>Participants <%= @event.event_users.count %> (max 10 attendees)</h5>
     <% @event.event_users.each do |person| %>
     <p><%= User.find(person.user_id).username  %></p>
     <% end %>
@@ -20,6 +20,7 @@
     <% eventjoin = current_user.event_users.find_by(event_id: @event.id) if current_user %>
     <% if current_user && @event.user_id == current_user.id %>
     <p>This is your event!</p>
+    <%= link_to "Cancel", event_user_path(eventuser_id: eventjoin, event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
     <% elsif eventjoin %>
     <p>You are attending!</p>
     <%= link_to "Cancel", event_user_path(eventuser_id: eventjoin, event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
