@@ -1,13 +1,43 @@
-.movies-horizontal-list {
+.movies-horizontal-list, .event-cards-container {
   display: flex;
-  flex-direction: row;
-  overflow-y: auto;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
+}
+
+  .movies-horizontal-list::-webkit-scrollbar { /* WebKit */
+    display: none;
+  }
 
   // display: flex;
   // gap: 2rem;
   // overflow: scroll;
   // scroll-snap-type: x mandatory;
   // scroll-padding: 50%;
+
+.scroll-button {
+  background-color: transparent !important;
+  border: none;
+  // border-radius: 50%;
+  height: 46px;
+  width: 46px;
+  cursor: pointer;
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  i {
+    color: $medium-darker-gray;
+    font-size: 2rem;
+  }
+}
+
+.scroll-button.left {
+  left: 1rem;
+}
+
+.scroll-button.right {
+  right: 1rem;
 }
