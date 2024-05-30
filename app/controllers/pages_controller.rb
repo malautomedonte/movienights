@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   def home
     @movies = Movie.all
     @events = Event.all
+    @events_today = Event.where('date between ? and ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day)
   end
 
   def index
