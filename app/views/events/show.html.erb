@@ -1,3 +1,4 @@
+<div class="page">
 <div class="container-event-show">
 
   <div>
@@ -30,6 +31,32 @@
     <%= link_to "Join this event!",   event_users_path(event_id: @event.id), data: { "turbo-method": :post }, class: "join-button" %>
     <% end %>
   </div>
+</div>
+<div class="chat">
+  <%= simple_form_for [@event, @message],
+  html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f|
+%>
+  <%= f.input :content,
+    label: false,
+    placeholder: "Message ##{@event.title}",
+    wrapper_html: {class: "flex-grow-1"}
+  %>
+  <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+<% end %>
+</div>
 
 
+<div class="container chatroom"
+  data-controller="chatroom-subscription"
+  data-chatroom-subscription-chatroom-id-value="<%= @event.id %>"
+>
+  <h1>#<%= @event.title %></h1>
+
+  <div class="messages" data-chatroom-subscription-target="messages">
+    <% @event.messages.each do |message| %>
+     <%= render "messages/message", message: message %>
+    <% end %>
+      </div>
+  </div>
+</div>
 </div>
