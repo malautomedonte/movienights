@@ -10,8 +10,18 @@
 
 </div>
 
-<h1>Movie recommendations</h1>
-
 <div class="movie-recommendations">
-
+  <h1>Movie recommendations</h1>
+  <% if @movies.any? %>
+    <div class="movies-horizontal-list">
+      <% @movies.each do |movie| %>
+        <div class="movie-card">
+          <%= image_tag movie.poster_url %>
+          <h3><%= movie.title %></h3>
+        </div>
+      <% end %>
+      <% else %>
+      <em>Sorry, there's no movie recommendation yet.</em>
+  <% end %>
+  </div>
 </div>
