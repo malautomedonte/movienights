@@ -9,7 +9,7 @@
   <% if @events.any? %>
     <% @events.each do |event| %>
       <div class="event-card" >
-        <h4><%= event.title %></h4>
+        <h4><%= link_to event.title, event_path(event) %></h4>
        <h4><%= event.movie.title %></h4>
         <p><%= event.description %></p>
         <p><%= event.location %></p>
