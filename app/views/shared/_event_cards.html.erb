@@ -5,16 +5,25 @@
   <% if @events_today.any? %>
     <% @events_today.each do |event| %>
       <div class="event-card card" >
-        <h4><%= link_to event.title, event_path(event), class: "movie-link" %></h4>
-        <p><%= event.description %></p>
-        <p><%= event.location %></p>
-        <p><%= event.date %></p>
-        <p><%= event.user.username %> </p>
+        <div class="movie-poster">
+          <img src="<%= event.movie.poster_url %>" alt="Movie Poster" class="movie-poster">
+           <% if current_user && current_user.id == event.user_id %>
+        <%= link_to edit_event_path(event), class: 'edit-button' do %>
+          <i class="fa-regular fa-pen-to-square"></i>
+        <% end %>
+      <% end %>
+        </div>
+        <div class="event-details">
+        <h5><%= event.movie.title %></h5>
+        <p><i class="fa-solid fa-location-dot"></i> <%= event.location %></p>
+        <p><i class="fa-regular fa-clock"></i> <%= event.date.strftime("%H:%M") %></p>
         <% if current_user && current_user.id == event.user_id %>
-        <%= link_to edit_event_path(event) do %>
-        <p><i class="fa-regular fa-pen-to-square edit-button"></i></p>
+        <p>You are the host</p>
+        <% else %>
+        <p><%= event.user.username %> </p>
         <% end %>
-        <% end %>
+        <%= link_to 'See Event', event_path(event), class: 'see-more-button' %>
+        </div>
       </div>
     <% end %>
     <% else %>
