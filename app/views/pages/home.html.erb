@@ -1,5 +1,5 @@
 <% if current_user %>
-    <h2>Welcome <%= current_user.username %>!</h2>
+    <h2>Welcome <%= current_user.username %>! 🍿</h2>
 <% end %>
 
 <section class="events m-y-24">
@@ -7,24 +7,38 @@
   <%= render 'shared/event_cards' %>
 </section>
 
-<div class="user-reommendations">
+<div class="similar-users">
+  <h1>Users with Similar Preferences</h1>
+  <% if current_user.similar_users.any? %>
+    <div class="user-cards">
+      <% current_user.similar_users.each do |user| %>
+        <div class="user-card">
+          <p>Favorite Genres: <%= user.genres.pluck(:title).join(', ') %></p>
+          <p>Favorite Actors: <%= user.actors.pluck(:last_name).join(', ') %></p>
+          <p>Favorite Directors: <%= user.directors.pluck(:last_name).join(', ') %></p>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <em>No users with similar preferences found.</em>
+  <% end %>
+</div>
+
+
 </div>
 
 <div class="movie-recommendations">
-  <h1>Director recommendations for you 🎬</h1>
-  <% if current_user %>
+  <h1>Recommendations for you 🎬</h1>
+  <% if current_user.preferred_content.present? %>
     <div class="movies-horizontal-list">
-      <% current_user.directors.each do |director| %>
-        <% director.movies.each do |movie| %>
-          <div class="movie-card">
-            <%= image_tag movie.poster_url %>
-            <h3><%= movie.title %></h3>
-          </div>
-        <% end %>
+      <% current_user.preferred_content.each do |movie| %>
+        <div class="movie-card">
+          <%= image_tag movie.poster_url %>
+          <h3><%= movie.title %></h3>
+        </div>
       <% end %>
-      <% else %>
-      <em>Sorry, there's no movie recommendation yet.</em>
+    </div>
+  <% else %>
+    <em>Sorry, there's no movie recommendation yet.</em>
   <% end %>
-  </div>
 </div>
-</section>
