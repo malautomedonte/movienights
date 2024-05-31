@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :event_users, only: %i[create update destroy]
   resources :friendships, only:[:index, :create]
   get 'profile/:id', to: 'pages#profile'
+  get '/pages/myevents', to: 'pages#myevents'
 end

@@ -7,16 +7,20 @@
   <%= render 'shared/event_cards' %>
 </section>
 
-<div class="user-reommendations">
+<div class="user-recommendations">
 </div>
 
-<div class="movie-recommendations">
-  <h1>Director recommendations for you 🎬</h1>
+
+<div class="movie-recommendations m-y-24">
+  <h1 class="p-l-24">Director recommendations for you 🎬</h1>
+  <button class="scroll-button left" data-action="click->scroll#scrollLeft">
+    <i class="fas fa-circle-chevron-left"></i>
+  </button>
   <% if current_user %>
-    <div class="movies-horizontal-list">
+    <div class="movies-horizontal-list"  data-controller="scroll">
       <% current_user.directors.each do |director| %>
         <% director.movies.each do |movie| %>
-          <div class="movie-card">
+          <div class="movie-card card">
             <%= image_tag movie.poster_url %>
             <h3><%= movie.title %></h3>
           </div>
@@ -26,5 +30,8 @@
       <em>Sorry, there's no movie recommendation yet.</em>
   <% end %>
   </div>
+  <button class="scroll-button right" data-action="click->scroll#scrollRight">
+    <i class="fas fa-circle-chevron-right"></i>
+  </button>
 </div>
 </section>

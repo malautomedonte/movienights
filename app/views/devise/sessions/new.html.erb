@@ -1,30 +1,26 @@
+<div class="wrapper-sign-in">
+  <div class="background-animation">
+    <div class="container-sign-in-form">
+    <h2 class="sign-in-title">Log in</h2>
 
-  <div class="background-container">
-    <div class="background-animation"></div>
-  </div>
-  <div class="wrapper-sign-up">
-    <div class="container-sign-up-form">
-      <h2 class="sign-up-title">Sign up for Movie Nights!</h2>
-      <p class="sign-up-title">The best place to find friends and watch movies together!</p>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :email,
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" } %>
+        <%= f.input :password,
+                    required: false,
+                    input_html: { autocomplete: "current-password" } %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
 
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= f.error_notification %>
+      <div class="form-actions">
+        <%= f.button :submit, "Log in" %>
+      </div>
+    <% end %>
 
-        <div class="form-inputs">
-          <%= f.input :username, required: true, autofocus: true %>
-          <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" } %>
-          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" } %>
-          <%= f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" } %>
-          <!-- Ask the user for preferences -->
-          <%= f.association :genres, label: "Favorite Genres", as: :check_boxes, required: true, input_html: { multiple: true, class: 'multiple-select' }, include_hidden: false %>
-          <%= f.association :directors, label: "Favorite Directors", label_method: :full_name, input_html: { multiple: true, class: 'multiple-select' }, include_hidden: false, required: true %>
-          <%= f.association :actors, label: "Favorite Actors", label_method: :full_name, input_html: { multiple: true, class: 'multiple-select' }, include_hidden: false, required: true %>
-        </div>
-
-        <div class="form-actions">
-          <%= f.button :submit, "Sign up" %>
-        </div>
-      <% end %>
-      <%= render "devise/shared/links" %>
+    <%= render "devise/shared/links" %>
     </div>
   </div>
+</div>
