@@ -1,37 +1,35 @@
-<% if current_user %>
-    <h2>Welcome <%= current_user.username %>!</h2>
-<% end %>
-
-<section class="events m-y-24">
-  <h1 class="p-l-24">Todays' movienights</h1>
-  <%= render 'shared/event_cards' %>
-</section>
-
-<div class="user-recommendations">
-</div>
-
-
-<div class="movie-recommendations m-y-24">
-  <h1 class="p-l-24">Director recommendations for you 🎬</h1>
-  <button class="scroll-button left" data-action="click->scroll#scrollLeft">
-    <i class="fas fa-circle-chevron-left"></i>
-  </button>
+<div class="m-l-24 m-y-24">
   <% if current_user %>
-    <div class="movies-horizontal-list"  data-controller="scroll">
-      <% current_user.directors.each do |director| %>
-        <% director.movies.each do |movie| %>
-          <div class="movie-card card">
-            <%= image_tag movie.poster_url %>
-            <h3><%= movie.title %></h3>
-          </div>
-        <% end %>
-      <% end %>
-      <% else %>
-      <em>Sorry, there's no movie recommendation yet.</em>
+      <h1>Welcome <%= current_user.username %>!</h1>
   <% end %>
-  </div>
-  <button class="scroll-button right" data-action="click->scroll#scrollRight">
-    <i class="fas fa-circle-chevron-right"></i>
-  </button>
+
+  <section class="events m-y-24">
+    <h1 class="p-l-24">Todays' movienights</h1>
+    <%= render 'shared/event_cards' %>
+  </section>
+
+
+  <section class="movie-recommendations m-y-24">
+    <h2 class="p-l-24">Director recommendations for you 🎬</h2>
+      <% if current_user %>
+        <div class="movies-horizontal-list"  data-controller="scroll">
+          <button class="scroll-button left" data-action="click->scroll#scrollLeft">
+            <i class="fas fa-circle-chevron-left"></i>
+          </button>
+          <% current_user.directors.each do |director| %>
+            <% director.movies.each do |movie| %>
+              <div class="movie-card card">
+                <%= image_tag movie.poster_url %>
+                <h3><a href="#"><%= movie.title %></a></h3>
+              </div>
+            <% end %>
+          <% end %>
+          <% else %>
+          <em>Sorry, there's no movie recommendation yet.</em>
+      <% end %>
+        <button class="scroll-button right" data-action="click->scroll#scrollRight">
+          <i class="fas fa-circle-chevron-right"></i>
+        </button>
+      </div>
+  </section>
 </div>
-</section>
