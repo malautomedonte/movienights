@@ -6,5 +6,5 @@ class Event < ApplicationRecord
   has_many :event_users, dependent: :destroy
   has_many :messages
 
-  validates :title, :date, :location, presence: true
+  validates :date, :location, presence: true
 end
