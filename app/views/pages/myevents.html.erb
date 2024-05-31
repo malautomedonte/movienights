@@ -1,0 +1,36 @@
+
+CREATE AN EVENT
+<h2>Events that I organise</h2>
+  <% @my_events.each do |event| %>
+    <div class="movie-card">
+      <div class="event-card card" >
+        <h4><%= link_to event.title, event_path(event), class: "movie-link" %></h4>
+        <h4><%= event.movie.title %></h4>
+        <p><%= event.description %></p>
+        <p><%= event.location %></p>
+        <p><%= event.date %></p>
+        <p><%= event.user.username %> </p>
+        <% if current_user && current_user.id == event.user_id %>
+        <%= link_to edit_event_path(event) do %>
+        <p><i class="fa-regular fa-pen-to-square edit-button"></i></p>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+<h2>Events that I attend to</h2>
+  <% @attended_events.each do |attended| %>
+      <div class="movie-card">
+        <div class="event-card card" >
+        <h4><%= link_to attended.event.title, event_path(attended.event), class: "movie-link" %></h4>
+        <h4><%= attended.event.movie.title %></h4>
+        <p><%= attended.event.description %></p>
+        <p><%= attended.event.location %></p>
+        <p><%= attended.event.date %></p>
+        <p><%= attended.event.user.username %> </p>
+        <p>You are attending!</p>
+        <%= link_to "Cancel", event_user_path(id: attended.id, eventuser_id: attended, event_id: pages_myevents_path), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "cancel-button" %>
+        </div>
+      </div>
+    <% end %>

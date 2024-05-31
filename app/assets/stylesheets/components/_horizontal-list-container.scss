@@ -31,6 +31,11 @@
   i {
     color: $medium-darker-gray;
     font-size: 2rem;
+    background-color: none;
+    &:before {
+      text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      color: $light-gray;
+    }
   }
 }
 

@@ -13,4 +13,9 @@ class PagesController < ApplicationController
                                       current_user.favorite_actors.split(',').map { |a| "%#{a}%}" })
     @movie_buddies = current_user.find_movie_buddies
   end
+
+  def myevents
+    @my_events = current_user.events
+    @attended_events = current_user.event_users
+  end
 end
