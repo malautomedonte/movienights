@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :messages, only: :create
   end
   resources :event_users, only: %i[create update destroy]
+  get '/pages/myevents', to: 'pages#myevents'
 end
