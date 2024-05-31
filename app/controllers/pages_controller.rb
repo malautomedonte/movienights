@@ -15,13 +15,12 @@ class PagesController < ApplicationController
     @movie_buddies = current_user.find_movie_buddies
   end
 
-<<<<<<< HEAD
   def profile
     @user = User.find(params[:id])
-=======
+  end
+
   def myevents
     @my_events = current_user.events
     @attended_events = current_user.event_users
->>>>>>> master
   end
 end

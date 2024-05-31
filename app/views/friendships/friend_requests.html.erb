@@ -1,3 +1,7 @@
 <h1>Friend Requests</h1>
-<button "accept_path">Accept</button>
-<button "reject_path">Decline</button>
+
+<% @friendships.each do |friendship| %>
+  <%= friendship.user.username %>
+  <%= link_to "Accept", accept_path(friend_id: friendship.user_id), data: { turbo_method: :patch } %>
+  <%= link_to "Reject", reject_path(friend_id: friendship.user_id), data: { turbo_method: :patch } %>
+<% end %>
