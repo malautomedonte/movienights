@@ -4,6 +4,7 @@ class Event < ApplicationRecord
 
   has_many :bookmarks
   has_many :event_users
+  has_many :messages
 
   validates :title, :date, :location, presence: true
 end
