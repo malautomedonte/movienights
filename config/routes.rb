@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :messages, only: :create
   end
   resources :event_users, only: %i[create update destroy]
+  resources :friendships, only:[:index, :create]
+  get 'profile/:id', to: 'pages#profile'
 end
