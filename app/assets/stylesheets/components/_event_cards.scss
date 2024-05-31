@@ -1,28 +1,10 @@
-// .event-cards-container {
-//   display: grid;
-//   position: relative;
-//   grid-auto-flow: column;
-//   gap: 2rem;
-//   overflow-y: auto;
-//   overscroll-behavior-x: contain;
-//   scroll-snap-type: x mandatory;
-
-//   scrollbar-width: none;
-//   -ms-overflow-style: none;
-
-//   // display: flex;
-//   // gap: 2rem;
-//   // overflow: scroll;
-//   // scroll-snap-type: x mandatory;
-//   // scroll-padding: 50%;
-// }
-
-.event-card .card {
+.event-card.card {
   padding: 2rem;
   flex-shrink: 0;
   scroll-snap-align: start;
   scrollbar-width: none;
   -ms-overflow-style: none;
+
   position: relative;
   overflow: hidden;
 }
@@ -103,3 +85,7 @@
   font-size: 14px;
   color: #999;
 }
+
+  flex: 0 0 300px;
+}
+

@@ -15,7 +15,32 @@ class User < ApplicationRecord
   has_many :directors, through: :user_directors
   has_many :genres, through: :user_genres
 
-  # def find_movie_buddies
+  def preferred_content
+    preferred_movies = []
 
-  # end
+    self.genres.uniq.each do |genre|
+      preferred_movies.concat(genre.movies)
+    end
+
+    self.actors.uniq.each do |actor|
+      preferred_movies.concat(actor.movies)
+    end
+
+    self.directors.uniq.each do |director|
+      preferred_movies.concat(director.movies)
+    end
+
+    preferred_movies.uniq # Ensure unique movies
+  end
+
+  def similar_users
+    all_users = User.where.not(id: self.id)
+    similar_users = all_users.select do |user|
+      (self.genres & user.genres).any? ||
+      (self.actors & user.actors).any? ||
+      (self.directors & user.directors).any?
+    end
+    
+    similar_users
+  end
 end
