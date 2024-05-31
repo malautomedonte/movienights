@@ -1,13 +1,9 @@
 <% if current_user %>
-    <h2>Welcome <%= current_user.username %>! 🍿</h2>
-<% end %>
-
-<section class="events m-y-24">
+    <h2>Welcome <%= current_user.username %>! :popcorn:</h2>
+<% end %><section class="events m-y-24">
   <h1 class="p-l-24">Todays' movienights</h1>
   <%= render 'shared/event_cards' %>
-</section>
-
-<div class="similar-users">
+</section><div class="similar-users">
   <h1>Users with Similar Preferences</h1>
   <% if current_user.similar_users.any? %>
     <div class="user-cards">
@@ -22,13 +18,8 @@
   <% else %>
     <em>No users with similar preferences found.</em>
   <% end %>
-</div>
-
-
-</div>
-
-<div class="movie-recommendations">
-  <h1>Recommendations for you 🎬</h1>
+</div></div><div class="movie-recommendations">
+  <h1>Recommendations for you :clap_de_tournage:</h1>
   <% if current_user.preferred_content.present? %>
     <div class="movies-horizontal-list">
       <% current_user.preferred_content.each do |movie| %>
