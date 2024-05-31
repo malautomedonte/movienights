@@ -1,0 +1,41 @@
+
+// SPACING ---------------------------------------------------------------
+
+//margin
+.m-24 {margin:24px;}
+.m-y-24 {margin-top :24px; margin-bottom: 24px;}
+.m-l-24 {margin-left:24px;}
+
+//padding
+.p-24 { padding: 24px;}
+.p-48 {padding: 48px;}
+
+.p-l-24 {padding-left:24px;}
+.p-t-42 {padding-top: 42px;}
+
+.p-y-24 {padding-top :24px; padding-bottom: 24px;}
+.p-y-42 {padding-top :42px; padding-bottom: 42px;}
+.p-x-48 {padding-left :48px; padding-right: 48px;}
+
+
+// DISPLAY ---------------------------------------------------------------
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+
+// BACKGROUND ---------------------------------------------------------------
+
+.section-first {
+  background-color: $bg-1;
+}
+
+.section-second {
+  background-color: $bg-3;
+}
