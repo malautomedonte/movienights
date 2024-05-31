@@ -69,3 +69,11 @@ max-width: 70%;
 .create-button:hover {
   background-color: #ffedc782;
 }
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  margin: 0;
+  padding: 0;
+}
