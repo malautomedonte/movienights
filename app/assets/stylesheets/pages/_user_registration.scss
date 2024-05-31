@@ -1,5 +1,40 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensure html and body take full viewport height */
+}
+
+.background-container {
+  position: fixed; /* Fixed position for full viewport coverage */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Hide overflow from the animation */
+  z-index: -1; /* Ensure it is behind other content */
+}
+
+.background-animation {
+  width: 100%;
+  height: 100%;
+  animation: scroll 100s linear infinite;
+  background: url("regular-contrast-endless-pattern-with-intertwine-three-dimensional-figures-continuous-illusory-geometric-background") repeat;
+  background-size: cover; /* Ensure the background covers the entire element */
+}
+
+.wrapper-sign-up {
+  min-height: 100vh; /* Ensure the wrapper takes full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Add some padding to the content */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
 .container-sign-up-form {
-  margin: 50px;
+  width: 100%; /* Ensure the form container takes full width */
+  max-width: 600px; /* Optional: limit the width of the form container */
+  margin: 50px auto; /* Center the form horizontally */
   padding: 70px;
   border: 10px solid black;
   background-color: #5d747f;
@@ -9,45 +44,13 @@
 .sign-up-title {
   text-align: center;
   padding-bottom: 25px;
-
-}
-
-
-body {
-  background: #fff;
-}
-
-.wrapper {
-  animation: scroll 100s linear infinite;
-  background: url("regular-contrast-endless-pattern-with-intertwine-three-dimensional-figures-continuous-illusory-geometric-background"),
-    #111111;
-  color: #eee;
-  height: 100vh;
-  min-width: 360px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  perspective: 1000px;
-  perspective-origin: 50% 50%;
 }
 
 @keyframes scroll {
+  0% {
+    background-position: 0 0;
+  }
   100% {
-    background-position: 0px -400%;
-  }
-}
-
-/* Fallback if the operatring system prefers reduced motion*/
-
-@media (prefers-reduced-motion) {
-  .wrapper {
-    animation: scroll 800s linear infinite;
-  }
-}
-
-@media (min-width: 670px) {
-  .title {
-    font-size: 5rem;
+    background-position: 0 -100%; /* Adjusted to cover the entire viewport */
   }
 }

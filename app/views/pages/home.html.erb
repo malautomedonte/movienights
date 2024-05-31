@@ -7,18 +7,19 @@
 <h1>These people might be interessting for you</h1>
 
 <div class="user-reommendations">
-
 </div>
 
 <div class="movie-recommendations">
-  <h1>Movie recommendations</h1>
-  <% if @movies.any? %>
+  <h1>Director recommendations for you 🎬</h1>
+  <% if current_user %>
     <div class="movies-horizontal-list">
-      <% @movies.each do |movie| %>
-        <div class="movie-card">
-          <%= image_tag movie.poster_url %>
-          <h3><%= movie.title %></h3>
-        </div>
+      <% current_user.directors.each do |director| %>
+        <% director.movies.each do |movie| %>
+          <div class="movie-card">
+            <%= image_tag movie.poster_url %>
+            <h3><%= movie.title %></h3>
+          </div>
+        <% end %>
       <% end %>
       <% else %>
       <em>Sorry, there's no movie recommendation yet.</em>

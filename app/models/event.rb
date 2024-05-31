@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   belongs_to :movie
 
   has_many :bookmarks
-  has_many :event_users
+  has_many :event_users, dependent: :destroy
 
   validates :title, :date, :location, presence: true
 end
