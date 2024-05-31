@@ -1,48 +1,56 @@
+<section class="create-event-section">
+  <div class="today-and-create-container">
+    <div class="todays-event-container">
+      <h1 class="event-page"><i class="fa-solid fa-ticket ticket"></i> Today's movienights</h1>
+      <%= render "shared/event_cards" %>
+    </div>
 
-<h1 class="event-page">Today's movienights</h1>
+    <div class="create-event">
+      <h5 class="event-page">Create a new Event</h5>
 
-<%= render "shared/event_cards" %>
+      <%= simple_form_for @event do |form| %>
+        <div class="form-input">
+          <%= form.input :movie, collection: Movie.all %>
+          <%= form.input :description %>
+          <%= form.input :date, as: :date %>
+          <%= form.input :date, as: :time, label: "Time" %>
+          <%= form.input :location %>
+        </div>
 
-<h1 class="event-page">Upcoming movienights</h1>
-
-<div class="event-cards-container" data-controller="scroll">
-  <button class="scroll-button left" data-action="click->scroll#scrollLeft">
-    <i class="fas fa-circle-chevron-left"></i>
-    </button>
-  <% if @events.any? %>
-    <% @events.each do |event| %>
-      <div class="event-card card" >
-        <h4><%= link_to event.title, event_path(event), class: "movie-link" %></h4>
-       <h4><%= event.movie.title %></h4>
-        <p><%= event.description %></p>
-        <p><%= event.location %></p>
-        <p><%= event.date %></p>
-        <p><%= event.user.username %> </p>
-        <% if current_user && current_user.id == event.user_id %>
-        <%= link_to edit_event_path(event) do %>
-        <p><i class="fa-regular fa-pen-to-square edit-button"></i></p>
-        <% end %>
-        <% end %>
-      </div>
-    <% end %>
-    <% else %>
-      <em>Sorry, no offers found.</em>
-    <% end %>
-    <button class="scroll-button right" data-action="click->scroll#scrollRight"><i class="fas fa-circle-chevron-right"></i></button>
-</div>
-
-<h1 class="event-page">Create a new Event</h1>
-
-<%= simple_form_for @event do |form| %>
-  <div class="form-input">
-    <%= form.input :title %>
-    <%= form.input :movie, collection: Movie.all %>
-    <%= form.input :description %>
-    <%= form.input :date, as: :date %>
-    <%= form.input :location %>
+        <div class="form-actions">
+          <%= form.button :submit, class: "create-button" %>
+        </div>
+      <% end %>
+    </div>
   </div>
+</section>
 
-  <div class="form-actions">
-    <%= form.button :submit %>
+<section class="upcoming-section">
+  <h1 class="event-page">Upcoming movienights</h1>
+
+  <div class="event-cards-container" data-controller="scroll">
+    <button class="scroll-button left" data-action="click->scroll#scrollLeft">
+      <i class="fas fa-circle-chevron-left"></i>
+      </button>
+    <% if @events.any? %>
+      <% @events.each do |event| %>
+        <div class="event-card card" >
+          <h4><%= link_to event.title, event_path(event), class: "movie-link" %></h4>
+        <h4><%= event.movie.title %></h4>
+          <p><%= event.description %></p>
+          <p><%= event.location %></p>
+          <p><%= event.date %></p>
+          <p><%= event.user.username %> </p>
+          <% if current_user && current_user.id == event.user_id %>
+          <%= link_to edit_event_path(event) do %>
+          <p><i class="fa-regular fa-pen-to-square edit-button"></i></p>
+          <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      <% else %>
+        <em>Sorry, no offers found.</em>
+      <% end %>
+      <button class="scroll-button right" data-action="click->scroll#scrollRight"><i class="fas fa-circle-chevron-right"></i></button>
   </div>
-<% end %>
+</section>
