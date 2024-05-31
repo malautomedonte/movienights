@@ -1,6 +1,5 @@
 <%= simple_form_for @event do |form| %>
   <div class="form-input">
-    <%= form.input :title %>
     <%= form.input :movie, collection: Movie.all, selected: @event.movie_id%>
     <%= form.input :description %>
     <%= form.input :date, as: :date %>

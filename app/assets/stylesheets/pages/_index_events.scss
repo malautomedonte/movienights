@@ -14,10 +14,6 @@
 max-width: 70%;
 }
 
-.event-cards-container .event-card {
-  flex: 0 0 300px;
-}
-
 .event-page {
   h5 {
     font-size: 1.5rem;
@@ -51,6 +47,14 @@ max-width: 70%;
   color: #FFEDC7;
   border-radius: 5px;
   font-size: 1.5rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0.7;
+}
+
+.edit-button:hover {
+  opacity: 0.9;
 }
 
 .ticket {
