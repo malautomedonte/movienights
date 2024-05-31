@@ -1,10 +1,11 @@
-<h1>Todays' movienights</h1>
+<% if current_user %>
+    <h2>Welcome <%= current_user.username %>!</h2>
+<% end %>
 
-<div class="events">
+<section class="events m-y-24">
+  <h1 class="p-l-24">Todays' movienights</h1>
   <%= render 'shared/event_cards' %>
-</div>
-
-<h1>These people might be interessting for you</h1>
+</section>
 
 <div class="user-reommendations">
 </div>
@@ -26,3 +27,4 @@
   <% end %>
   </div>
 </div>
+</section>

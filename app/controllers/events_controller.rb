@@ -7,6 +7,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @message = Message.new
   end
 
 
@@ -32,6 +33,12 @@ class EventsController < ApplicationController
     @event.movie = @movie
     @event.update(event_params)
     redirect_to events_path
+  end
+
+  def destroy
+    @event = Event.find(params[:event_id])
+    @event.destroy
+    redirect_to events_path, notice: 'Your event was successfully deleted.'
   end
 
   private
