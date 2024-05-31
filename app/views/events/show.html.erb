@@ -1,3 +1,4 @@
+<div class="page">
 <div class="container-event-show">
 
   <div>
@@ -11,7 +12,11 @@
     <h5><i class="fa-regular fa-clock"></i> <%= @event.date.strftime("%H:%M")%></h3>
     <p><%= @event.description %></p>
     <h5>Host</h5>
+    <% if current_user && @event.user_id == current_user.id %>
+    <p>You</p>
+    <% else %>
     <%= User.find(@event.user_id).username %>
+     <% end %>
       <h5>Participants <%= @event.event_users.count %> (max 10 attendees)</h5>
     <% @event.event_users.each do |person| %>
     <p><%= User.find(person.user_id).username  %></p>
@@ -23,6 +28,7 @@
     <% if current_user && @event.user_id == current_user.id %>
     <p>This is your event!</p>
     <%= link_to "Cancel", event_path(event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <%= link_to "Edit", edit_event_path(@event), class: "btn btn-warning" %>
     <% elsif eventjoin %>
     <p>You are attending!</p>
     <%= link_to "Cancel", event_user_path(eventuser_id: eventjoin, event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "cancel-button" %>
@@ -30,6 +36,32 @@
     <%= link_to "Join this event!",   event_users_path(event_id: @event.id), data: { "turbo-method": :post }, class: "join-button" %>
     <% end %>
   </div>
+</div>
+<div class="chat">
+  <%= simple_form_for [@event, @message],
+  html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f|
+%>
+  <%= f.input :content,
+    label: false,
+    placeholder: "Message ##{@event.title}",
+    wrapper_html: {class: "flex-grow-1"}
+  %>
+  <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+<% end %>
+</div>
 
 
+<div class="container chatroom"
+  data-controller="chatroom-subscription"
+  data-chatroom-subscription-chatroom-id-value="<%= @event.id %>"
+>
+  <h1>#<%= @event.title %></h1>
+
+  <div class="messages" data-chatroom-subscription-target="messages">
+    <% @event.messages.each do |message| %>
+     <%= render "messages/message", message: message %>
+    <% end %>
+      </div>
+  </div>
+</div>
 </div>

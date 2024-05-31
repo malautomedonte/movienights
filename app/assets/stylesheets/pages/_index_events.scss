@@ -1,3 +1,67 @@
+.create-event-section{
+  background-color: $bg-1;
+  margin: 0;
+  padding: 3rem 0;
+}
+
+.today-and-create-container {
+  display: flex;
+  gap: 3rem;
+  margin: 0 7% 0;
+}
+
+.todays-event-container {
+max-width: 70%;
+}
+
 .event-cards-container .event-card {
   flex: 0 0 300px;
+}
+
+.event-page {
+  h5 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+ }
+
+ .create-event {
+  margin-top: 4.1rem;
+  background-color: #426D80;
+  color: #FFEDC7;
+  padding: 1rem;
+  border-radius: 5px;
+ }
+
+ .upcoming-section {
+  background-color: $bg-3;
+  padding: 3rem 7%;
+ }
+
+.movie-link {
+  text-decoration: none;
+  color: #0A2733;
+}
+
+.edit-button {
+  text-decoration: none;
+  padding: 8px 16px;
+  background-color: #426D80;
+  color: #FFEDC7;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
+.ticket {
+  color: $bg-5;
+  padding-right: 0.25rem;
+}
+
+.create-button {
+  background-color: #FFEDC7;
+}
+
+.create-button:hover {
+  background-color: #ffedc782;
 }
