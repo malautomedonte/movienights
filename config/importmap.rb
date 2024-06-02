@@ -10,3 +10,6 @@ pin "@popperjs/core", to: "popper.js", preload: true
 pin "@rails/actioncable", to: "@rails--actioncable.js" # @7.0.8
 pin "mapbox-gl" # @3.1.2
 pin "process" # @2.0.1
+# config/importmap.rb
+pin "tom-select", to: "https://cdn.jsdelivr.net/npm/tom-select@2.0.0/dist/js/tom-select.complete.min.js"
+

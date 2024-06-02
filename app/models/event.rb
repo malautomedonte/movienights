@@ -4,7 +4,7 @@ class Event < ApplicationRecord
 
   has_many :bookmarks
   has_many :event_users, dependent: :destroy
-  has_many :messages
+  has_many :messages, dependent: :destroy
 
   validates :date, :location, presence: true
 

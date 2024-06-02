@@ -5,29 +5,58 @@
   <div class="wrapper-sign-up">
     <div class="container-sign-up-form">
       <h2 class="sign-up-title">Sign up for Movie Nights!</h2>
-      <p class="sign-up-title">The best place to find friends and watch movies together!</p>
+      <p class="sign-up-title-p">The best place to find friends and watch movies together!</p>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
 
         <div class="form-inputs">
-          <%= f.input :username, required: true, autofocus: true %>
-          <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" } %>
-          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" } %>
-          <%= f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" } %>
-          <!-- Ask the user for preferences -->
-          <%= f.association :genres, label: "Favorite Genres", as: :check_boxes, required: true, input_html: { multiple: true, class: 'multiple-select' }, include_hidden: false %>
-          <%= f.association :directors, label: "Favorite Directors", label_method: :full_name, input_html: { multiple: true, class: 'multiple-select' }, include_hidden: false, required: true %>
-          <%= f.association :actors, label: "Favorite Actors", label_method: :full_name, input_html: { multiple: true, class: 'multiple-select' }, include_hidden: false, required: true %>
-        </div>
+          <div class="sign-up-card-details">
+          <%= f.input :username,
+              required: true,
+              autofocus: true %>
+          <%= f.input :email,
+              required: true,
+              autofocus: true,
+              input_html: { autocomplete: "email" } %>
+          <%= f.input :password,
+              required: true,
+              hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+              input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation,
+              required: true,
+              input_html: { autocomplete: "new-password" } %>
+          </div>
 
-        <div class="form-actions">
-          <%= f.button :submit, "Sign up" %>
+          <div class="user-preferences">
+          <!-- Ask the user for preferences -->
+          <%= f.input :genres,
+              label: "Choose your favorite genres (up to three)",
+              collection: Genre.all,
+              required: true,
+              input_html: {multiple: true, data: {controller: "tom-select"}} %>
+          <%= f.input :directors,
+              label: "Choose your favorite directors (up to three)",
+              collection: Director.all,
+              label_method: :full_name,
+              required: true,
+              input_html: {multiple: true, data: {controller: "tom-select"}} %>
+          <%= f.input :actors,
+              label: "Choose your favorite actors (up to three)",
+              collection: Actor.all,
+              label_method: :full_name,
+              required: true,
+              input_html: {multiple: true, data: {controller: "tom-select"}} %>
+          </div>
         </div>
+        <div class="buttons-registration">
+          <div class="form-actions">
+              <%= f.button :submit, "Sign up", class: "button-sign-up" %>
+          </div>
       <% end %>
-      <div class="sign-in-links">
-        <%= render "devise/shared/links" %>
-      </div>
+              <p class="p-registration">Or...</p>
+          <%= render "devise/shared/links" %>
+       </div>
     </div>
   </div>
 </body>
