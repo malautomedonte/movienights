@@ -1,36 +1,52 @@
-<% if current_user %>
-    <h2>Welcome <%= current_user.username %>! :popcorn:</h2>
-<% end %><section class="events m-y-24">
-  <h1 class="p-l-24">Todays' movienights</h1>
-  <%= render 'shared/event_cards' %>
-</section><div class="similar-users">
-  <h1>Users with Similar Preferences</h1>
-  <% if current_user.similar_users.any? %>
-    <div class="user-cards">
-      <% current_user.similar_users.each do |user| %>
-        <div class="user-card">
-          <p>Favorite Genres: <%= user.genres.pluck(:title).join(', ') %></p>
-          <p>Favorite Actors: <%= user.actors.pluck(:last_name).join(', ') %></p>
-          <p>Favorite Directors: <%= user.directors.pluck(:last_name).join(', ') %></p>
-        </div>
-      <% end %>
-    </div>
-  <% else %>
-    <em>No users with similar preferences found.</em>
+<div class="m-y-24 m-l-24">
+  <% if current_user %>
+      <h1>Welcome <%= current_user.username %>! 🍿</h1>
   <% end %>
 
-</div></div><div class="movie-recommendations">
-  <h1>Recommendations for you :clap_de_tournage:</h1>
-  <% if current_user.preferred_content.present? %>
-    <div class="movies-horizontal-list">
-      <% current_user.preferred_content.each do |movie| %>
-        <div class="movie-card">
-          <%= image_tag movie.poster_url %>
-          <h3><%= movie.title %></h3>
-        </div>
+  <section class="events m-y-24">
+    <header class="flex space-between p-x-24">
+      <h2 class="">Todays' movienights</h2>
+      <a href="/events" class="button">Create a Movie night event</a>
+    </header>
+    <%= render 'shared/event_cards' %>
+  </section>
+
+  <section class="similar-users m-y-24">
+    <h2 class="p-l-24">Users with Similar Preferences</h2>
+    <% if current_user.similar_users.any? %>
+      <div class="user-cards">
+        <% current_user.similar_users.each do |user| %>
+          <div class="user-card">
+            <p>Favorite Genres: <%= user.genres.pluck(:title).join(', ') %></p>
+            <p>Favorite Actors: <%= user.actors.pluck(:last_name).join(', ') %></p>
+            <p>Favorite Directors: <%= user.directors.pluck(:last_name).join(', ') %></p>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <em>No users with similar preferences found.</em>
+    <% end %>
+  </section>
+
+  <section class="movie-recommendations m-y-24">
+    <h2 class="p-l-24">Recommendations for you 🎬</h2>
+    <div class="movies-horizontal-list"  data-controller="scroll">
+      <button class="scroll-button left" data-action="click->scroll#scrollLeft">
+        <i class="fas fa-circle-chevron-left"></i>
+      </button>
+      <% if current_user.preferred_content.present? %>
+          <% current_user.preferred_content.each do |movie| %>
+            <div class="movie-card card">
+              <%= image_tag movie.poster_url %>
+              <h3><%= movie.title %></h3>
+            </div>
+          <% end %>
+      <% else %>
+        <em>Sorry, there's no movie recommendation yet.</em>
       <% end %>
+      <button class="scroll-button right" data-action="click->scroll#scrollRight">
+        <i class="fas fa-circle-chevron-right"></i>
+      </button>
     </div>
-  <% else %>
-    <em>Sorry, there's no movie recommendation yet.</em>
-  <% end %>
+  </section>
 </div>

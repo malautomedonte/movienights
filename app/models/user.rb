@@ -9,12 +9,14 @@ class User < ApplicationRecord
   has_many :user_actors, dependent: :destroy
   has_many :user_directors, dependent: :destroy
   has_many :user_genres, dependent: :destroy
+
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
   has_many :messages, dependent: :destroy
 
   has_many :actors, through: :user_actors
   has_many :directors, through: :user_directors
   has_many :genres, through: :user_genres
-
   def preferred_content
     preferred_movies = []
 

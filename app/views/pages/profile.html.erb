@@ -1,0 +1,2 @@
+<h1><%=  User.find_by(id: 5).username %></h1>
+<%= link_to "Add Friend", friendships_path(friend_id: @user.id), data: { turbo_method: :post } %>
