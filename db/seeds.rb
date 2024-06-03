@@ -271,11 +271,13 @@ theatres = { "Moviemento" => 'Kottbusser Damm 22, 10967 Berlin', "Neues Off cine
 
 20.times do
   cinema = theatres.to_a.sample[0]
+  movie = Movie.all.sample
+
   event = Event.new(
-    title: Faker::Movie.title,
-    description: Faker::Movie.quote,
+    title: movie.title,
+    description: movie.description,
     user_id: User.pluck(:id).sample,
-    movie_id: Movie.pluck(:id).sample,
+    movie_id: movie.id,
     date: DateTime.now,
     theatre: cinema,
     location: theatres[cinema]
