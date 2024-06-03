@@ -4,11 +4,13 @@
   flex-wrap: wrap;
   margin: 10px; /* Adjust margin as needed */
   padding: 10px; /* Adjust padding as needed */
-  background-color: $light-gray; /* Light gray background */
-  border-radius: 5px; /* Rounded corners */
+  background-color: $white; /* Light gray background */
+  border-radius: 10px; /* Rounded corners */
   border: 1px solid $medium-gray;
-  box-shadow : 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  text-align : center; /* Center text within the card */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; /* Subtle shadow */
+  &:hover {
+    box-shadow: none;
+  }
 }
 
 .movies-horizontal-list .movie-card {

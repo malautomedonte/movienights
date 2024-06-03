@@ -1,0 +1,19 @@
+#container-events-horizontal {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 0 8px 8px 0;
+  box-shadow: rgba(128, 128, 128, 0.527) 0px 4px 4px ;
+}
+
+.date-box {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.movie-theater {
+  display: flex;
+  flex-direction: column;
+}

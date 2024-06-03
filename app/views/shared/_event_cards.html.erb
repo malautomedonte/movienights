@@ -6,35 +6,34 @@
   <% if @events_today.any? %>
     <% @events_today.each do |event| %>
       <div class="event-card card" >
+        <button class="bookmark-type"><i class="fa-solid fa-check"></i></button>
+        <div class="movie-poster">
+          <img src="<%= event.movie.poster_url %>" alt="Movie Poster" class="movie-poster">
             <% if current_user && current_user.id == event.user_id %>
-            <%= link_to edit_event_path(event), class: 'edit-button' do %>
-            <i class="fa-regular fa-pen-to-square"></i>
+              <%= link_to edit_event_path(event), class: 'edit-button' do %>
+              <i class="fa-regular fa-pen-to-square"></i>
+              <% end %>
             <% end %>
-            <% end %>
-        <h5><%= event.movie.title %></h5>
-        <p><i class="fa-solid fa-location-dot"></i> <%= event.theatre %></p>
-
-        <div class="flex">
-          <div class="movie-poster">
-            <img src="<%= event.movie.poster_url %>" alt="Movie Poster" class="movie-poster">
+        </div>
+        <div class="text">
+          <div class="date-time">
+            <%= event.date.strftime("%H:%M") %>
           </div>
-
-        <div class="event-details">
-          <p><i class="fa-regular fa-clock"></i> <%= event.date.strftime("%H:%M") %></p>
-          <% if current_user && current_user.id == event.user_id %>
-            <p>You are the host</p>
-          <% else %>
-          <p><%= event.user.username %> </p>
-            <% end %>
-          <%= link_to 'See Event', event_path(event), class: 'see-more-button' %>
+          <h4><%= event.movie.title %></h4>
+          <p><i class="fas fa-thin fa-location-dot p-r-8"></i><%= event.theatre %></p>
+          <div class="event-details">
+            <% if current_user && current_user.id == event.user_id %>
+              <p>You are the host</p>
+            <% else %>
+            <p><%= event.user.username %>participants</p>
+              <% end %>
+          </div>
+          <%= link_to '', event_path(event) %>
         </div>
       </div>
-
-    </div>
   <% end %>
   <% else %>
-    <em>Sorry, no offers found.</em>
+    <em>Sorry, there's no events yet. Create one !</em>
   <% end %>
   <button class="scroll-button right" data-action="click->scroll#scrollRight"><i class="fas fa-circle-chevron-right"></i></button>
-
 </div>
