@@ -2,7 +2,7 @@ class Event < ApplicationRecord
   belongs_to :user
   belongs_to :movie
 
-  has_many :bookmarks
+  has_many :bookmarks, dependent: :destroy
   has_many :event_users, dependent: :destroy
   has_many :messages, dependent: :destroy
 
