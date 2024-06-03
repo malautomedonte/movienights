@@ -23,5 +23,6 @@ class PagesController < ApplicationController
   def myevents
     @my_events = current_user.events
     @attended_events = current_user.event_users
+    @event = Event.new
   end
 end
