@@ -1,16 +1,22 @@
 // Define variables for your color scheme
 
-// For example:
-$red: #FD1015;
-$blue: #0D6EFD;
-$yellow: #FFC65A;
-$orange: #E67E22;
-$green: #1EDD88;
-$gray: #0E0000;
+//Default from config. — NOT REMOVE !!!
+$red:red;
+$blue:blue;
+$green:green;
+$yellow:yellow;
+$orange:orange;
+
+
+// Neutral:
+$white: #ffffff;
 $light-gray: #F4F4F4;
 $medium-gray: #cdcdcd;
 $medium-darker-gray: #7d7d7d;
+$gray: #7d7d7d;
 $darker-gray: #2a2a2a;
+$black: #000000;
+
 
 // Page Colors:
 $bg-1: #B5CBD5;
@@ -18,3 +24,15 @@ $bg-2: #759AAA;
 $bg-3: #426D80;
 $bg-4: #1E4555;
 $bg-5: #0A2733;
+
+//Primary
+$primary-light:#FEDCDC;
+$primary-base:#FB6767;
+$primary-dark:#AB0E0E;
+
+
+// Secondary:
+$secondary-light:#E6F4FE;
+$secondary-base:#1A81CB;
+$secondary-dark:#113651;
+$secondary-darker:#0D293E;

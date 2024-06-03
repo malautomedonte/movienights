@@ -1,0 +1,20 @@
+// HEADER ---------------------------------------------------------------
+
+//header h2 + see more
+
+header .see-all {
+  padding-left: 24px;
+  i {
+    padding-left: 16px;
+  }
+  &:hover {
+    text-decoration: none;
+    i {
+      opacity: .5;
+    }
+  }
+}
+
+h1:not(.white), h2:not(.white), h3:not(.white), h4:not(.white), p:not(.white) {
+  color: $black;
+}
