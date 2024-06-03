@@ -5,9 +5,9 @@
       <h2>Your profile pic (edit)</h2>
       <div class="picture-card">
         <% if current_user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key%>
+          <%= cl_image_tag current_user.photo.key, class: "picture-card" %>
           <% else %>
-            <%= image_tag "default_avatar.jpeg"%>
+            <%= image_tag "default_avatar.jpeg", alt: "hello",class: "picture-card"%>
         <% end %>
       </div>
       <h2>Your name: <%= @user.username %></h2>
@@ -28,6 +28,7 @@
 
 <div class="container-user-events-page">
   <div class="user-my-events-page">
+    <p>Your events</p>
     <% if @my_events.present? %>
       <% @my_events.each do |event| %>
         <div class="event-card card">
@@ -50,6 +51,7 @@
   </div>
 
   <div class="user-join-events-page">
+    <p>You are attending to...</p>
     <% if @attended_events.present? %>
       <% @attended_events.each do |attended| %>
         <div class="event-card card">
