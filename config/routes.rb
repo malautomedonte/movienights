@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'profile/:id', to: 'pages#profile', as: "profile"
   get '/pages/myevents', to: 'pages#myevents'
   get '/friendrequests', to: 'friendships#friend_requests'
+  get '/pages/user_profile', to: 'pages#user_profile'
   patch '/accept', to: 'friendships#accept'
   patch '/reject', to: 'friendships#reject'
 end

@@ -1,0 +1,24 @@
+.container-user-page-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.user-card-details {
+  border: 10px solid black;
+  align-items: stretch;
+}
+
+.user-preferences-card {
+  border: 10px solid grey;
+  align-items: stretch;
+}
+
+.container-user-events-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.picture-card {
+  border: 4px solid black;
+  height: 50px;
+  width: 50px;
+}
