@@ -15,6 +15,12 @@ class PagesController < ApplicationController
     @attended_events = current_user.event_users
   end
 
+  def user_profile_edit
+    @user = current_user
+    @my_events = current_user.events
+    @attended_events = current_user.event_users
+    # redirect_to "/pages/user_profile"
+  end
 
   def profile
     @user = User.find(params[:id])

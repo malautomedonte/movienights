@@ -14,15 +14,34 @@
   padding: 15px;
 }
 
-.user-preferences-card {
+.user-preferences-page {
   padding: 15px;
 }
 
-.see-all-my-events {
+.user-preferences-card {
+  padding: 25px;
+}
+
+.user-preferences-genres {
+  padding: 15px;
+}
+
+.user-preferences-directors {
+  padding: 15px;
+
+}
+
+.user-preferences-actors {
+  padding: 15px;
+
+}
+
+.see-all-my-stuff {
   background-color: #E6F4FE;
   padding: 15px;
-  padding-top: 15px;
+  padding-top: 25px;
   padding-left: 35px;
+  border-top: 2px solid black;
 }
 
 .see-all-link {
@@ -52,4 +71,9 @@
   width: 250px;
   border-radius: 50%;
   margin-bottom: 25px;
+}
+
+.user-friends-page {
+  padding: 25px;
+  background-color: #E6F4FE;
 }
