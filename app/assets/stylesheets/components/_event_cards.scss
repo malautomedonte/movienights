@@ -3,12 +3,17 @@
   padding: 0;
 }
 
-
 .square-card .movie-poster {
   height: 150px;
-  width: 100%;
+  max-width: 100%;
   object-fit: cover;
-  border-radius: 10px;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.movie-poster-horizontal {
+  height: 150px;
+  max-width: 100%;
+  // object-fit: cover;
   // transition: transform 0.5s ease, filter 0.5s ease;
 }
 

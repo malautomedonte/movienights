@@ -9,7 +9,6 @@ Bookmark.destroy_all
 Actor.destroy_all
 Director.destroy_all
 Genre.destroy_all
-Event.destroy_all
 
 # Seeding users
 puts "Creating users"
