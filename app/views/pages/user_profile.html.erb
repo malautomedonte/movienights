@@ -1,4 +1,4 @@
-<h1>This is your profile, <%= @user.username %></h1>
+<h1 class="h1-user-profile">This is your profile, <%= @user.username %></h1>
 <div class="container-user-page-details">
   <div class="user-details-page">
     <div class="user-card-details">
@@ -26,9 +26,15 @@
   </div>
 </div>
 
+  <div class="see-all-my-events">
+    <h2>Your events <%= link_to "See all  ->", events_path, class: "see-all-link" %></h2>
+  </div>
+
 <div class="container-user-events-page">
   <div class="user-my-events-page">
-    <p>Your events</p>
+  <div class="user-organized-events">
+    <h2>I have created <%= @my_events.count %> events</h2>
+  </div>
     <% if @my_events.present? %>
       <% @my_events.each do |event| %>
         <div class="event-card card">
@@ -51,7 +57,9 @@
   </div>
 
   <div class="user-join-events-page">
-    <p>You are attending to...</p>
+      <div class="user-attending-events">
+    <h2>I am attending to <%= @attended_events.count %> events</h2>
+  </div>
     <% if @attended_events.present? %>
       <% @attended_events.each do |attended| %>
         <div class="event-card card">
