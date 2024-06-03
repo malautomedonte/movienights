@@ -49,22 +49,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create_user_genres
-    chosen_genres = params[:user][:genre_ids]
+    chosen_genres = params[:user][:genres]
     chosen_genres.each do |genre_id|
+      next if genre_id == ""
       UserGenre.create!(genre_id: genre_id.to_i, user_id: User.last.id)
     end if chosen_genres
   end
 
   def create_user_actors
-    chosen_actors = params[:user][:actor_ids]
+    chosen_actors = params[:user][:actors]
     chosen_actors.each do |actor_id|
+      next if actor_id == ""
       UserActor.create!(actor_id: actor_id.to_i, user_id: User.last.id)
     end if chosen_actors
   end
 
   def create_user_directors
-    chosen_directors = params[:user][:director_ids]
+    chosen_directors = params[:user][:directors]
     chosen_directors.each do |director_id|
+      next if director_id == ""
       UserDirector.create!(director_id: director_id.to_i, user_id: User.last.id)
     end if chosen_directors
   end
