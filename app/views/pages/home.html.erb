@@ -1,6 +1,6 @@
 <div class="banner" id="homepage">
-  <p class="h3">Welcome <%= current_user.username %>! 🍿</p>
-  <h1>Welcome to movie night !</h1>
+  <p class="h3 white">Welcome <%= current_user.username %>! 🍿</p>
+  <h1 class="white">Welcome to movie night !</h1>
    <% if current_user %>
   <% end %>
 </div>
@@ -9,21 +9,37 @@
 
   <section class="events m-y-24">
     <header class="flex space-between p-x-24">
-      <h2 class="">Todays' movienights</h2>
+      <h2 class="inline">Todays' movienights</h2>
       <a href="/events" class="button">Create a Movie night event</a>
     </header>
     <%= render 'shared/event_cards' %>
   </section>
 
   <section class="similar-users m-y-24">
-    <h2 class="p-l-24">Users with Similar Preferences</h2>
+    <header class="flex center-vertically m-y-32">
+      <h2>Users with Similar Preferences</h2>
+      <a href="#" class="see-all">see all <i class="fas fa-solid fa-arrow-right"></i></a>
+    </header>
     <% if current_user.similar_users.any? %>
-      <div class="user-cards">
+      <div class="user-cards flex flex-wrap">
         <% current_user.similar_users.each do |user| %>
-          <div class="user-card">
-            <p>Favorite Genres: <%= user.genres.pluck(:title).join(', ') %></p>
-            <p>Favorite Actors: <%= user.actors.pluck(:last_name).join(', ') %></p>
-            <p>Favorite Directors: <%= user.directors.pluck(:last_name).join(', ') %></p>
+          <div class="user-card flex flex-wrap">
+            <img class="avatar" src="" alt="">
+            <div class="text">
+              <h4>
+                <a href="">Friend username</a>
+              </h4>
+              <p class="m-0"><%= user.directors.pluck(:last_name).join(', ') %></p>
+              <p class="m-0"><%= user.actors.pluck(:last_name).join(', ') %></p>
+              <ul class="display-inline ul-style-none w-100">
+                <% user.genres.pluck(:title).each do |title| %>
+                  <li class="m-t-8"><span class="tag"><%= title %></span></li>
+                <% end %>
+              </ul>
+              <button class="btn-regular btn-secondary btn-size-s">+ friend</button>
+                <%# <%= link_to '+ friend', friend_path(friend), class: 'btn-regular btn-secondary btn-size-s' %>
+              </button>
+            </div>
           </div>
         <% end %>
       </div>
