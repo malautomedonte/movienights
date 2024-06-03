@@ -20,7 +20,6 @@
 //-------PADDING----
 
 //all around
-
 .p-24 { padding: 24px;}
 .p-48 {padding: 48px;}
 
@@ -29,6 +28,9 @@
 
 //left only
 .p-l-24 {padding-left:24px;}
+
+//right only
+.p-r-8 {padding-right: 8px;}
 
 //top + bottom only
 .p-y-24 {padding-top :24px; padding-bottom: 24px;}
