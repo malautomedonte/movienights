@@ -1,25 +1,32 @@
-<% if current_user.similar_users.any? %>
-  <div class="user-cards flex flex-wrap">
-    <% current_user.similar_users.each do |user| %>
-      <div class="user-card flex flex-wrap">
-        <img class="avatar" src="" alt="">
-        <div class="text">
-          <h4>
-            <a href="">Friend username</a>
-          </h4>
-          <p class="m-0"><%= user.directors.pluck(:last_name).join(', ') %></p>
-          <p class="m-0"><%= user.actors.pluck(:last_name).join(', ') %></p>
-          <ul class="display-inline ul-style-none w-100">
-            <% user.genres.pluck(:title).each do |title| %>
-              <li class="m-t-8"><span class="tag"><%= title %></span></li>
-            <% end %>
-          </ul>
-          <button class="btn-regular btn-secondary btn-size-s">+ friend</button>
-            <%# <%= link_to '+ friend', friend_path(friend), class: 'btn-regular btn-secondary btn-size-s' %>
+<div class="event-cards-container" data-controller="scroll">
+  <button class="scroll-button left" data-action="click->scroll#scrollLeft">
+    <i class="fas fa-circle-chevron-left"></i>
+  </button>
+
+  <% if current_user.similar_users.any? %>
+    <div class="user-cards flex flex-wrap">
+      <% current_user.similar_users.each do |user| %>
+        <div class="user-card flex flex-wrap">
+          <img class="avatar" src="" alt="">
+          <div class="text">
+            <h4>
+              <a href="">Friend username</a>
+            </h4>
+            <p class="m-0"><%= user.directors.pluck(:last_name).join(', ') %></p>
+            <p class="m-0"><%= user.actors.pluck(:last_name).join(', ') %></p>
+            <ul class="display-inline ul-style-none w-100">
+              <% user.genres.pluck(:title).each do |title| %>
+                <li class="m-t-8"><span class="tag"><%= title %></span></li>
+              <% end %>
+            </ul>
+            <button class="btn-regular btn-secondary btn-size-s">+ friend</button>
+              <%# <%= link_to '+ friend', friend_path(friend), class: 'btn-regular btn-secondary btn-size-s' %>
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
-<% else %>
-  <em>No users with similar preferences found.</em>
+      <% end %>
+    </div>
+  <% else %>
+    <em>No users with similar preferences found.</em>
 <% end %>
+  <button class="scroll-button right" data-action="click->scroll#scrollRight"><i class="fas fa-circle-chevron-right"></i></button>
+</div>
