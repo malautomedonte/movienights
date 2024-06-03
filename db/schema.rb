@@ -111,6 +111,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_081625) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "friendships", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "status"
+    t.bigint "friend_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
+    t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -231,6 +242,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_081625) do
   add_foreign_key "event_users", "users"
   add_foreign_key "events", "movies"
   add_foreign_key "events", "users"
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
   add_foreign_key "messages", "events"
   add_foreign_key "messages", "users"
   add_foreign_key "movie_actors", "actors"

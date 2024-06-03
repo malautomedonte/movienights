@@ -13,3 +13,4 @@ pin "process" # @2.0.1
 # config/importmap.rb
 pin "tom-select", to: "https://cdn.jsdelivr.net/npm/tom-select@2.0.0/dist/js/tom-select.complete.min.js"
 
+pin "flatpickr" # @4.6.13

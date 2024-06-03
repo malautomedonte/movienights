@@ -10,7 +10,6 @@ class MessagesController < ApplicationController
         render_to_string(partial: "message", locals: {message: @message})
       )
       head :ok
-      # redirect_to event_path(@event)
     else
       render "events/show", status: :unprocessable_entity
     end

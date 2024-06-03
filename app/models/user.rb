@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_many :user_actors, dependent: :destroy
   has_many :user_directors, dependent: :destroy
   has_many :user_genres, dependent: :destroy
+
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
   has_many :messages, dependent: :destroy
 
   has_many :actors, through: :user_actors
