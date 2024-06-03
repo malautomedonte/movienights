@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :actors, through: :user_actors
   has_many :directors, through: :user_directors
   has_many :genres, through: :user_genres
+  has_one_attached :photo
 
   def preferred_content
     preferred_movies = []
@@ -40,7 +41,7 @@ class User < ApplicationRecord
       (self.actors & user.actors).any? ||
       (self.directors & user.directors).any?
     end
-    
+
     similar_users
   end
 end
