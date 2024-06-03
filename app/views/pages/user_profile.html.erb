@@ -1,0 +1,78 @@
+<h1>This is your profile, <%= @user.username %></h1>
+<div class="container-user-page-details">
+  <div class="user-details-page">
+    <div class="user-card-details">
+      <h2>Your profile pic (edit)</h2>
+      <div class="picture-card">
+        <% if current_user.photo.attached? %>
+          <%= cl_image_tag current_user.photo.key%>
+          <% else %>
+            <%= image_tag "default_avatar.jpeg"%>
+        <% end %>
+      </div>
+      <h2>Your name: <%= @user.username %></h2>
+      <h2>Your email: <%= @user.email %></h2>
+    </div>
+  </div>
+  <div class="user-preferences-page">
+    <div class="user-preferences-card">
+      <h2>Your Favorite genres</h2>
+        <p><%= @user.genres.pluck(:title).join(', ') %></p>
+      <h2>Your Favorite Directors</h2>
+        <p><%= @user.directors.pluck(:last_name).join(', ') %></p>
+      <h2>Your Favorite Actors</h2>
+        <p><%= @user.actors.pluck(:last_name).join(', ') %></p>
+    </div>
+  </div>
+</div>
+
+<div class="container-user-events-page">
+  <div class="user-my-events-page">
+    <% if @my_events.present? %>
+      <% @my_events.each do |event| %>
+        <div class="event-card card">
+          <h4><%= link_to event.title, event_path(event), class: "movie-link" %></h4>
+          <h4><%= event.movie.title %></h4>
+          <p><%= event.description %></p>
+          <p><%= event.location %></p>
+          <p><%= event.date %></p>
+          <p><%= event.user.username %></p>
+          <% if current_user && current_user.id == event.user_id %>
+            <%= link_to edit_event_path(event) do %>
+              <p><i class="fa-regular fa-pen-to-square edit-button"></i></p>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No events created by you yet.</p>
+    <% end %>
+  </div>
+
+  <div class="user-join-events-page">
+    <% if @attended_events.present? %>
+      <% @attended_events.each do |attended| %>
+        <div class="event-card card">
+          <h4><%= link_to attended.event.title, event_path(attended.event), class: "movie-link" %></h4>
+          <h4><%= attended.event.movie.title %></h4>
+          <p><%= attended.event.description %></p>
+          <p><%= attended.event.location %></p>
+          <p><%= attended.event.date %></p>
+          <p><%= attended.event.user.username %></p>
+          <p>You are attending!</p>
+          <%= link_to "Cancel", event_user_path(id: attended.id, eventuser_id: attended, event_id: pages_myevents_path), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "cancel-button" %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No events attended by you yet.</p>
+    <% end %>
+  </div>
+</div>
+
+<div class="user-friends-page">
+  <!-- Friends content -->
+</div>
+
+<div class="user-watchlist page">
+  <!-- Watchlist content -->
+</div>
