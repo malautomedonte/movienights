@@ -1,7 +1,11 @@
-<div class="m-y-24 m-l-24">
-  <% if current_user %>
-      <h1>Welcome <%= current_user.username %>! 🍿</h1>
+<div class="banner" id="homepage">
+  <p class="h3">Welcome <%= current_user.username %>! 🍿</p>
+  <h1>Welcome to movie night !</h1>
+   <% if current_user %>
   <% end %>
+</div>
+
+<div class="m-y-24 m-l-24">
 
   <section class="events m-y-24">
     <header class="flex space-between p-x-24">
