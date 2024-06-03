@@ -3,25 +3,8 @@
     <h1><em><%= @event.movie.title %></em> movie night</h1>
   </div>
 
-  <div>
-    <h1><%= @event.movie.title %></h1>
-    <h5><i class="fa-solid fa-location-dot"></i> <%= @event.theatre %>, <%= @event.location %></h3>
-    <h5><i class="fa-regular fa-calendar"></i> <%= @event.date.strftime("%d/%m/%Y")  %></h3>
-    <h5><i class="fa-regular fa-clock"></i> <%= @event.date.strftime("%H:%M")%></h3>
-    <p><%= @event.description %></p>
-    <h5>Host</h5>
-    <% if current_user && @event.user_id == current_user.id %>
-      <p>You</p>
-    <% else %>
-      <%= User.find(@event.user_id).username %>
-    <% end %>
-    <h5>Participants <%= @event.event_users.count %> (max 10 attendees)</h5>
-    <% @event.event_users.each do |person| %>
-      <p><%= User.find(person.user_id).username  %></p>
-    <% end %>
-  </div>
-  <div class="container-event-show">
 
+  <div class="container-event-show">
     <div>
       <%= image_tag(@event.movie.poster_url) %>
     </div>
