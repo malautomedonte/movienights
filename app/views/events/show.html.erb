@@ -16,13 +16,25 @@
       <p><%= @event.description %></p>
       <h5>Host</h5>
       <% if current_user && @event.user_id == current_user.id %>
-        <p>You</p>
+         <% if current_user.photo.attached? %>
+           <p><%= image_tag current_user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %>You</p>
+         <% else %>
+           <p><%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %> You</p>
+         <% end %>
       <% else %>
-        <%= User.find(@event.user_id).username %>
+         <% if User.find(@event.user_id).photo.attached? %>
+           <%= image_tag User.find(@event.user_id).photo, crop: :fill, class: "avatar", alt: "dropdown menu" %> <%= User.find(@event.user_id).username %>
+          <% else %>
+            <p><%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %><%= User.find(@event.user_id).username %></p>
+          <% end %>
       <% end %>
       <h5>Participants <%= @event.event_users.count %> (max 10 attendees)</h5>
       <% @event.event_users.each do |person| %>
-        <p><%= User.find(person.user_id).username  %></p>
+         <% if  User.find(person.user_id).photo.attached? %>
+           <p><%= image_tag User.find(person.user_id).photo, crop: :fill, class: "avatar"%>  <%= User.find(person.user_id).username %></p>
+         <% else %>
+            <p><%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %> <%= User.find(person.user_id).username  %></p>
+         <% end %>
       <% end %>
     </div>
 
