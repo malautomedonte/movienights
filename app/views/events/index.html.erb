@@ -37,11 +37,6 @@
             </div>
 
             <div class="participants-info">
-              <% if  event.user.photo.attached? %>
-                <p><%= image_tag event.user.photo, crop: :fill, class: "avatar"%>  <%= User.find(person.user_id).username %></p>
-              <% else %>
-                <p><%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %> <%= User.find(person.user_id).username  %></p>
-              <% end %>
             </div>
 
 
