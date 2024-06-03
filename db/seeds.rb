@@ -9,6 +9,7 @@ Bookmark.destroy_all
 Actor.destroy_all
 Director.destroy_all
 Genre.destroy_all
+Event.destroy_all
 
 # Seeding users
 puts "Creating users"
@@ -255,19 +256,29 @@ UserDirector.create(user: user_emma, director_id: Director.pluck(:id).sample)
 UserDirector.create(user: user_emma, director_id: Director.pluck(:id).sample)
 
 
-
-
 # Seeding events & event_users
 puts "Creating events"
 
+
+theatres = { "Moviemento" => 'Kottbusser Damm 22, 10967 Berlin', "Neues Off cinema" => 'Hermannstraße 20, 12049 Berlin',
+  "IL KINO" => 'Nansenstraße 22, 12047 Berlin', "Babylon Kreuzberg" => 'Dresdener Str. 126, 10999 Berlin',
+  "Passage Berlin" => 'Karl-Marx-Straße 131, 12043 Berlin', "Filmtheater am Friedrichshain" => 'Bötzowstraße 1-5, 10407 Berlin',
+  "Babylon" => 'Rosa-Luxemburg-Straße 30, 10178 Berlin', "Kino Central" => 'Rosenthaler Str. 39, 10178 Berlin',
+  "Odeon Berlin" => 'Hauptstraße 116, 10827 Berlin', "Rollberg Kinos" => 'Rollbergstraße 70, 12049 Berlin',
+  "b-ware Ladenkino" => 'Gärtnerstraße 19, 10245 Berlin', "Kino International" => 'Karl-Marx-Allee 33, 10178 Berlin'
+  }
+
+
 20.times do
+  cinema = theatres.to_a.sample[0]
   event = Event.new(
     title: Faker::Movie.title,
     description: Faker::Movie.quote,
     user_id: User.pluck(:id).sample,
     movie_id: Movie.pluck(:id).sample,
     date: DateTime.now,
-    location: "#{Faker::Address.street_address}, #{Faker::Address.city}"
+    theatre: cinema,
+    location: theatres[cinema]
   )
   event.save!
   EventUser.create(user: event.user, event: event)
