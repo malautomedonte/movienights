@@ -22,10 +22,10 @@
         <div class="event-details">
           <p><i class="fa-regular fa-clock"></i> <%= event.date.strftime("%H:%M") %></p>
           <% if current_user && current_user.id == event.user_id %>
-          <p>You are the host</p>
+            <p>You are the host</p>
           <% else %>
           <p><%= event.user.username %> </p>
-          <% end %>
+            <% end %>
           <%= link_to 'See Event', event_path(event), class: 'see-more-button' %>
         </div>
       </div>
