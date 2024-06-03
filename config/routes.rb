@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root "pages#home"
 
   # resources :bookmarks, only:[:create, :destroy, :index ]
-  resources :movies, only:[:index]
+  resources :movies, only: %i[index show] do
+    resources :reviews, only: %i[new create]
+  end
   resources :events do
   resources :messages, only: :create
   end
