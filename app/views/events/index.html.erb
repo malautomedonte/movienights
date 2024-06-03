@@ -2,6 +2,7 @@
   <div class="today-and-create-container">
     <div class="todays-event-container">
       <h1 class="event-page"><i class="fa-solid fa-ticket ticket"></i> Today's movienights</h1>
+      <%= link_to "Create yours!", new_event_path %>
       <%= render "shared/event_cards" %>
     </div>
 
@@ -12,8 +13,7 @@
         <div class="form-input">
           <%= form.input :movie, collection: Movie.all %>
           <%= form.input :description %>
-          <%= form.input :date, as: :date %>
-          <%= form.input :date, as: :time, label: "Time" %>
+          <%= form.input :date %>
           <%= form.input :location %>
         </div>
 
@@ -65,7 +65,7 @@
            <% else %>
             <p><%= event.user.username %> </p>
            <% end %>
-           <%= link_to 'See Event', event_path(event), class: 'see-more-button' %>
+             <%= link_to 'See Event', event_path(event), class: 'see-more-button' %>
           </div>
          </div>
     <% end %>
