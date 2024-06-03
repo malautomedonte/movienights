@@ -1,65 +1,68 @@
-<div class="page">
-<div class="container-event-show">
-
-  <div>
-    <%= image_tag(@event.movie.poster_url) %>
+<div class="page" id="event-detail-page">
+  <div class="banner" style="background-image: radial-gradient(circle 400px at 50% -30%, rgba(0, 0, 0, .1), rgba(0, 0, 0, .8)), url('<%= @event.movie.poster_url %>');">
+    <h1><em><%= @event.movie.title %></em> movie night</h1>
   </div>
 
-  <div>
-    <h1><%= @event.movie.title %></h1>
-    <h5><i class="fa-solid fa-location-dot"></i> <%= @event.location %></h3>
-    <h5><i class="fa-regular fa-calendar"></i> <%= @event.date.strftime("%d/%m/%Y")  %></h3>
-    <h5><i class="fa-regular fa-clock"></i> <%= @event.date.strftime("%H:%M")%></h3>
-    <p><%= @event.description %></p>
-    <h5>Host</h5>
-    <% if current_user && @event.user_id == current_user.id %>
-      <p>You</p>
-    <% else %>
-      <%= User.find(@event.user_id).username %>
-    <% end %>
-    <h5>Participants <%= @event.event_users.count %> (max 10 attendees)</h5>
-    <% @event.event_users.each do |person| %>
-      <p><%= User.find(person.user_id).username  %></p>
-    <% end %>
-  </div>
 
-  <div class="event-button">
-    <% eventjoin = current_user.event_users.find_by(event_id: @event.id) if current_user %>
-    <% if current_user && @event.user_id == current_user.id %>
-      <p>This is your event!</p>
-      <%= link_to "Cancel", event_path(event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-      <%= link_to "Edit", edit_event_path(@event), class: "btn btn-warning" %>
-    <% elsif eventjoin %>
-      <p>You are attending!</p>
-      <%= link_to "Cancel", event_user_path(eventuser_id: eventjoin, event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "cancel-button" %>
-    <% else %>
-      <%= link_to "Join this event!",   event_users_path(event_id: @event.id), data: { "turbo-method": :post }, class: "join-button" %>
-    <% end %>
+  <div class="container-event-show">
+    <div>
+      <%= image_tag(@event.movie.poster_url) %>
+    </div>
+
+    <div>
+      <h5><i class="fa-solid fa-location-dot"></i> <%= @event.location %></h3>
+      <h5><i class="fa-regular fa-calendar"></i> <%= @event.date.strftime("%d/%m/%Y")  %></h3>
+      <h5><i class="fa-regular fa-clock"></i> <%= @event.date.strftime("%H:%M")%></h3>
+      <p><%= @event.description %></p>
+      <h5>Host</h5>
+      <% if current_user && @event.user_id == current_user.id %>
+        <p>You</p>
+      <% else %>
+        <%= User.find(@event.user_id).username %>
+      <% end %>
+      <h5>Participants <%= @event.event_users.count %> (max 10 attendees)</h5>
+      <% @event.event_users.each do |person| %>
+        <p><%= User.find(person.user_id).username  %></p>
+      <% end %>
+    </div>
+
+    <div class="event-button">
+      <% eventjoin = current_user.event_users.find_by(event_id: @event.id) if current_user %>
+      <% if current_user && @event.user_id == current_user.id %>
+        <p>This is your event!</p>
+        <%= link_to "Cancel", event_path(event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        <%= link_to "Edit", edit_event_path(@event), class: "btn btn-warning" %>
+      <% elsif eventjoin %>
+        <p>You are attending!</p>
+        <%= link_to "Cancel", event_user_path(eventuser_id: eventjoin, event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "cancel-button" %>
+      <% else %>
+        <%= link_to "Join this event!",   event_users_path(event_id: @event.id), data: { "turbo-method": :post }, class: "join-button" %>
+      <% end %>
+    </div>
   </div>
-</div>
-  <h1>Chatroom for your upcoming event "<%= @event.title %>"</h1>
-  <div data-controller="event-subscription" data-event-subscription-event-id-value="<%= @event.id %>">
-    <div class="chat">
-      <%= simple_form_for [@event, @message],
-      html: { data: { action: "turbo:submit-end->event-subscription#resetForm" }, class: "d-flex" } do |f|
-    %>
-      <%= f.input :content,
-        label: false,
-        placeholder: "Leave a message for your moviebuddies",
-        wrapper_html: {class: "flex-grow-1"}
+    <h1>Chatroom for your upcoming event "<%= @event.title %>"</h1>
+    <div data-controller="event-subscription" data-event-subscription-event-id-value="<%= @event.id %>">
+      <div class="chat">
+        <%= simple_form_for [@event, @message],
+        html: { data: { action: "turbo:submit-end->event-subscription#resetForm" }, class: "d-flex" } do |f|
       %>
-      <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-    <% end %>
-    </div>
-
-
-    <div class="container chatroom">
-
-      <div class="messages" data-event-subscription-target="messages">
-        <% @event.messages.each do |message| %>
-        <%= render "messages/message", message: message %>
-        <% end %>
-          </div>
+        <%= f.input :content,
+          label: false,
+          placeholder: "Leave a message for your moviebuddies",
+          wrapper_html: {class: "flex-grow-1"}
+        %>
+        <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+      <% end %>
       </div>
-    </div>
+
+
+      <div class="container chatroom">
+
+        <div class="messages" data-event-subscription-target="messages">
+          <% @event.messages.each do |message| %>
+          <%= render "messages/message", message: message %>
+          <% end %>
+            </div>
+        </div>
+      </div>
 </div>

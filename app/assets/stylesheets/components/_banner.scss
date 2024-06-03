@@ -1,5 +1,4 @@
 .banner {
-  background-image: radial-gradient(circle 600px at 50% 00%, rgba(0, 0, 0, .1), rgba(0, 0, 0, .8)), url("poster-nemo.jpg");
   background-color: black;
   background-position: center;
   background-repeat: no-repeat;
@@ -11,7 +10,11 @@
   flex-direction: column;
 }
 
-#homepage.banner {
-  background-image: radial-gradient(circle 600px at 50% 00%, rgba(0, 0, 0, .1), rgba(0, 0, 0, .8)), url("poster-nemo.jpg");
+#homepage .banner {
+  background-image: radial-gradient(circle 600px at 50% 0%, rgba(0, 0, 0, .1), rgba(0, 0, 0, .8)), url("poster-nemo.jpg");
   height: 400px;
+}
+
+#event-detail-page .banner {
+  height: 244px;
 }
