@@ -8,7 +8,6 @@ export default class extends Controller {
     flatpickr(this.dateTarget, {
       enableTime: true,
       dateFormat: "Y-m-d H:i",
-      mode: "range",
       minDate: "today",
     });
   }

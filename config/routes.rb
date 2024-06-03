@@ -3,8 +3,10 @@ Rails.application.routes.draw do
 
   root "pages#home"
 
-  # resources :bookmarks, only: [:create, :destroy, :index]
-  resources :movies, only: :index
+  # resources :bookmarks, only:[:create, :destroy, :index ]
+  resources :movies, only: %i[index show] do
+    resources :reviews, only: %i[new create]
+  end
   resources :events do
     resources :messages, only: :create
   end
@@ -15,6 +17,7 @@ Rails.application.routes.draw do
   get '/profile/:id', to: 'pages#profile', as: "profile"
   get '/pages/myevents', to: 'pages#myevents'
   get '/friendrequests', to: 'friendships#friend_requests'
+  get '/pages/user_profile', to: 'pages#user_profile'
   patch '/accept', to: 'friendships#accept'
   patch '/reject', to: 'friendships#reject'
 end

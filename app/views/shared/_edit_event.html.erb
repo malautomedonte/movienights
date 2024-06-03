@@ -1,0 +1,16 @@
+ <div class="create-event">
+      <h5 class="event-page">Edit your Event</h5>
+
+      <%= simple_form_for @event, data: {controller: "flatpickr"} do |form| %>
+        <div class="form-input">
+          <%= form.input :movie, collection: Movie.all, selected: @event.movie_id %>
+          <%= form.input :description %>
+          <%= form.input :date, as: :string, input_html: { data: {flatpickr_target: "date"}} %>
+          <%= form.input :location %>
+        </div>
+
+        <div class="form-actions">
+          <%= form.button :submit, class: "create-button" %>
+        </div>
+      <% end %>
+    </div>

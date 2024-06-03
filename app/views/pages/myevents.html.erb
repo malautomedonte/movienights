@@ -3,22 +3,35 @@
   <section class="p-48 section-first">
     <header class="flex space-between">
       <h2>Events that I organise</h2>
-      <a href="/events" class="button">Create a Movie night event</a>
+      <div data-controller="popup">
+      <button class="" data-action="click->popup#showform">
+      Create event
+      </button>
+        <div class="d-none" data-popup-target="createForm">
+          <div class='overlay-blur'></div>
+          <%= render "shared/popup" %>
+        </div>
+        </div>
     </header>
     <div class="flex">
       <% @my_events.each do |event| %>
         <div class="event-card card" >
-          <h4><%= link_to event.title, event_path(event), class: "movie-link" %></h4>
           <h4><%= event.movie.title %></h4>
           <p><%= event.description %></p>
-          <p><%= event.location %></p>
-          <p><%= event.date %></p>
-          <p><%= event.user.username %> </p>
+          <p><i class="fa-solid fa-location-dot"></i> <%= event.theatre %>, <%= event.location %></p>
+          <p>Participants: <%= event.event_users.count %></p>
+          <p class="event-date">
+          <span class="date-box">
+          <span class="date-day"><%= event.date.strftime("%d") %></span>
+          <span class="date-month"><%= event.date.strftime("%b") %></span>
+          </span>
+          </p>
           <% if current_user && current_user.id == event.user_id %>
-          <%= link_to edit_event_path(event) do %>
-          <p><i class="fa-regular fa-pen-to-square edit-button"></i></p>
+            <%= link_to edit_event_path(event) do %>
+            <p><i class="fa-regular fa-pen-to-square edit-button"></i></p>
+            <% end %>
           <% end %>
-          <% end %>
+          <%= link_to 'See Event', event_path(event), class: 'see-more-button' %>
         </div>
     <% end %>
     </div>
@@ -27,17 +40,27 @@
   <section class="p-48 section-second">
     <h2>Events that I attend</h2>
       <div class="flex">
-      <% @attended_events.each do |attended| %>
-        <div class="event-card card" >
-          <h4><%= link_to attended.event.title, event_path(attended.event), class: "movie-link" %></h4>
-          <h4><%= attended.event.movie.title %></h4>
-          <p><%= attended.event.description %></p>
-          <p><%= attended.event.location %></p>
-          <p><%= attended.event.date %></p>
-          <p><%= attended.event.user.username %> </p>
-          <p>You are attending!</p>
-          <%= link_to "Cancel", event_user_path(id: attended.id, eventuser_id: attended, event_id: pages_myevents_path), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "cancel-button" %>
-        </div>
+        <% @attended_events.each do |attended| %>
+          <div class="event-card card" >
+            <h4><%= attended.event.movie.title %></h4>
+            <p><%= attended.event.description %></p>
+            <p><i class="fa-solid fa-location-dot"></i> <%= attended.event.theatre %>, <%= attended.event.location %></p>
+            <p>Participants: <%= attended.event.event_users.count %></p>
+            <p class="event-date">
+            <span class="date-box">
+            <span class="date-day"><%= attended.event.date.strftime("%d") %></span>
+            <span class="date-month"><%= attended.event.date.strftime("%b") %></span>
+            </span>
+            <h5>Host:</h5>
+            <% if attended.event.user.photo.attached? %>
+            <p> <%= image_tag attended.event.user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %><%= attended.event.user.username %> </p>
+            <% else %>
+            <p> <%= image_tag "default_avatar.jpeg", crop: :fill, class: "avatar", alt: "dropdown menu" %>  <%= attended.event.user.username %> </p>
+            <% end %>
+            <p>You are attending!</p>
+            <%= link_to 'See Event', event_path(attended.event), class: 'see-more-button' %>
+            <%= link_to "Cancel", event_user_path(id: attended.id, eventuser_id: attended, event_id: pages_myevents_path), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "cancel-button" %>
+          </div>
         <% end %>
       </div>
   </section>
