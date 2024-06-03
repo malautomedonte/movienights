@@ -1,11 +1,11 @@
  <div class="create-event">
       <h5 class="event-page">Create a new Event</h5>
 
-      <%= simple_form_for @event do |form| %>
+      <%= simple_form_for @event, data: {controller: "flatpickr"} do |form| %>
         <div class="form-input">
           <%= form.input :movie, collection: Movie.all %>
           <%= form.input :description %>
-          <%= form.input :date %>
+          <%= form.input :date, as: :string, input_html: { data: {flatpickr_target: "date"}} %>
           <%= form.input :location %>
         </div>
 
