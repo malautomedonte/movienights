@@ -9,6 +9,13 @@
 //top only
 .m-t-8 {margin-top: 8px;}
 
+//right only
+.m-r-8 {margin-right: 8px;}
+.m-r-64 {margin-right: 64px;}
+
+//bottom only
+.m-b-8 {margin-bottom: 8px;}
+
 //left only
 .m-l-24 {margin-left:24px;}
 
@@ -24,13 +31,19 @@
 .p-48 {padding: 48px;}
 
 //top only
+.p-t-32 {padding-top: 32px;}
 .p-t-42 {padding-top: 42px;}
 
 //left only
 .p-l-24 {padding-left:24px;}
+.p-l-64 {padding-left:62px;}
 
 //right only
 .p-r-8 {padding-right: 8px;}
+
+//bottom only
+.p-b-8 {padding-bottom: 8px;}
+.p-b-42 {padding-bottom: 42px;}
 
 //top + bottom only
 .p-y-24 {padding-top :24px; padding-bottom: 24px;}

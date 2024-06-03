@@ -3,9 +3,11 @@
   padding: 0;
 }
 
+// image container
 .square-card .movie-poster {
   height: 150px;
-  max-width: 100%;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
   object-fit: cover;
   transition: transform 0.5s ease, filter 0.5s ease;
 }
@@ -13,8 +15,6 @@
 .movie-poster-horizontal {
   height: 150px;
   max-width: 100%;
-  // object-fit: cover;
-  // transition: transform 0.5s ease, filter 0.5s ease;
 }
 
 .event-card .text {
@@ -28,10 +28,19 @@
     bottom: 0px;
     left: 0px;
   }
+  p {
+    margin: 0;
+  }
+}
+
+.truncate-2-lines {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .date-time {
-  font-size: 1.2em;
   color: $black;
   padding: 8px;
   position: absolute;
@@ -46,11 +55,11 @@
 
 .event-date {
   display: flex;
-  background-color: $white;
-  font-size: 1em;
   position: absolute;
   top: 150px;
   right: 20px;
+  background-color: $white;
+  font-size: 1em;
 }
 
 .event-date .fa-calendar {
@@ -85,8 +94,4 @@
 .date-year {
   font-size: 14px;
   color: #999;
-}
-
-.flex {
-  display: flex;
 }
