@@ -27,7 +27,7 @@ class EventsController < ApplicationController
     @event.user = current_user
     @event.movie = @movie
     if @event.save
-      redirect_to events_path, notice: 'Event was sucessfully created.'
+      redirect_to event_path(@event), notice: 'Event was sucessfully created.'
     else
       render :index, status: :unprocessable_entity
     end
@@ -42,7 +42,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.movie = @movie
     @event.update(event_params)
-    redirect_to events_path
+    redirect_to event_path(@event)
   end
 
   def destroy
