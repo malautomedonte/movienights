@@ -1,7 +1,63 @@
 <div class="page" id="event-detail-page">
+
   <div class="banner" style="background-image: radial-gradient(circle 400px at 50% -30%, rgba(0, 0, 0, .1), rgba(0, 0, 0, .8)), url('<%= @event.movie.poster_url %>');">
     <h1><em><%= @event.movie.title %></em> movie night</h1>
   </div>
+
+  <div id="events-show-grid">
+
+    <section class="about-event">
+      <h2>About the event</h2>
+      <p id="genre-box"><%= @event.movie.genre %></p>
+      <p><%= @event.movie.description %></p>
+      <div class="address">
+        <h3>Full adress: </h3>
+        <p><i class="fa-solid fa-location-dot"></i></p>
+        <p><%= @event.theatre %> <p><%= @event.location %></p>
+      </div>
+
+      <div class="map-event"
+        data-controller="map"
+        data-map-markers-value="<%= @marker.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+
+    </section>
+
+    <section class="chat">
+
+      <h2>Messages</h2>
+      <h4>Your message</h4>
+      <p>Max 300 characters</p>
+
+      <div data-controller="event-subscription" data-event-subscription-event-id-value="<%= @event.id %>">
+        <div class="chat">
+          <%= simple_form_for [@event, @message],
+          html: { data: { action: "turbo:submit-end->event-subscription#resetForm" }, class: "d-flex" } do |f|
+          %>
+          <%= f.input :content,
+            label: false,
+            placeholder: "Leave a message for your moviebuddies",
+            wrapper_html: {class: "flex-grow-1"}
+          %>
+          <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+          <% end %>
+        </div>
+
+      <div class="container chatroom">
+
+        <div class="messages" data-event-subscription-target="messages">
+          <% @event.messages.each do |message| %>
+          <%= render "messages/message", message: message %>
+          <% end %>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <%# ---------------------------------------------------------------------------------------------- %>
 
 
   <div class="container-event-show">
@@ -51,6 +107,7 @@
         <%= link_to "Join this event!",   event_users_path(event_id: @event.id), data: { "turbo-method": :post }, class: "join-button" %>
       <% end %>
     </div>
+
   </div>
     <h1>Chatroom for your upcoming event "<%= @event.title %>"</h1>
     <div data-controller="event-subscription" data-event-subscription-event-id-value="<%= @event.id %>">
@@ -77,4 +134,5 @@
             </div>
         </div>
       </div>
+
 </div>

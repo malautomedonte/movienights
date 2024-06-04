@@ -9,7 +9,7 @@ class EventsController < ApplicationController
         lng: event.longitude
       }
     end
-  end
+   end
 
   def new
     @event = Event.new
@@ -18,6 +18,10 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @message = Message.new
+    @marker = [{
+        lat: @event.latitude,
+        lng: @event.longitude
+      }]
   end
 
 
