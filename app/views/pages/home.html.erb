@@ -30,17 +30,27 @@
           <h2 class="white">Movie recommendations</h2>
           <a href="" class="see-all white">see all <i class="fas fa-solid fa-arrow-right"></i></a>
         </header>
+
         <div class="movies-horizontal-list"  data-controller="scroll">
           <button class="scroll-button left" data-action="click->scroll#scrollLeft">
             <i class="fas fa-circle-chevron-left"></i>
           </button>
           <% if current_user.preferred_content.present? %>
-              <% current_user.preferred_content.each do |movie| %>
-                <div class="movie-card card">
-                  <%= image_tag movie.poster_url %>
-                  <h3 class="white"><%= movie.title %></h3>
+            <% current_user.preferred_content.each do |movie| %>
+              <div class="movie-card card">
+                <%# <button class="bookmark-type"><i class="fa-solid fa-check"></i></button> %>
+                <div class="movie-poster">
+                  <%= image_tag movie.poster_url, alt: "movie title poster"%>
+                  <%# "movie.title poster" %>
                 </div>
-              <% end %>
+                <div class="text">
+                  <div class="truncate-2-lines">
+                    <h4><%= movie.title %></h4>
+                  </div>
+                </div>
+              <%= link_to '', movie_path(movie) %>
+              </div>
+          <% end %>
           <% else %>
             <h2 class="white">
               <em>Sorry, there's no movie recommendation yet.</em>
