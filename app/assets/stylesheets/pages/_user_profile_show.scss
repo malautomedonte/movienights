@@ -1,6 +1,11 @@
+body {
+  background-color: #E6F4FE;
+}
+
 .h1-user-profile {
-  padding: 15px;
-  margin-top: 25px;
+  padding: 20px;
+  margin-top: 15px;
+  background-color: #E6F4FE;
 }
 
 .container-user-page-details {
@@ -8,6 +13,7 @@
   grid-template-columns: 1fr 1fr;
   padding: 20px;
   background-color: #FEDCDC;
+  border-top: 4px solid grey;
 }
 .user-card-details {
   margin-right: 10px;
@@ -41,7 +47,6 @@
   padding: 15px;
   padding-top: 25px;
   padding-left: 35px;
-  border-top: 2px solid black;
 }
 
 .see-all-link {
@@ -59,10 +64,6 @@
   grid-template-columns: 1fr 1fr;
   padding: 25px;
   background-color: #E6F4FE;
-}
-
-.user-my-events-page {
-  border-right: 2px solid grey;
 }
 
 .picture-card {
