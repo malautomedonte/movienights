@@ -1,17 +1,60 @@
+<% theatres = { "Moviemento" => 'Kottbusser Damm 22, 10967 Berlin', "Neues Off cinema" => 'Hermannstraße 20, 12049 Berlin',
+  "IL KINO" => 'Nansenstraße 22, 12047 Berlin', "Babylon Kreuzberg" => 'Dresdener Str. 126, 10999 Berlin',
+  "Passage Berlin" => 'Karl-Marx-Straße 131, 12043 Berlin', "Filmtheater am Friedrichshain" => 'Bötzowstraße 1-5, 10407 Berlin',
+  "Babylon" => 'Rosa-Luxemburg-Straße 30, 10178 Berlin', "Kino Central" => 'Rosenthaler Str. 39, 10178 Berlin',
+  "Odeon Berlin" => 'Hauptstraße 116, 10827 Berlin', "Rollberg Kinos" => 'Rollbergstraße 70, 12049 Berlin',
+  "b-ware Ladenkino" => 'Gärtnerstraße 19, 10245 Berlin', "Kino International" => 'Karl-Marx-Allee 33, 10178 Berlin'
+  } %>
+
   <div class="container-event-show">
+
     <div class="img">
       <%= image_tag(@movie.poster_url) %>
       </div>
+
     <div class="description" style="margin-left: 80px;">
-      <h1> <%= @movie.title %></h>
+
+
+      <div class="movie-header">
+        <h1 style="margin-bottom: 0px;"> <%= @movie.title %></h1>
+
+        <div data-controller="popup">
+          <button class="button-red" data-action="click->popup#showform"><h5>Create an event</h5></button>
+          <div class="d-none" data-popup-target="createForm">
+            <div class='overlay-blur'></div>
+              <%#= render "/shared/popup" %>
+              <div class="create-event">
+                <div id="closebutton">
+                <h5 class="event-page">Create a new Event</h5>
+                <i class="fa-regular fa-circle-xmark mouseover" data-action="click->popup#closeform"></i>
+                </div>
+
+                <%= simple_form_for @event, data: {controller: "flatpickr"} do |form| %>
+                  <div class="form-input">
+                    <%= form.input :movie, collection: Movie.all, selected: params[:id] %>
+                    <%= form.input :description %>
+                    <%= form.input :date, as: :string, input_html: { data: {flatpickr_target: "date"}} %>
+                    <%= form.input :location %>
+                    <%= form.input :theatre, collection: theatres.keys %>
+                  </div>
+
+                  <div class="form-actions">
+                    <%= form.button :submit, class: "create-button" %>
+                  </div>
+                <% end %>
+              </div>
+          </div>
+        </div>
+      </div>
+
       <h5>Genres:
       <span><%= @movie.genre %></span>
       </h5>
 
-      <h5>Director:
+      <h5>Directed by:
       <% @movie.directors.each do |director| %>
         <% unless @movie.directors.last == director %>
-          <span><%= director.first_name %> <%= director.last_name %> • </span>
+          <span> <%= director.first_name %> <%= director.last_name %> • </span>
         <% else %>
           <span><%= director.first_name %> <%= director.last_name %> </span>
         <% end %>
@@ -52,4 +95,5 @@
               <% end %>
         </div>
       </div>
+
   </div>

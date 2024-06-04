@@ -10,7 +10,7 @@ class Movie < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :global_search,
-  against: [ :title, :description ],
+  against: [ :title ],
   associated_against: {
     directors: [ :first_name, :last_name],
     actors: [ :first_name, :last_name]

@@ -5,6 +5,24 @@
   justify-content: space-evenly;
 }
 
+.container-event-show h1{
+  margin-bottom: 0;
+}
+
 .description{
   margin-left: 80px;
+}
+
+.movie-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img img{
+  border-radius: 8px;
+}
+
+.col-xs-4{
+  padding: 0;
 }
