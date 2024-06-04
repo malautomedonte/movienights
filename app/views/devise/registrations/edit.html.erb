@@ -1,35 +1,117 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h1 class="h1-user-profile">This is your profile, <%= @user.username %></h1>
+  <div class="container-user-page-details">
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+    <div class="form-inputs">
+      <%= f.input :email, required: true, autofocus: true %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+      <%= f.input :photo, as: :file %>
+      <%= f.input :password,
+                  hint: "leave it blank if you don't want to change it",
+                  required: false,
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :password_confirmation,
+                  required: false,
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :current_password,
+                  hint: "we need your current password to confirm your changes",
+                  required: false,
+                  input_html: { autocomplete: "current-password" } %>
+      <%= f.input :genres,
+                  label: "Choose your favorite genres (up to three)",
+                  collection: Genre.all,
+                  required: true,
+                  input_html: {multiple: true, data: {controller: "tom-select"}} %>
+              <%= f.input :directors,
+                  label: "Choose your favorite directors (up to three)",
+                  collection: Director.all,
+                  label_method: :full_name,
+                  required: true,
+                  input_html: {multiple: true, data: {controller: "tom-select"}} %>
+              <%= f.input :actors,
+                  label: "Choose your favorite actors (up to three)",
+                  collection: Actor.all,
+                  label_method: :full_name,
+                  required: true,
+                  input_html: {multiple: true, data: {controller: "tom-select"}} %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Update" %>
+    </div>
+
+    <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+  <% end %>
+
+</div>
+
+ <div class="see-all-my-stuff">
+    <h2>Your events <%= link_to "See all  ->", events_path, class: "see-all-link" %></h2>
+  </div>
+
+<div class="container-user-events-page">
+  <div class="user-my-events-page">
+  <div class="user-organized-events">
+    <% if current_user.events %>
+      <h2>I have created <%= @my_events.count %> events so far</h2>
+    <% else %>
+      <h2>No events yet 🤷🏼‍♀️</h2>
     <% end %>
-
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+  </div>
+    <% if @my_events.present? %>
+      <% @my_events.each do |event| %>
+        <div class="event-card card">
+          <h4><%= link_to event.title, event_path(event), class: "movie-link" %></h4>
+          <h4><%= event.movie.title %></h4>
+          <p><%= event.description %></p>
+          <p><%= event.location %></p>
+          <p><%= event.date %></p>
+          <p><%= event.user.username %></p>
+          <% if current_user && current_user.id == event.user_id %>
+            <%= link_to edit_event_path(event) do %>
+              <p><i class="fa-regular fa-pen-to-square edit-button"></i></p>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No events created by you yet.</p>
+    <% end %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+  <div class="user-join-events-page">
+      <div class="user-attending-events">
+    <h2>I am attending to <%= @attended_events.count %> events so far</h2>
   </div>
-<% end %>
+    <% if @attended_events.present? %>
+      <% @attended_events.each do |attended| %>
+        <div class="event-card card">
+          <h4><%= link_to attended.event.title, event_path(attended.event), class: "movie-link" %></h4>
+          <h4><%= attended.event.movie.title %></h4>
+          <p><%= attended.event.description %></p>
+          <p><%= attended.event.location %></p>
+          <p><%= attended.event.date %></p>
+          <p><%= attended.event.user.username %></p>
+          <p>You are attending!</p>
+          <%= link_to "Cancel", event_user_path(id: attended.id, eventuser_id: attended, event_id: pages_myevents_path), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "cancel-button" %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No events attended by you yet.</p>
+    <% end %>
+  </div>
+</div>
 
-<h3>Cancel my account</h3>
+<div class="see-all-my-stuff">
+  <h2>Your Friends <%= link_to "See all  ->", friendships_path, class: "see-all-link" %></h2>
+</div>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+<div class="user-friends-page">
+   <%= render 'shared/friends_cards' %>
+</div>
 
-<%= link_to "Back", :back %>
+<div class="user-watchlist page">
+  <!-- Watchlist content -->
+</div>
