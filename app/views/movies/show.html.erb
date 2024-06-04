@@ -16,7 +16,7 @@
 
 
       <div class="movie-header">
-        <h1> <%= @movie.title %></h1>
+        <h1 style="margin-bottom: 0px;"> <%= @movie.title %></h1>
 
         <div data-controller="popup">
           <button class="button-red" data-action="click->popup#showform"><h5>Create an event</h5></button>
@@ -51,10 +51,10 @@
       <span><%= @movie.genre %></span>
       </h5>
 
-      <h5>Director:
+      <h5>Directed by:
       <% @movie.directors.each do |director| %>
         <% unless @movie.directors.last == director %>
-          <span><%= director.first_name %> <%= director.last_name %> • </span>
+          <span> <%= director.first_name %> <%= director.last_name %> • </span>
         <% else %>
           <span><%= director.first_name %> <%= director.last_name %> </span>
         <% end %>
