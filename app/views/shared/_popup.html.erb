@@ -8,8 +8,10 @@
   } %>
 
 <div class="create-event">
-  <i class="fa-regular fa-circle-xmark mouseover" data-action="click->popup#closeform"></i>
+  <div id="closebutton">
   <h5 class="event-page">Create a new Event</h5>
+  <i class="fa-regular fa-circle-xmark mouseover" data-action="click->popup#closeform"></i>
+  </div>
 
   <%= simple_form_for @event, data: {controller: "flatpickr"} do |form| %>
     <div class="form-input">

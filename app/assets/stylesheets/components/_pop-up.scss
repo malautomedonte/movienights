@@ -8,8 +8,19 @@
   margin: 0;
 }
 
+#closebutton {
+  display: flex;
+  justify-content: space-between;
+}
+
 .mouseover {
   cursor: pointer;
+  font-size: 28px;
+  color: #ab0e0e92;
+}
+
+.mouseover:hover {
+  color: #AB0E0E;
 }
 
 .overlay-blur {

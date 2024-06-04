@@ -7,6 +7,8 @@ export default class extends Controller {
   connect() {
     flatpickr(this.dateTarget, {
       enableTime: true,
+      inline: false,
+      defaultTime: "21:00",
       dateFormat: "Y-m-d H:i",
       minDate: "today",
     });

@@ -14,4 +14,5 @@ pin "process" # @2.0.1
 pin "tom-select", to: "https://cdn.jsdelivr.net/npm/tom-select@2.0.0/dist/js/tom-select.complete.min.js"
 
 pin "flatpickr" # @4.6.13
+# pin "confirmDatePlugin", to: "https://cdn.skypack.dev/@flatpickr/confirm-date"
 pin "star-rating.js" # @4.3.1

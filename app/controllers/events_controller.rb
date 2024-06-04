@@ -29,6 +29,7 @@ class EventsController < ApplicationController
     @movie = Movie.find(params[:event][:movie])
     @event = Event.new(event_params)
     @event.user = current_user
+    @event.theatre = params[:event][:theatre]
     @event.movie = @movie
     if @event.save
       redirect_to event_path(@event), notice: 'Event was sucessfully created.'
@@ -58,6 +59,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :date, :location)
+    params.require(:event).permit(:title, :description, :date, :location, :threatre)
   end
 end
