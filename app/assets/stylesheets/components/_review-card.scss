@@ -1,0 +1,23 @@
+.card-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-card{
+  margin-top: 50px;
+}
+
+.user-info{
+}
+.card-rating{
+  align-items:  center;
+}
+
+.card-content{
+  width: 70%;
+  text-wrap: wrap;
+}
+
+.fa-star{
+  color: gold
+}
