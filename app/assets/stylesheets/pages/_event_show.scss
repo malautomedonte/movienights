@@ -1,3 +1,18 @@
+.event-date-box {
+  display: inline-block;
+  background-color: white;
+  border-radius: 6px;
+  margin-left: 5rem;
+  height: 4.95rem;
+  padding: 8px 16px;
+}
+
+.event-flex {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
 .container-event-show {
   display: flex;
   margin: 3rem 10%;
@@ -72,4 +87,23 @@
   gap: 5%;
   padding-top: 3rem;
   background-color: $secondary-light;
+}
+
+.chat {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 16px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  border-bottom: 1px solid rgb(131, 131, 131);
+  margin: 2rem 0;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
 }

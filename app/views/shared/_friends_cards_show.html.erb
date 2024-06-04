@@ -1,0 +1,30 @@
+<div class="event-cards-container">
+     <div class="user-cards flex flex-wrap">
+      <% @event.event_users.each do |user| %>
+        <% participant = User.find(user.user_id) %>
+        <div class="user-card flex flex-wrap">
+          <% if  participant.photo.attached? %>
+            <%= cl_image_tag participant.photo.key, class: "avatar" %>
+            <% else %>
+            <%= image_tag "default_avatar.jpeg", alt: "hello", class: "avatar"%>
+        <% end %>
+          <div class="text m-b-8">
+            <h4>
+              <h3><%= link_to participant.username, profile_path(participant) %></h3>
+            </h4>
+            <p class="m-0"><%= participant.directors.pluck(:last_name).join(', ') %></p>
+            <p class="m-0"><%= participant.actors.pluck(:last_name).join(', ') %></p>
+            <ul class="display-inline ul-style-none w-100">
+              <% participant.genres.pluck(:title).each do |title| %>
+                <li class="m-t-8"><span class="tag"><%= title %></span></li>
+              <% end %>
+            </ul>
+            <% unless current_user.friends.include?(participant) %>
+              <button class="btn-regular btn-secondary btn-size-s">+ friend</button>
+            <% end %>
+              <%# <%= link_to '+ friend', friend_path(friend), class: 'btn-regular btn-secondary btn-size-s' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+</div>
