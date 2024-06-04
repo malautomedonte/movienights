@@ -15,9 +15,7 @@
   display: inline-block;
   padding: 10px 20px;
   margin: 10px 0;
-  border: none;
-  border-radius: 5px;
-  background-color: #3498db; /* Primary button color */
+  background-color: $primary-dark; /* Primary button color */
   color: #fff;
   font-size: 16px;
   text-align: center;
@@ -88,14 +86,22 @@
 
 // BUTTON REGLAR -----------------------------------------------------------------------------------------------
 
-
-
 .btn-regular {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   border-radius: 20px;
+  transition: 0.3s ease;
   &:hover {
     box-shadow: none;
-    transition: background-color 0.3s;
+    transition: 0.3s ease;
+  }
+}
+
+.btn-primary {
+  background-color: $primary-dark;
+  border: 1px solid $primary-light;
+  color: $white;
+  &:hover {
+    background-color: $primary-darker;
   }
 }
 
@@ -103,6 +109,10 @@
   background-color: $white;
   border: 1px solid $primary-base;
   color: $black;
+  &:hover {
+    background-color: $primary-dark;
+    color: $white;
+  }
 }
 
 .btn-size-s {
@@ -124,11 +134,12 @@
   top: 0;
   right: 16px;
   border: none;
+  transition: 0.3s ease;
   i {
     font-size: 1.4em;
   }
   &:hover {
-    border: 1px solid $black;
-    transition: border-color 0.3s;
+    background-color: $accent-dark;
+    transition: 0.3s ease;
   }
 }

@@ -6,11 +6,14 @@ header .see-all {
   padding-left: 24px;
   i {
     padding-left: 16px;
+    transition: ease .5;
   }
   &:hover {
     text-decoration: none;
     i {
       opacity: .5;
+      transform: translateX(10px);
+      transition: 0.3s ease;
     }
   }
 }
