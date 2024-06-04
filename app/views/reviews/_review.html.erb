@@ -1,0 +1,23 @@
+<div class="review-card">
+<div class="card-header">
+  <div class="user-info">
+    <%= cl_image_tag review.user.photo.key, height: 50, width: 50, crop: :thumb %>
+    <h5><%= review.user.username %></h5>
+  </div>
+  <div class="card-rating">
+  <% review.rating.to_i.times do %>
+  <i class="fa-solid fa-star"></i>
+  <% end %>
+
+  <% (5-review.rating).to_i.times do %>
+    <i class="fa-regular fa-star"></i>
+  <% end %>
+
+
+
+  </div>
+</div>
+<div class="card-content">
+  <%= review.content %>
+</div>
+</div>

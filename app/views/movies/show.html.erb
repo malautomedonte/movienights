@@ -1,31 +1,55 @@
-<div class="page" id="movie-detail-page">
-  <div class="banner" style="background-image: radial-gradient(circle 400px at 50% -30%, rgba(0, 0, 0, .1), rgba(0, 0, 0, .8)), url('<%= @movie.poster_url %>');">
-    <h1><em><%= @movie.title %></em></h1>
-  </div>
-</div>
-
-
   <div class="container-event-show">
-    <div>
+    <div class="img">
       <%= image_tag(@movie.poster_url) %>
       </div>
-    <div>
-      <h2> <%= @movie.title %></h>
-      <h5>Genres: <%= @movie.genre  %></h5>
-      <h5>Director: <%= @movie.movie_directors.records.first.director.first_name %> <%= @movie.movie_directors.records.first.director.last_name %></h5>
-      <h5>Actors: <%= @movie.movie_actors.records.first.actor.first_name %> <%=@movie.movie_actors.records.first.actor.last_name%> • <%=@movie.movie_actors.records.second.actor.first_name%> <%= @movie.movie_actors.records.second.actor.last_name%> • <%=@movie.movie_actors.records.third.actor.first_name%> <%= @movie.movie_actors.records.third.actor.last_name%> </h5>
-      <p> <%= @movie.description %></p>
+    <div class="description" style="margin-left: 80px;">
+      <h1> <%= @movie.title %></h>
+      <h5>Genres:
+      <span><%= @movie.genre %></span>
+      </h5>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-4">
-            <%= simple_form_for [@movie, @review] do |f| %>
-              <%= f.input :content , label: "Write your review"%>
-              <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: {controller: "star-rating"}} %>
-              <%= f.submit "Send your review" %>
-            <% end %>
-          </div>
+      <h5>Director:
+      <% @movie.directors.each do |director| %>
+        <% unless @movie.directors.last == director %>
+          <span><%= director.first_name %> <%= director.last_name %> • </span>
+        <% else %>
+          <span><%= director.first_name %> <%= director.last_name %> </span>
+        <% end %>
+      <% end %>
+      </h5>
+
+
+      <h5>Cast:
+      <% @movie.actors.each do |actor| %>
+        <% unless @movie.actors.last == actor %>
+          <span><%= actor.first_name %> <%= actor.last_name %> • </span>
+        <% else %>
+          <span><%= actor.first_name %> <%= actor.last_name %> </span>
+        <% end %>
+      <% end %>
+      </h5>
+
+      <hr>
+      <h3>Storyline</h3>
+      <p> <%= @movie.description %></p>
+      <hr>
+
+        <div class="review">
+          <h3>Reviews</h3>
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-4">
+                  <%= simple_form_for [@movie, @review] do |f| %>
+                    <%= f.input :content , label: "Write your review"%>
+                    <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: {controller: "star-rating"}} %>
+                    <%= f.submit "Send your review" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <% @movie.reviews.each do |review| %>
+            <%= render partial: 'reviews/review', locals: { review: review } %>
+              <% end %>
         </div>
       </div>
-    </div>
   </div>
