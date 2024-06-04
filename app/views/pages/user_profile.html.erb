@@ -1,13 +1,17 @@
-<h1 class="h1-user-profile">This is your profile, <%= @user.username %></h1>
+<% if current_user%>
+  <h1 class="h1-user-profile">This is personal dashboard, <%= @user.username %></h1>
+  <% else %>
+    <h1 class="h1-user-profile">This is <%= @user.username %>'s profile!></h1>
+<% end %>
 <div class="container-user-page-details">
   <div class="user-details-page">
     <div class="user-card-details">
       <h2>Your profile pic <%= link_to "Edit", edit_user_registration_path, class: 'btn opacity-50' %></h2>
-      <div class="picture-card">
+      <div>
         <% if current_user.photo.attached? %>
           <%= cl_image_tag current_user.photo.key, class: "picture-card" %>
           <% else %>
-            <%= image_tag "default_avatar.jpeg", alt: "hello",class: "picture-card"%>
+            <%= image_tag "default_avatar.jpeg", alt: "User Image",class: "picture-card"%>
         <% end %>
       </div>
       <h2>Your name: <%= @user.username %></h2>
@@ -32,9 +36,16 @@
   </div>
 </div>
 
-  <div class="see-all-my-stuff">
-    <h2>Your events <%= link_to "See all  ->", events_path, class: "see-all-link" %></h2>
-  </div>
+<div class="see-all-my-stuff">
+  <h2>Your events
+    <%= link_to events_path, class: "see-all-link" do %>
+      See all <i class="fas fa-solid fa-arrow-right"></i>
+    <% end %>
+  </h2>
+</div>
+
+
+
 
 <div class="container-user-events-page">
   <div class="user-my-events-page">
@@ -86,11 +97,19 @@
 </div>
 
 <div class="see-all-my-stuff">
-  <h2>Your Friends <%= link_to "See all  ->", friendships_path, class: "see-all-link" %></h2>
+  <h2>Your Friends
+    <%= link_to friendships_path, class: "see-all-link" do %>
+      See all <i class="fas fa-solid fa-arrow-right"></i>
+    <% end %>
+  </h2>
 </div>
 
 <div class="user-friends-page">
-   <%= render 'shared/friends_cards' %>
+  <% if current_user.friends.any? %>
+   <%= render 'shared/friends_cards', users: current_user.friends %>
+   <% else %>
+    <h2><em> Sorry, you have no friends... Yet!</em></h2>
+  <% end %>
 </div>
 
 <div class="user-watchlist page">

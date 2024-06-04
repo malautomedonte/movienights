@@ -1,15 +1,15 @@
 <div id="homepage">
   <div class="banner">
     <% if current_user %>
-      <p class="h3 white">Welcome <%= current_user.username %>! 🍿</p>
+      <p class="h3 white">Hello, <%= current_user.username %>! 🍿</p>
     <% end %>
-    <h1 class="white">Welcome to movie night !</h1>
+    <h1 class="white">Welcome to Movie Nights !</h1>
   </div>
 
     <div class="background_event-friends p-l-64 p-t-32">
       <section class="events p-b-42">
         <header class="flex space-between center-vertically m-y-32 m-r-64">
-          <h2 class="inline">Todays' movienights</h2>
+          <h2 class="inline">Today's Movie Nights</h2>
           <a href="/events" class="btn btn-regular btn-primary btn-size-s">Create an event</a>
         </header>
         <%= render 'shared/event_cards' %>
@@ -18,9 +18,9 @@
       <section class="similar-users p-b-42">
         <header class="flex center-vertically m-y-32">
           <h2>They like the same type of movies as you</h2>
-          <a href="#" class="see-all">see all <i class="fas fa-solid fa-arrow-right"></i></a>
+          <a href="#" class="see-all">See All <i class="fas fa-solid fa-arrow-right"></i></a>
         </header>
-        <%= render 'shared/friends_cards' %>
+        <%= render 'shared/friends_cards', users: current_user.similar_users %>
       </section>
     </div>
 
@@ -42,9 +42,9 @@
                 </div>
               <% end %>
           <% else %>
-            <p class="white">
+            <h2 class="white">
               <em>Sorry, there's no movie recommendation yet.</em>
-            </p>
+            </h2>
           <% end %>
           <button class="scroll-button right" data-action="click->scroll#scrollRight">
             <i class="fas fa-circle-chevron-right"></i>

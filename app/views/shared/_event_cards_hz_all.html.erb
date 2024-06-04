@@ -1,0 +1,38 @@
+
+<% if @events.any? %>
+  <% @events.each do |event| %>
+    <%= link_to event_path(event), class: "link-style" do %>
+    <div id="container-events-horizontal">
+
+      <div class="movie-poster-horizontal">
+        <img src="<%= event.movie.poster_url %>" alt="Movie Poster" class="movie-poster-horizontal">
+      </div>
+
+      <div class="date-box">
+        <h3><%= event.date.strftime("%d") %></h3>
+        <p><%= event.date.strftime("%a") %></p>
+      </div>
+
+      <div class="movie-theater">
+        <h5><%= event.theatre %></h5>
+        <p><%= event.location %></p>
+      </div>
+
+      <div class="participants-info">
+        <% if event.user.photo.attached? %>
+        <%= image_tag event.user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %> Host : <%=     User.find(event.user_id).username %>
+        <% else %>
+        <%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %>
+        <p>Host</p>
+        <%= User.find(event.user_id).username %></p>
+        <% end %>
+        <p>Participants <%= event.event_users.count %> </p>
+      </div>
+
+
+    </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <em>Sorry, no offers found.</em>
+<% end %>

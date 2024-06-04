@@ -1,67 +1,88 @@
 
-<div id="my-events">
-  <section class="p-48 section-first">
-    <header class="flex space-between">
-      <h2>Events that I organise</h2>
-      <div data-controller="popup">
-      <button class="" data-action="click->popup#showform">
-      Create event
-      </button>
-        <div class="d-none" data-popup-target="createForm">
-          <div class='overlay-blur'></div>
-          <%= render "shared/popup" %>
-        </div>
-        </div>
-    </header>
-    <div class="flex">
-      <% @my_events.each do |event| %>
-        <div class="event-card card" >
-          <h4><%= event.movie.title %></h4>
-          <p><%= event.description %></p>
-          <p><i class="fa-solid fa-location-dot"></i> <%= event.theatre %>, <%= event.location %></p>
-          <p>Participants: <%= event.event_users.count %></p>
-          <p class="event-date">
-          <span class="date-box">
-          <span class="date-day"><%= event.date.strftime("%d") %></span>
-          <span class="date-month"><%= event.date.strftime("%b") %></span>
-          </span>
-          </p>
-          <% if current_user && current_user.id == event.user_id %>
-            <%= link_to edit_event_path(event) do %>
-            <p><i class="fa-regular fa-pen-to-square edit-button"></i></p>
-            <% end %>
-          <% end %>
-          <%= link_to 'See Event', event_path(event), class: 'see-more-button' %>
-        </div>
-    <% end %>
-    </div>
-  </section>
-
-  <section class="p-48 section-second">
-    <h2>Events that I attend</h2>
-      <div class="flex">
-        <% @attended_events.each do |attended| %>
-          <div class="event-card card" >
-            <h4><%= attended.event.movie.title %></h4>
-            <p><%= attended.event.description %></p>
-            <p><i class="fa-solid fa-location-dot"></i> <%= attended.event.theatre %>, <%= attended.event.location %></p>
-            <p>Participants: <%= attended.event.event_users.count %></p>
-            <p class="event-date">
-            <span class="date-box">
-            <span class="date-day"><%= attended.event.date.strftime("%d") %></span>
-            <span class="date-month"><%= attended.event.date.strftime("%b") %></span>
-            </span>
-            <h5>Host:</h5>
-            <% if attended.event.user.photo.attached? %>
-            <p> <%= image_tag attended.event.user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %><%= attended.event.user.username %> </p>
-            <% else %>
-            <p> <%= image_tag "default_avatar.jpeg", crop: :fill, class: "avatar", alt: "dropdown menu" %>  <%= attended.event.user.username %> </p>
-            <% end %>
-            <p>You are attending!</p>
-            <%= link_to 'See Event', event_path(attended.event), class: 'see-more-button' %>
-            <%= link_to "Cancel", event_user_path(id: attended.id, eventuser_id: attended, event_id: pages_myevents_path), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "cancel-button" %>
+<div id="my-events" class="background_event-friends p-t-32">
+  <h1 class="m-t-32 p-l-64">My Events</h1>
+  <div class="flex">
+    <section class="col-2 p-l-64">
+      <header class="flex space-between center-vertically m-y-32">
+        <h2 class="inline">Events that I organise</h2>
+        <div data-controller="popup">
+          <button class="btn btn-regular btn-primary btn-size-s" data-action="click->popup#showform">
+            Create an event
+          </button>
+          <div class="d-none" data-popup-target="createForm">
+            <div class='overlay-blur'></div>
+            <%= render "shared/popup" %>
           </div>
+        </div>
+      </header>
+      <div class="">
+        <% @my_events.each do |event| %>
+          <%= link_to event_path(event), class: "link-style" do %>
+            <div id="container-events-horizontal">
+              <div class="movie-poster-horizontal">
+                <img src="<%= event.movie.poster_url %>" alt="Movie Poster" class="movie-poster-horizontal">
+              </div>
+              <div class="date-box">
+                <h3><%= event.date.strftime("%d") %></h3>
+                <p><%= event.date.strftime("%a") %></p>
+              </div>
+              <div class="movie-theater">
+                <h5><%= event.theatre %></h5>
+                <p><%= event.location %></p>
+              </div>
+              <div class="participants-info">
+                <% if event.user.photo.attached? %>
+                <%= image_tag event.user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %> Host : <%=     User.find(event.user_id).username %>
+                <% else %>
+                <%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %>
+                <p>Host</p>
+                <%= User.find(event.user_id).username %></p>
+                <% end %>
+                <p>Participants <%= event.event_users.count %></p>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
-  </section>
+    </section>
+
+    <section class="col-2 p-r-64">
+      <header class="flex space-between center-vertically m-y-32">
+        <h2 class="inline">Events that I attend</h2>
+      </header>
+      <div class="">
+        <% @attended_events.each do |attended| %>
+         <%= link_to event_path(attended.event), class: "link-style" do %>
+            <div id="container-events-horizontal">
+              <div class="movie-poster-horizontal">
+                <img src="<%= attended.event.movie.poster_url %>" alt="Movie Poster" class="movie-poster-horizontal">
+              </div>
+              <div class="date-box">
+                <h3><%= attended.event.date.strftime("%d") %></h3>
+                <p><%= attended.event.date.strftime("%a") %></p>
+              </div>
+              <div class="movie-theater">
+                <h5><%= attended.event.theatre %></h5>
+                <p><%= attended.event.location %></p>
+              </div>
+              <div class="participants-info">
+                <% if attended.event.user.photo.attached? %>
+                <%= image_tag attended.event.user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %> Host : <%=     User.find(attended.event.user_id).username %>
+                <% else %>
+                <%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %>
+                <p>Host</p>
+                <%= User.find(attended.event.user_id).username %></p>
+                <% end %>
+                <p>Participants <%= attended.event.event_users.count %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+
+
+
+    </section>
+  </div>
 </div>
