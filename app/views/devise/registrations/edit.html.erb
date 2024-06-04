@@ -4,38 +4,44 @@
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= f.error_notification %>
 
-    <div class="form-inputs">
-      <%= f.input :email, required: true, autofocus: true %>
+      <div class="form-inputs-edit-page">
+        <div class="form-inputs flex">
+          <div class="form-input-edit-page-details col-2 p-l-64">
+          <%= f.input :email, required: true, autofocus: true %>
 
-      <%= f.input :photo, as: :file %>
-      <%= f.input :password,
-                  hint: "leave it blank if you don't want to change it",
-                  required: false,
-                  input_html: { autocomplete: "new-password" } %>
-      <%= f.input :password_confirmation,
-                  required: false,
-                  input_html: { autocomplete: "new-password" } %>
-      <%= f.input :current_password,
-                  hint: "we need your current password to confirm your changes",
-                  required: false,
-                  input_html: { autocomplete: "current-password" } %>
-      <%= f.input :genres,
-                  label: "Choose your favorite genres (up to three)",
-                  collection: Genre.all,
-                  required: true,
-                  input_html: {multiple: true, data: {controller: "tom-select"}} %>
-              <%= f.input :directors,
-                  label: "Choose your favorite directors (up to three)",
-                  collection: Director.all,
-                  label_method: :full_name,
-                  required: true,
-                  input_html: {multiple: true, data: {controller: "tom-select"}} %>
-              <%= f.input :actors,
-                  label: "Choose your favorite actors (up to three)",
-                  collection: Actor.all,
-                  label_method: :full_name,
-                  required: true,
-                  input_html: {multiple: true, data: {controller: "tom-select"}} %>
+          <%= f.input :photo, as: :file %>
+          <%= f.input :password,
+                      hint: "leave it blank if you don't want to change it",
+                      required: false,
+                      input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation,
+                      required: false,
+                      input_html: { autocomplete: "new-password" } %>
+          <%= f.input :current_password,
+                      hint: "we need your current password to confirm your changes",
+                      required: false,
+                      input_html: { autocomplete: "current-password" } %>
+       </div>
+       <div class="form-inputs-edit-page-preferences col-2 p-r-64">
+          <%= f.input :genres,
+                      label: "Choose your favorite genres (up to three)",
+                      collection: Genre.all,
+                      required: true,
+                      input_html: {multiple: true, data: {controller: "tom-select"}} %>
+                  <%= f.input :directors,
+                      label: "Choose your favorite directors (up to three)",
+                      collection: Director.all,
+                      label_method: :full_name,
+                      required: true,
+                      input_html: {multiple: true, data: {controller: "tom-select"}} %>
+                  <%= f.input :actors,
+                      label: "Choose your favorite actors (up to three)",
+                      collection: Actor.all,
+                      label_method: :full_name,
+                      required: true,
+                      input_html: {multiple: true, data: {controller: "tom-select"}} %>
+        </div>
+      </div>>
     </div>
 
     <div class="form-actions">
@@ -105,11 +111,19 @@
 </div>
 
 <div class="see-all-my-stuff">
-  <h2>Your Friends <%= link_to "See all  ->", friendships_path, class: "see-all-link" %></h2>
+  <h2>Your Friends
+    <%= link_to friendships_path, class: "see-all-link" do %>
+      See all <i class="fas fa-solid fa-arrow-right"></i>
+    <% end %>
+  </h2>
 </div>
 
 <div class="user-friends-page">
-   <%= render 'shared/friends_cards' %>
+  <% if current_user.friends.any? %>
+   <%= render 'shared/friends_cards', users: current_user.friends %>
+   <% else %>
+    <h2><em> Sorry, you have no friends... Yet!</em></h2>
+  <% end %>
 </div>
 
 <div class="user-watchlist page">

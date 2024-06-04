@@ -1,16 +1,20 @@
 <div class="event-cards-container" data-controller="scroll">
-  <button class="scroll-button left" data-action="click->scroll#scrollLeft">
-    <i class="fas fa-circle-chevron-left"></i>
-  </button>
+  <% if users.count > 5 %>
+    <button class="scroll-button left" data-action="click->scroll#scrollLeft"><i class="fas fa-circle-chevron-left"></i></button>
+  <% end %>
 
-  <% if current_user.similar_users.any? %>
+  <% if users.any? %>
     <div class="user-cards flex flex-wrap">
-      <% current_user.similar_users.each do |user| %>
+      <% users.each do |user| %>
         <div class="user-card flex flex-wrap">
-          <img class="avatar" src="" alt="profil picture">
+          <% if user.photo.attached? %>
+            <%= cl_image_tag user.photo.key, class: "avatar" %>
+            <% else %>
+            <%= image_tag "default_avatar.jpeg", alt: "hello", class: "avatar"%>
+        <% end %>
           <div class="text m-b-8">
             <h4>
-              <a href="">Friend username</a>
+              <h3><%= link_to user.username, profile_path(user) %></h3>
             </h4>
             <p class="m-0"><%= user.directors.pluck(:last_name).join(', ') %></p>
             <p class="m-0"><%= user.actors.pluck(:last_name).join(', ') %></p>
@@ -19,7 +23,9 @@
                 <li class="m-t-8"><span class="tag"><%= title %></span></li>
               <% end %>
             </ul>
-            <button class="btn-regular btn-secondary btn-size-s">+ friend</button>
+            <% unless current_user.friends.include?(user) %>
+              <button class="btn-regular btn-secondary btn-size-s">+ friend</button>
+            <% end %>
               <%# <%= link_to '+ friend', friend_path(friend), class: 'btn-regular btn-secondary btn-size-s' %>
           </div>
         </div>
@@ -28,5 +34,8 @@
   <% else %>
     <em>No users with similar preferences found.</em>
 <% end %>
-  <button class="scroll-button right" data-action="click->scroll#scrollRight"><i class="fas fa-circle-chevron-right"></i></button>
+
+  <% if users.count > 5 %>
+    <button class="scroll-button right" data-action="click->scroll#scrollRight"><i class="fas fa-circle-chevron-right"></i></button>
+  <% end %>
 </div>
