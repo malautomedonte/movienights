@@ -3,7 +3,7 @@
   z-index: 3;
   position: sticky;
   top: 0;
-  background: #0A2733;
+  background: #000000;
   box-shadow: 0 0 50px grey;
   width: 100%;
 
@@ -32,6 +32,9 @@
 
 .nav-link {
   color: #FFEDC7;
+  font-family: "Rubik", "Helvetica", "sans-serif";
+  font-weight: 500;
+  font-size:23px;
 }
 
 .nav-link:hover {

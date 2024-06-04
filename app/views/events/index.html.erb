@@ -37,9 +37,13 @@
             </div>
 
             <div class="participants-info">
+             <% if event.user.photo.attached? %>
+           <%= image_tag event.user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %> Host : <%= User.find(event.user_id).username %>
+          <% else %>
+            <p><%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %> Host: <%= User.find(event.user_id).username %></p>
+          <% end %>
+            <h5>Participants <%= event.event_users.count %></h5>
             </div>
-
-
           </div>
         <% end %>
       <% else %>
