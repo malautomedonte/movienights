@@ -1,2 +1,68 @@
-<h1><%=  User.find_by(id: params[:id]).username %></h1>
-<%= link_to "Add Friend", friendships_path(friend_id: @user.id), data: { turbo_method: :post } %>
+<h1 class="h1-user-profile">This is <%= User.find_by(id: params[:id]).username %>'s profile!</h1>
+
+<div class="container-user-page-details">
+  <div class="user-details-page">
+    <div class="user-card-details">
+      <h2><%= User.find_by(id: params[:id]).username %>'s profile pic</h2>
+      <div class="picture-card">
+        <% if current_user.photo.attached? %>
+          <%= cl_image_tag current_user.photo.key, class: "picture-card" %>
+          <% else %>
+            <%= image_tag "default_avatar.jpeg", alt: "hello",class: "picture-card"%>
+        <% end %>
+      </div>
+      <h2><%= User.find_by(id: params[:id]).username %>'s username: <%= @user.username %></h2>
+      <div class="add-friend">
+        <%= link_to "Add Friend", friendships_path(friend_id: @user.id), data: { turbo_method: :post }, class: "btn-regular btn-secondary btn-size-s"  %>
+      </div>
+    </div>
+  </div>
+  <div class="user-preferences-page">
+    <div class="user-preferences-card">
+      <div class="user-preferences-genres">
+        <h2><%= User.find_by(id: params[:id]).username %>'s Favorite genres</h2>
+          <p><%= @user.genres.pluck(:title).join(', ') %></p>
+      </div>
+      <div class="user-preferences-directors">
+        <h2><%= User.find_by(id: params[:id]).username %>'s Favorite Directors</h2>
+          <p><%= @user.directors.pluck(:last_name).join(', ') %></p>
+      </div>
+      <div class="user-preferences-actors">
+        <h2><%= User.find_by(id: params[:id]).username %>'s Favorite Actors</h2>
+          <p><%= @user.actors.pluck(:last_name).join(', ') %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="user-watchlist page">
+      <div class="background_movies p-l-64 p-t-32">
+      <section class="movie-recommendations m-y-24 p-b-42">
+        <header class="flex center-vertically m-y-32 m-r-64">
+          <h2 class="white"><%= User.find_by(id: params[:id]).username %>'s recommended Movies</h2>
+          <a href="#" class="see-all white">see all <i class="fas fa-solid fa-arrow-right"></i></a>
+        </header>
+        <div class="movies-horizontal-list"  data-controller="scroll">
+          <button class="scroll-button left" data-action="click->scroll#scrollLeft">
+            <i class="fas fa-circle-chevron-left"></i>
+          </button>
+          <% if User.find_by(id: params[:id]).preferred_content.present? %>
+              <% User.find_by(id: params[:id]).preferred_content.each do |movie| %>
+                <div class="movie-card card">
+                  <%= image_tag movie.poster_url %>
+                  <h3 class="white"><%= movie.title %></h3>
+                </div>
+              <% end %>
+          <% else %>
+            <p class="white">
+              <em>Sorry, there's no movie recommendation yet.</em>
+            </p>
+          <% end %>
+          <button class="scroll-button right" data-action="click->scroll#scrollRight">
+            <i class="fas fa-circle-chevron-right"></i>
+          </button>
+        </div>
+      </section>
+    </div>
+  <!-- Watchlist content -->
+</div>
