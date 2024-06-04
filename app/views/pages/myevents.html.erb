@@ -15,23 +15,21 @@
     </header>
     <div class="flex">
       <% @my_events.each do |event| %>
-        <div class="event-card card" >
-          <h4><%= event.movie.title %></h4>
-          <p><%= event.description %></p>
-          <p><i class="fa-solid fa-location-dot"></i> <%= event.theatre %>, <%= event.location %></p>
-          <p>Participants: <%= event.event_users.count %></p>
-          <p class="event-date">
-          <span class="date-box">
-          <span class="date-day"><%= event.date.strftime("%d") %></span>
-          <span class="date-month"><%= event.date.strftime("%b") %></span>
-          </span>
-          </p>
-          <% if current_user && current_user.id == event.user_id %>
-            <%= link_to edit_event_path(event) do %>
-            <p><i class="fa-regular fa-pen-to-square edit-button"></i></p>
-            <% end %>
-          <% end %>
-          <%= link_to 'See Event', event_path(event), class: 'see-more-button' %>
+        <div id="container-events-horizontal">
+          <div class="movie-poster-horizontal">
+            <img src="<%= event.movie.poster_url %>" alt="Movie Poster" class="movie-poster-horizontal">
+          </div>
+          <div class="date-box">
+            <h3><%= event.date.strftime("%d") %></h3>
+            <p><%= event.date.strftime("%a") %></p>
+          </div>
+          <div class="movie-theater">
+            <p><%= event.theatre %></p>
+            <p><%= event.location %></p>
+          </div>
+          <div class="participants-info">
+            <p>Avatar - Username - Participants</p>
+          </div>
         </div>
     <% end %>
     </div>
