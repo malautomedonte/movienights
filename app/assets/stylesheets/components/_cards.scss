@@ -3,7 +3,6 @@
   flex-direction: column;
   flex-wrap: wrap;
   margin: 10px; /* Adjust margin as needed */
-  padding: 10px; /* Adjust padding as needed */
   background-color: $white; /* Light gray background */
   border-radius: 10px; /* Rounded corners */
   border: 1px solid $medium-gray;
@@ -15,14 +14,12 @@
   }
 }
 
-.movies-horizontal-list .movie-card {
-  flex: 0 0 200px;
-}
-
 .event-card.card {
   flex: 0 0 300px;
+  padding: 10px; /* Adjust padding as needed */
 }
 
 #my-events .event-card.card {
   flex: 0 0 31%;
+  padding: 10px; /* Adjust padding as needed */
 }

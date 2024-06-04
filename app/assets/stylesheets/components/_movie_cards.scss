@@ -1,20 +1,38 @@
 
-.movie-card img {
-  width: 100%; /* Image fills the card width */
-  height: 200px; /* Adjust image height as needed */
-  object-fit: contain; /* Crop image to fit within container */
+.movie-card {
+  flex: 0 0 232px;
+  .poster {
+    height: 324px;
+    overflow: hidden;
+    img {
+      width: 100%; /* Image fills the card width */
+      height: auto; /* Adjust image height as needed */
+      object-fit: contain; /* Crop image to fit within container */
+      border-radius: 10px 10px 0 0 ;
+    }
+  }
 }
 
-.movie-card h3 {
-  margin-top: 10px; /* Margin between image and title */
-  font-size: 18px; /* Adjust title font size */
-  font-weight: bold; /* Bold title text */
-  overflow-wrap: break-word;
+// .movie-card h3 {
+//   margin-top: 10px; /* Margin between image and title */
+//   font-size: 18px; /* Adjust title font size */
+//   font-weight: bold; /* Bold title text */
+//   overflow-wrap: break-word;
+// }
+
+// .movie-card p {
+//   font-size: 14px; /* Adjust description font size */
+//   line-height: 1.5; /* Adjust line spacing for better readability */
+//   color: $darker-gray; /* Gray text color */
+//   overflow-wrap: break-word;
+// }
+
+.movie-card .text {
+  padding: 16px 12px;
 }
 
-.movie-card p {
-  font-size: 14px; /* Adjust description font size */
-  line-height: 1.5; /* Adjust line spacing for better readability */
-  color: $darker-gray; /* Gray text color */
-  overflow-wrap: break-word;
+.movie-card span:not(:first-of-type) {content: ','}
+
+.verso {
+  background-color: rgba(0, 0, 0, 0.8);
 }
