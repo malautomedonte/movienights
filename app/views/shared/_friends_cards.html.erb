@@ -24,9 +24,8 @@
               <% end %>
             </ul>
             <% unless current_user.friends.include?(user) %>
-              <button class="btn-regular btn-secondary btn-size-s">+ friend</button>
+              <%= link_to "+ Friend", friendships_path(friend_id: user.id), data: { turbo_method: :post }, class: "btn-regular btn-secondary btn-size-s"  %>
             <% end %>
-              <%# <%= link_to '+ friend', friend_path(friend), class: 'btn-regular btn-secondary btn-size-s' %>
           </div>
         </div>
       <% end %>
