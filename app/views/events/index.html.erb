@@ -18,89 +18,13 @@
       <h2>Today</h2>
 
       <%# Blueprint for Eventcards on Events %>
-      <% if @events_today.any? %>
-        <% @events_today.each do |event| %>
-          <div id="container-events-horizontal">
+      <%= render "shared/event_cards_hz_today" %>
 
-            <div class="movie-poster-horizontal">
-              <img src="<%= event.movie.poster_url %>" alt="Movie Poster" class="movie-poster-horizontal">
-            </div>
+      <h2>Following Days</h2>
 
-            <div class="date-box">
-              <h3><%= event.date.strftime("%d") %></h3>
-              <p><%= event.date.strftime("%a") %></p>
-            </div>
 
-            <div class="movie-theater">
-              <p><%= event.theatre %></p>
-              <p><%= event.location %></p>
-            </div>
+      <%= render "shared/event_cards_hz_all" %>
 
-            <div class="participants-info">
-             <% if event.user.photo.attached? %>
-           <%= image_tag event.user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %> Host : <%= User.find(event.user_id).username %>
-          <% else %>
-            <p><%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %> Host: <%= User.find(event.user_id).username %></p>
-          <% end %>
-            <h5>Participants <%= event.event_users.count %></h5>
-            </div>
-          </div>
-        <% end %>
-      <% else %>
-        <em>Sorry, no offers found.</em>
-      <% end %>
-
-      <section class="create-event-section">
-        <div class="today-and-create-container">
-          <div class="todays-event-container">
-            <%= render "shared/event_cards" %>
-          </div>
-        </div>
-      </section>
-
-      <section class="upcoming-section">
-        <h1 class="event-page">Upcoming movienights</h1>
-        <div class="event-cards-container" data-controller="scroll">
-          <button class="scroll-button left" data-action="click->scroll#scrollLeft">
-            <i class="fas fa-circle-chevron-left"></i>
-            </button>
-          <% if @events.any? %>
-            <% @events.each do |event| %>
-              <div class="event-card card">
-                <div class="movie-poster">
-                  <img src="<%= event.movie.poster_url %>" alt="Movie Poster" class="movie-poster">
-                  <% if current_user && current_user.id == event.user_id %>
-                    <%= link_to edit_event_path(event), class: 'edit-button' do %>
-                      <i class="fa-regular fa-pen-to-square"></i>
-                    <% end %>
-                  <% end %>
-                </div>
-              <div class="event-details">
-                <h5><%= event.movie.title %></h5>
-                <p><i class="fa-solid fa-location-dot"></i> <%= event.theatre%>, <%event.location %></p>
-                <p class="event-date">
-                <span class="date-box">
-                <span class="date-day"><%= event.date.strftime("%d") %></span>
-                <span class="date-month"><%= event.date.strftime("%b") %></span>
-                </span>
-                </p>
-                <%# <p><i class="fa-regular fa-calendar"></i> <%= @event.date.strftime("%d/%m/%Y")  %>
-                <p><i class="fa-regular fa-clock"></i> <%= event.date.strftime("%H:%M") %></p>
-                <% if current_user && current_user.id == event.user_id %>
-                  <p>You are the host</p>
-                <% else %>
-                  <p><%= event.user.username %> </p>
-                <% end %>
-                  <%= link_to 'See Event', event_path(event), class: 'see-more-button' %>
-                </div>
-              </div>
-          <% end %>
-            <% else %>
-              <em>Sorry, no offers found.</em>
-            <% end %>
-            <button class="scroll-button right" data-action="click->scroll#scrollRight"><i class="fas fa-circle-chevron-right"></i></button>
-        </div>
-      </section>
 
     </div>
 
