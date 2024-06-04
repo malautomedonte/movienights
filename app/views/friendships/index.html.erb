@@ -1,7 +1,14 @@
-<h1>Hi Friends!</h1>
-<ul>
-<% @friends.each do |friend| %>
-<li><%= friend.user.username %></li>
-<li><%= friend.friend.username %></li>
+<% if @friends.any? %>
+    <div class="user-cards flex flex-wrap">
+      <% @friends.each do |friend| %>
+
+        <% if friend.friend.username == current_user.username%>
+          <%= render 'friend_user', friend: friend %>
+        <% else %>
+          <%= render 'friend_friend', friend: friend %>
+        <% end %>
+      <% end %>
+    </div>
+<% else %>
+    <em>No users with similar preferences found.</em>
 <% end %>
-</ul>

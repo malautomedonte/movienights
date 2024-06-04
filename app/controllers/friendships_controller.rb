@@ -5,10 +5,17 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    friendship = Friendship.new(user_id: current_user.id, friend_id: params[:friend_id])
-    friendship.pending!
-    if friendship.save!
+    friendship = Friendship.where(friend_id: current_user.id).or(Friendship.where(user_id: current_user.id))
+
+    if friendship
+      friendship.accepted!
       redirect_to request.referer
+    else
+      friendship = Friendship.new(user_id: current_user.id, friend_id: params[:friend_id])
+      friendship.pending!
+      if friendship.save!
+        redirect_to request.referer
+      end
     end
   end
 

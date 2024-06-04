@@ -9,9 +9,9 @@
       <h2>Your profile pic <%= link_to "Edit", edit_user_registration_path, class: 'btn opacity-50' %></h2>
       <div>
         <% if current_user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key, class: "picture-card" %>
+          <%= cl_image_tag current_user.photo.key, class: "picture-card-img" %>
           <% else %>
-            <%= image_tag "default_avatar.jpeg", alt: "User Image",class: "picture-card"%>
+            <%= image_tag "default_avatar.jpeg", alt: "User Image",class: "picture-card-img"%>
         <% end %>
       </div>
       <h2>Your name: <%= @user.username %></h2>
