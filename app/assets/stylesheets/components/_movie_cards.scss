@@ -1,5 +1,6 @@
 
 .movie-card {
+  position: relative;
   flex: 0 0 232px;
   .poster {
     height: 324px;
@@ -9,6 +10,22 @@
       height: auto; /* Adjust image height as needed */
       object-fit: contain; /* Crop image to fit within container */
       border-radius: 10px 10px 0 0 ;
+    }
+  }
+  .text {
+      padding: 16px 12px;
+  }
+  &:hover {
+    .overlay {
+      opacity: 1;
+    }
+  }
+  .verso {
+    .text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: .9em;
     }
   }
 }
@@ -27,12 +44,17 @@
 //   overflow-wrap: break-word;
 // }
 
-.movie-card .text {
-  padding: 16px 12px;
-}
+.movie-card span:not(:first-of-type)::before {content: ', '}
 
-.movie-card span:not(:first-of-type) {content: ','}
-
-.verso {
-  background-color: rgba(0, 0, 0, 0.8);
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: rgba(0, 0, 0, .6);
 }
