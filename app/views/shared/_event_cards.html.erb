@@ -5,15 +5,24 @@
 
   <% if @events_today.any? %>
     <% @events_today.each do |event| %>
+      <% eventjoin = current_user.event_users.find_by(event_id: event.id) %>
       <div class="event-card card square-card" >
-        <button class="bookmark-type"><i class="fa-solid fa-check"></i></button>
+      <% if current_user && event.user_id == current_user.id %>
+          <%= button_to event_path(event), class: "bookmark-type-edit" do %>
+          <i class="fa-solid fa-pen-to-square"></i>
+          <% end %>
+      <% elsif eventjoin %>
+          <%= link_to event_user_path(id: event.id, eventuser_id: eventjoin, event_id: event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn bookmark-type-attended" do %>
+          <i class="fa-solid fa-minus"></i>
+          <% end %>
+      <% else %>
+          <%= button_to event_users_path(event_id: event.id), data: { "turbo-method": :post }, class: "bookmark-type" do %>
+          <i class="fa-solid fa-plus"></i>
+          <% end %>
+      <% end %>
+        <%# <button class="bookmark-type"><i class="fa-solid fa-check"></i></button> %>
         <div class="movie-poster">
           <img src="<%= event.movie.poster_url %>" alt="Movie Poster" class="movie-poster">
-            <% if current_user && current_user.id == event.user_id %>
-              <%= link_to edit_event_path(event), class: 'edit-button' do %>
-              <i class="fa-regular fa-pen-to-square"></i>
-              <% end %>
-            <% end %>
         </div>
         <div class="text">
           <div class="date-time">
