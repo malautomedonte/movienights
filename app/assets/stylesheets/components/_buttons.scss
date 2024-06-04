@@ -143,3 +143,46 @@
     transition: 0.3s ease;
   }
 }
+
+
+.bookmark-type-attended {
+  background-color: #609966;
+  color: $black;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 42px;
+  height: 46px;
+  position: absolute;
+  top: 0;
+  right: 16px;
+  border: none;
+  transition: 0.3s ease;
+  i {
+    font-size: 1.4em;
+  }
+  &:hover {
+    background-color: #486f4c;
+    transition: 0.3s ease;
+  }
+}
+
+.bookmark-type-edit {
+  background-color: #526D82;
+  color: $black;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 42px;
+  height: 46px;
+  position: absolute;
+  top: 0;
+  right: 16px;
+  border: none;
+  transition: 0.3s ease;
+  i {
+    font-size: 1.4em;
+  }
+  &:hover {
+    background-color: #27374D;
+    transition: 0.3s ease;
+  }
+}

@@ -10,7 +10,14 @@
       <section class="events p-b-42">
         <header class="flex space-between center-vertically m-y-32 m-r-64">
           <h2 class="inline">Today's Movie Nights</h2>
-          <a href="/events" class="btn btn-regular btn-primary btn-size-s">Create an event</a>
+          <div data-controller="popup">
+            <button class="btn btn-regular btn-primary btn-size-s" data-action="click->popup#showform">+ Create an event</button>
+            <div class="d-none" data-popup-target="createForm">
+              <div class='overlay-blur'></div>
+            <%= render "shared/popup" %>
+            </div>
+         </div>
+          <%# <a href="/events" class="btn btn-regular btn-primary btn-size-s">Create an event</a> %>
         </header>
         <%= render 'shared/event_cards' %>
       </section>
