@@ -36,6 +36,12 @@
   }
 }
 
+.font-white {
+  p {
+    color: white;
+  }
+}
+
 #genre-box {
   display: inline-block;
   background-color: $secondary-dark;
@@ -106,4 +112,13 @@
 .flex-between {
   display: flex;
   justify-content: space-between;
+}
+
+.participants-cards {
+  display: flex;
+  
+}
+
+.organizer {
+  margin-bottom: 3rem;
 }
