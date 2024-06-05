@@ -6,6 +6,11 @@ body {
   padding: 20px;
   margin-top: 15px;
   background-color: #E6F4FE;
+  text-shadow: 1px 1px 2px rgb(176, 176, 176);
+}
+
+.profile-edit-deets {
+  text-shadow: 1px 1px 2px rgb(176, 176, 176);
 }
 
 .container-user-page-details {
@@ -16,8 +21,15 @@ body {
   border-top: 4px solid grey;
 }
 .user-card-details {
+  display: flex;
   margin-right: 10px;
   padding: 15px;
+}
+
+.username-email-deets {
+  margin-left: 45px;
+  margin-top: 30px;
+
 }
 
 .user-preferences-page {
@@ -30,24 +42,29 @@ body {
 }
 
 .user-preferences-genres {
+  letter-spacing: 3px;
   padding: 15px;
+  text-shadow: 1px 1px 2px rgb(176, 176, 176);
 }
 
 .user-preferences-directors {
+  letter-spacing: 3px;
   padding: 15px;
-
+  text-shadow: 1px 1px 2px rgb(176, 176, 176);
 }
 
 .user-preferences-actors {
+  letter-spacing: 3px;
   padding: 15px;
-
+  text-shadow: 1px 1px 2px rgb(176, 176, 176);
 }
 
 .see-all-my-stuff {
   background-color: #E6F4FE;
-  padding: 15px;
+  padding-bottom: 15px;
   padding-top: 25px;
   padding-left: 35px;
+  text-shadow: 1px 1px 2px rgb(176, 176, 176);
 }
 
 .see-all-link {
@@ -57,7 +74,9 @@ body {
 }
 
 .user-attending-events, .user-organized-events {
-  padding: 15px;
+  padding: 5px;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 2px rgb(176, 176, 176);
 }
 
 .container-user-events-page {
@@ -65,6 +84,10 @@ body {
   grid-template-columns: 1fr 1fr;
   padding: 25px;
   background-color: #E6F4FE;
+}
+
+.user-join-events-page {
+  padding-left: 40px;
 }
 
 .picture-card {

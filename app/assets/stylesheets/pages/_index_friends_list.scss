@@ -1,0 +1,42 @@
+.container-friends-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.user-cards-friends-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-card-friends-list {
+  background-color: #FFFFFF;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-friends-list {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.text-friends-list {
+  margin-left: 20px;
+}
+
+.ul-style-none {
+  list-style: none;
+}
+
+.tag-friends-list {
+  background-color: #E6E6E6;
+  color: #333333;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+}

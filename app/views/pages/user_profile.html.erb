@@ -1,147 +1,144 @@
-<% if current_user%>
-  <h1 class="h1-user-profile">This is your personal dashboard, <%= @user.username %>!</h1>
-  <% else %>
-    <h1 class="h1-user-profile">This is <%= @user.username %>'s profile!></h1>
+<% if current_user %>
+  <h1 class="h1-user-profile">Welcome to Your Dashboard, <%= @user.username %>!</h1>
+<% else %>
+  <h1 class="h1-user-profile">Profile of <%= @user.username %></h1>
 <% end %>
+
 <div class="container-user-page-details">
   <div class="user-details-page">
+      <h2 class="profile-edit-deets">Your Profile Picture <%= link_to "Edit", edit_user_registration_path, class: 'btn btn-outline-secondary btn-sm' %></h2>
     <div class="user-card-details">
-      <h2>Your profile pic <%= link_to "Edit", edit_user_registration_path, class: 'btn opacity-50' %></h2>
       <div>
         <% if current_user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key, class: "picture-card-img" %>
-          <% else %>
-            <%= image_tag "default_avatar.jpeg", alt: "User Image",class: "picture-card-img"%>
+          <%= cl_image_tag current_user.photo.key, class: "picture-card-img rounded-circle" %>
+        <% else %>
+          <%= image_tag "default_avatar.jpeg", alt: "User Image", class: "picture-card-img rounded-circle" %>
         <% end %>
       </div>
-      <h2>Your name: <%= @user.username %></h2>
-      <h2>Your email: <%= @user.email %></h2>
+      <div class="username-email-deets">
+        <h2 class="profile-edit-deets">Your Name:</h2> <p><%= @user.username %></p>
+        <h2 class="profile-edit-deets">Your Email:</h2> <p><%= @user.email %></p>
+      </div>
     </div>
   </div>
   <div class="user-preferences-page">
     <div class="user-preferences-card">
       <div class="user-preferences-genres">
-        <h2>Your Favorite genres</h2>
-          <p><%= @user.genres.pluck(:title).join(', ') %></p>
+        <p class="h3">Your Favorite Genres</p>
+          <% @user.genres.pluck(:title).each do |title| %>
+           <ul class="ul-style-none display-inline"> <li class="m-t-8"><span class="tag"><%= title %></span></li> </ul>
+          <% end %>
       </div>
       <div class="user-preferences-directors">
-        <h2>Your Favorite Directors</h2>
-          <p><%= @user.directors.pluck(:last_name).join(', ') %></p>
+        <p class="h3">Your Favorite Directors</p>
+        <p><%= @user.directors.pluck(:last_name).join(', ') %></p>
       </div>
       <div class="user-preferences-actors">
-        <h2>Your Favorite Actors</h2>
-          <p><%= @user.actors.pluck(:last_name).join(', ') %></p>
+        <p class="h3">Your Favorite Actors</p>
+        <p><%= @user.actors.pluck(:last_name).join(', ') %></p>
       </div>
     </div>
   </div>
 </div>
 
 <div class="see-all-my-stuff">
-  <h2>Your events
+  <h2>Your Events
     <%= link_to events_path, class: "see-all-link" do %>
-      See all <i class="fas fa-solid fa-arrow-right"></i>
+      See All <i class="fas fa-arrow-right"></i>
     <% end %>
   </h2>
 </div>
 
-
-
-
 <div class="container-user-events-page">
   <div class="user-my-events-page">
-  <div class="user-organized-events">
-    <h2>I have created <%= @my_events.count %> events so far</h2>
+    <div class="user-organized-events">
+      <h2>You Have Created <%= @my_events.count %> Events So Far</h2>
+    </div>
+    <% @my_events = current_user.events.limit(3)%>
+    <%= render 'shared/my_events_user_profile' %>
   </div>
-    <% if @my_events.present? %>
-      <% @my_events.each do |event| %>
-        <div class="event-card card">
-          <h4><%= event.movie.title %></h4>
-          <p><%= event.description %></p>
-          <p><%= event.location %></p>
-          <p><%= event.date %></p>
-          <p><%= event.user.username %></p>
-          <% if current_user && current_user.id == event.user_id %>
-            <%= link_to edit_event_path(event) do %>
-              <p><i class="fa-regular fa-pen-to-square edit-button"></i></p>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
-    <% else %>
-      <p>No events created by you yet.</p>
-    <% end %>
-  </div>
-  <div class="user-join-events-page">
-      <div class="user-attending-events">
-    <h2>I am attending to <%= @attended_events.count %> events so far</h2>
-  </div>
-    <% if @attended_events.present? %>
-      <% @attended_events.each do |attended| %>
-        <div class="event-card card">
-          <h4><%= link_to attended.event.title, event_path(attended.event), class: "movie-link" %></h4>
-          <h4><%= attended.event.movie.title %></h4>
-          <p><%= attended.event.description %></p>
-          <p><%= attended.event.location %></p>
-          <p><%= attended.event.date %></p>
-          <p><%= attended.event.user.username %></p>
-          <p>You are attending!</p>
-          <%= link_to "Cancel", event_user_path(id: attended.id, eventuser_id: attended, event_id: pages_myevents_path), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "cancel-button" %>
-        </div>
-      <% end %>
-    <% else %>
-      <p>No events attended by you yet.</p>
-    <% end %>
-  </div>
-  <hr>
-</div>
 
+  <div class="user-join-events-page">
+    <div class="user-attending-events">
+      <h2>You Are Attending <%= @attended_events.count %> Events So Far</h2>
+    </div>
+        <% @attended_events.first(3).each do |attended| %>
+         <%= link_to event_path(attended.event), class: "link-style" do %>
+            <div id="container-events-horizontal">
+              <div class="movie-poster-horizontal">
+                <img src="<%= attended.event.movie.poster_url %>" alt="Movie Poster" class="movie-poster-horizontal">
+              </div>
+              <div class="date-box">
+                <h3><%= attended.event.date.strftime("%d") %></h3>
+                <p><%= attended.event.date.strftime("%a") %></p>
+              </div>
+              <div class="movie-theater">
+                <h5><%= attended.event.theatre %></h5>
+                <p><%= attended.event.location %></p>
+              </div>
+              <div class="participants-info">
+                <% if attended.event.user.photo.attached? %>
+                <%= image_tag attended.event.user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %> Host : <%=     User.find(attended.event.user_id).username %>
+                <% else %>
+                <%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %>
+                <p>Host</p>
+                <%= User.find(attended.event.user_id).username %></p>
+                <% end %>
+                <p>Participants <%= attended.event.event_users.count %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+  </div>
+  <hr><hr>
+</div>
 
 <div class="see-all-my-stuff">
   <h2>Your Friends
     <%= link_to friendships_path, class: "see-all-link" do %>
-      See all <i class="fas fa-solid fa-arrow-right"></i>
+      See All <i class="fas fa-arrow-right"></i>
     <% end %>
   </h2>
 </div>
 
-
 <div class="user-friends-page">
-  <% if current_user.friends.any? %>
-   <%= render 'shared/friends_cards', users: current_user.friends %>
-   <% else %>
-    <h2><em> Sorry, you have no friends... Yet!</em></h2>
+  <% if current_user.friends.empty? %>
+    <h2><em>Sorry, you have no friends... Yet!</em></h2>
+    <% else %>
+      <%= render 'shared/friends_cards_user_profile', friends: current_user.friends %>
   <% end %>
 </div>
 
 
 <div class="user-watchlist page">
-      <div class="background_movies p-l-64 p-t-32">
-      <section class="movie-recommendations m-y-24 p-b-42">
-        <header class="flex center-vertically m-y-32 m-r-64">
-          <h2 class="white">Your Watchlist</h2>
-          <a href="#" class="see-all white">See All <i class="fas fa-solid fa-arrow-right"></i></a>
-        </header>
-        <div class="movies-horizontal-list"  data-controller="scroll">
-          <button class="scroll-button left" data-action="click->scroll#scrollLeft">
-            <i class="fas fa-circle-chevron-left"></i>
-          </button>
-          <% if current_user.preferred_content.present? %>
-              <% current_user.preferred_content.each do |movie| %>
-                <div class="movie-card card">
-                  <%= image_tag movie.poster_url %>
-                  <h3 class="white"><%= movie.title %></h3>
-                </div>
-              <% end %>
-          <% else %>
-            <h2 class="white">
-              <em>Sorry, there's no movie recommendation yet.</em>
-            </h2>
+  <div class="background_movies p-4">
+    <section class="movie-recommendations">
+      <header class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-white">Your Watchlist</h2>
+        <a href="#" class="see-all text-white">See All <i class="fas fa-arrow-right"></i></a>
+      </header>
+      <div class="movies-horizontal-list d-flex align-items-center"  data-controller="scroll">
+        <button class="scroll-button left" data-action="click->scroll#scrollLeft">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <% if current_user.preferred_content.present? %>
+          <% current_user.preferred_content.each do |movie| %>
+            <div class="movie-card card mr-3">
+              <%= image_tag movie.poster_url, class: "card-img-top rounded" %>
+              <div class="card-body">
+                <h5 class="card-title text-white"><%= movie.title %></h5>
+              </div>
+            </div>
           <% end %>
-          <button class="scroll-button right" data-action="click->scroll#scrollRight">
-            <i class="fas fa-circle-chevron-right"></i>
-          </button>
-        </div>
-      </section>
-    </div>
-  <!-- Watchlist content -->
+        <% else %>
+          <h2 class="text-white">
+            <em>Sorry, there's no movie recommendation yet.</em>
+          </h2>
+        <% end %>
+        <button class="scroll-button right" data-action="click->scroll#scrollRight">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </section>
+  </div>
 </div>
