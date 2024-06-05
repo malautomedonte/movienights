@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships, dependent: :destroy
+  has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :messages, dependent: :destroy
 
   has_many :actors, through: :user_actors
@@ -47,4 +48,23 @@ class User < ApplicationRecord
 
     similar_users
   end
+
+  def friendship_with(other_user)
+    Friendship.find_by(user_id: self.id, friend_id: other_user.id) ||
+    Friendship.find_by(user_id: other_user.id, friend_id: self.id)
+  end
+
+  # Methods to retrieve friends
+  def friends
+    friendships.where(status: 'accepted').map(&:friend) + inverse_friendships.where(status: 'accepted').map(&:user)
+  end
+
+  def pending_friendships
+    friendships.where(status: 'pending')
+  end
+
+  def pending_inverse_friendships
+    inverse_friendships.where(status: 'pending')
+  end
+
 end

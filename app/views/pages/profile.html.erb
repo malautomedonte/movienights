@@ -2,14 +2,14 @@
   <div class="user-details-page">
     <div class="user-card-details">
       <h2><%= User.find_by(id: params[:id]).username %>'s Profile</h2>
-      <div class="picture-card">
+      <div class="picture-card-profile">
         <% if @user.photo.attached? %>
           <%= cl_image_tag @user.photo.key, class: "picture-card-profile-img" %>
           <% else %>
             <%= image_tag "default_avatar.jpeg", alt: "User Image", class: "picture-card-profile-img"%>
         <% end %>
       </div>
-      <div class="add-friend profile">
+      <div class="add-friend-profile-others">
         <%= link_to "Add as a Friend", friendships_path(friend_id: @user.id), data: { turbo_method: :post }, class: "btn-regular btn-secondary btn-size-s"  %>
       </div>
     </div>
@@ -33,33 +33,34 @@
 </div>
 
 <div class="user-watchlist page">
-      <div class="background_movies p-l-64 p-t-32">
-      <section class="movie-recommendations m-y-24 p-b-42">
-        <header class="flex center-vertically m-y-32 m-r-64">
-          <h2 class="white"><%= User.find_by(id: params[:id]).username %>'s recommended Movies</h2>
-          <a href="#" class="see-all white">see all <i class="fas fa-solid fa-arrow-right"></i></a>
-        </header>
-        <div class="movies-horizontal-list"  data-controller="scroll">
-          <button class="scroll-button left" data-action="click->scroll#scrollLeft">
-            <i class="fas fa-circle-chevron-left"></i>
-          </button>
-          <% if User.find_by(id: params[:id]).preferred_content.present? %>
-              <% User.find_by(id: params[:id]).preferred_content.each do |movie| %>
-                <div class="movie-card card">
-                  <%= image_tag movie.poster_url %>
-                  <h3 class="white"><%= movie.title %></h3>
-                </div>
-              <% end %>
-          <% else %>
-            <p class="white">
-              <em>Sorry, there's no movie recommendation yet.</em>
-            </p>
+  <div class="background_movies p-4">
+    <section class="movie-recommendations">
+      <header class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-white"><%= User.find_by(id: params[:id]).username %>'s Watchlist</h2>
+        <a href="#" class="see-all text-white">See All <i class="fas fa-arrow-right"></i></a>
+      </header>
+      <div class="movies-horizontal-list d-flex align-items-center"  data-controller="scroll">
+        <button class="scroll-button left" data-action="click->scroll#scrollLeft">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <% if @user.preferred_content.present? %>
+          <% @user.preferred_content.each do |movie| %>
+            <div class="movie-card card mr-3">
+              <%= image_tag movie.poster_url, class: "card-img-top rounded" %>
+              <div class="card-body">
+                <h5 class="card-title text-white"><%= movie.title %></h5>
+              </div>
+            </div>
           <% end %>
-          <button class="scroll-button right" data-action="click->scroll#scrollRight">
-            <i class="fas fa-circle-chevron-right"></i>
-          </button>
-        </div>
-      </section>
-    </div>
-  <!-- Watchlist content -->
+        <% else %>
+          <h2 class="text-white">
+            <em>Sorry, there's no movie recommendation yet.</em>
+          </h2>
+        <% end %>
+        <button class="scroll-button right" data-action="click->scroll#scrollRight">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </section>
+  </div>
 </div>

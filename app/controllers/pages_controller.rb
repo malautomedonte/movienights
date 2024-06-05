@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
 
   def home
+    @users = User.all
+    @friend = current_user
     @event = Event.new
     @movies = Movie.all
     @events = Event.all

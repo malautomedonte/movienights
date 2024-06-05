@@ -1,6 +1,5 @@
-
-<% if @events.any? %>
-  <% @events.each do |event| %>
+<% if @my_events.any? %>
+  <% @my_events.each do |event| %>
     <%= link_to event_path(event), class: "link-style" do %>
     <div id="container-events-horizontal">
       <div class="movie-poster-horizontal">
@@ -21,7 +20,7 @@
         <% if event.user.photo.attached? %>
         <%= image_tag event.user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %>
           <p>Host</p>
-          <%= User.find(event.user_id).username %>
+          <%= user.username %>
         <% else %>
           <%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %>
           <p>Host</p>

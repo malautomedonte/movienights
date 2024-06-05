@@ -1,12 +1,6 @@
-<div class="header-friends-list">
-  <h1>Your Friends</h1>
-</div>
-
-<div class="container-friends-list"></div>
-  <% if @friends.any? %>
+<% if friends.any? %>
     <div class="user-cards flex flex-wrap">
-      <% @friends.each do |friendship| %>
-        <% friend = friendship.friend == current_user ? friendship.user : friendship.friend %>
+      <% friends.each do |friend| %>
         <div class="user-card flex flex-wrap">
           <% if friend.photo.attached? %>
             <%= cl_image_tag friend.photo.key, class: "avatar" %>
@@ -32,4 +26,3 @@
   <% else %>
     <em>No users with similar preferences found.</em>
   <% end %>
-</div>
