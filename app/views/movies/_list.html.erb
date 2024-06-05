@@ -1,12 +1,9 @@
 
 <div data-search-movies-target="list">
-      <div class="movies">
-          <% @movies.each do |movie| %>
-        <div class="movie-card card">
-            <%= image_tag movie.poster_url %>
-            <h3><%= movie.title %></h3>
-        </div>
-          <% end %>
+  <div class="movies">
+    <% @movies.each do |movie| %>
+      <%= render "shared/movie_card", movie: movie %>
+    <% end %>
 
-      </div>
+  </div>
 </div>
