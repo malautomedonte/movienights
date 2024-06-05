@@ -20,7 +20,7 @@
         <% if event.user.photo.attached? %>
         <%= image_tag event.user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %>
           <p>Host</p>
-          <%= user.username %>
+          <%= @user.username %>
         <% else %>
           <%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %>
           <p>Host</p>

@@ -1,10 +1,10 @@
-<div class="header-friends-list">
-  <h1>Your Friends</h1>
-</div>
+<header class="header-friends-list flex space-between center-vertically m-y-32 m-r-64 p-x-64">
+  <h1 id="title-friends-list">Your Friends, <%= current_user.username %>! 👯‍♀️</h1>
+</header>
 
-<div class="container-friends-list"></div>
+<div class="container-friends-list">
   <% if @friends.any? %>
-    <div class="user-cards flex flex-wrap">
+    <div class="wrappemall">
       <% @friends.each do |friendship| %>
         <% friend = friendship.friend == current_user ? friendship.user : friendship.friend %>
         <div class="user-card flex flex-wrap">
@@ -24,6 +24,7 @@
               <% friend.genres.pluck(:title).each do |title| %>
                 <li class="m-t-8"><span class="tag"><%= title %></span></li>
               <% end %>
+              <hr class="friends-list-hr">
             </ul>
           </div>
         </div>
@@ -32,4 +33,5 @@
   <% else %>
     <em>No users with similar preferences found.</em>
   <% end %>
+</div>
 </div>
