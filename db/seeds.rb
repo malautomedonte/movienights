@@ -155,8 +155,7 @@ movies = [
   "zone of interest",
   "leviathan",
   "12 angry men",
-  "do the right thing",
-  "8½"
+  "do the right thing"
 ]
 
 movies.each do |movie|
