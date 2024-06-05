@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @events = Event.order(date: :asc)
+    # @events = Event.all
     @events_today = Event.where('date between ? and ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day)
     @event = Event.new
     @markers = @events.geocoded.map do |event|

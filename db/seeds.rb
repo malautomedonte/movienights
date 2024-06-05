@@ -9,6 +9,7 @@ Bookmark.destroy_all
 Actor.destroy_all
 Director.destroy_all
 Genre.destroy_all
+Friendship.destroy_all
 
 # Seeding users
 puts "Creating users"
@@ -291,7 +292,8 @@ theatres = { "Moviemento" => 'Kottbusser Damm 22, 10967 Berlin', "Neues Off cine
     description: movie.description,
     user_id: User.pluck(:id).sample,
     movie_id: movie.id,
-    date: DateTime.now,
+    # date: DateTime.now,
+    date: DateTime.new(2024, 6, rand(6..14), 20, 30, 0),
     theatre: cinema,
     location: theatres[cinema]
   )
