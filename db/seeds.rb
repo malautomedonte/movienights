@@ -140,7 +140,23 @@ movies = [
   "cuckoo",
   "kneecap",
   "borderlands",
-  "good one"
+  "good one",
+  "poor things",
+  "drive",
+  "taxi driver",
+  "perfect days",
+  "drive my car",
+  "climax",
+  "the square",
+  "triangle of sadness",
+  "eyes wide shut",
+  "midsommar",
+  "citizen kane",
+  "zone of interest",
+  "leviathan",
+  "12 angry men",
+  "do the right thing",
+  "8½"
 ]
 
 movies.each do |movie|

@@ -2,18 +2,18 @@
   <div id="footertext">
     <span class="footercolumn">
     <h2>Events</h2>
-    <p>Today</p>
-    <p>Near me</p>
+    <p><%= link_to "Today", events_path, :style=>'color: white; text-decoration: none;' %></p>
+    <p><%= link_to "Near Me", events_path, :style=>'color: white; text-decoration: none;' %></p>
     </span>
     <span class="footercolumn">
     <h2>Friends</h2>
     <p>People with common interests</p>
-    <p>My frinds</p>
+    <p><%= link_to "My Friends", friendships_path, :style=>'color: white; text-decoration: none;' %></p>
     </span>
     <span class="footercolumn">
     <h2>Movies</h2>
-    <p>Per categories</p>
-    <p>Upcoming</p>
+    <p><%= link_to "Search by Genre", movies_path, :style=>'color: white; text-decoration: none;' %></p>
+    <p><%= link_to "Search by Actor/Director", movies_path, :style=>'color: white; text-decoration: none;' %></p>
     </span>
   </div>
   <div id="footertext">

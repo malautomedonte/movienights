@@ -26,7 +26,7 @@
     <div class="flex flex-col space-between h-100">
       <div class="p-t-16">
         <div class="caracteristics flex space-between p-y-4 p-x-16">
-          <span class="white"><strong>Cast:</strong></span>
+          <span class="white"><strong>Cast</strong></span>
           <ul class="m-0">
             <% movie.actors.each do |actor| %>
               <li class="white"><%= actor.first_name %> <%= actor.last_name %></li>
@@ -34,13 +34,13 @@
           </ul>
         </div>
         <div class="caracteristics flex space-between p-y-4 p-x-16">
-          <span class="white"><strong>Genre:</strong></span>
+          <span class="white"><strong>Genre</strong></span>
           <ul class="m-0">
-            <li class="white"><%= movie.genre %></li>
+            <span class="white"><%= movie.genre %></span>
           </ul>
         </div>
         <div class="caracteristics flex space-between p-y-4 p-x-16">
-          <span class="white"><strong>Year release:</strong></span>
+          <span class="white"><strong>Year release</strong></span>
           <p class="white"><%= movie.release_year %></p>
         </div>
       </div>
