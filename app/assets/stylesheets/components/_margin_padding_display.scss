@@ -8,6 +8,7 @@
 
 //top only
 .m-t-8 {margin-top: 8px;}
+.m-t-16 {margin-top: 16px;}
 .m-t-32 {margin-top: 32px;}
 
 //right only
@@ -69,6 +70,10 @@
 
 .flex-row {
   flex-direction: row;
+}
+
+.flex-col {
+  flex-direction: column;
 }
 
 .space-between {

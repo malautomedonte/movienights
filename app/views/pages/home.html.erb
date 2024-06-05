@@ -45,56 +45,52 @@
           <% if current_user.preferred_content.present? %>
             <% current_user.preferred_content.each do |movie| %>
               <div class="movie-card card">
-                <%= link_to movie_path(movie), class: "link-style" do %>
-                <%# <button class="bookmark-type"><i class="fa-solid fa-check"></i></button> %>
-              <div class="recto">
-                <div class="poster">
-                  <%= image_tag movie.poster_url, alt: "movie title poster"%>
-                </div>
-                <div class="text">
-                  <div class="truncate-2-lines">
-                    <h4><%= movie.title %></h4>
+                <div class="recto">
+                  <div class="poster">
+                    <%= image_tag movie.poster_url, alt: "movie title poster"%>
                   </div>
-                  <% movie.directors.each do |director| %>
-                    <span><%= director.first_name %> <%= director.last_name %></span>
-                  <% end %>
-                  <% if !movie.reviews.empty? %>
-                    <ul class="ul-style-none flex space-between m-0">
-                      <li><%= movie.reviews.pluck(:rating).sum / movie.reviews.count%></li>
-                      <li><%= movie.reviews.count %> reviews</li>
-                    </ul>
+                  <div class="text">
+                    <div class="truncate-2-lines">
+                      <h4><%= movie.title %></h4>
+                    </div>
+                    <% movie.directors.each do |director| %>
+                      <span><%= director.first_name %> <%= director.last_name %></span>
                     <% end %>
-                </div>
-              </div>
-
-              <div class="verso">
-                <div class="text">
-                  <div class="truncate-2-lines">
-                    <h4 class="white"><%= movie.title %></h4>
-                  </div>
-                  <div class="caracteristics flex space-between">
-                    <span class="white"><strong>Cast:</strong></span>
-                    <ul class="m-0">
-                      <% movie.actors.each do |actor| %>
-                        <li class="white"><%= actor.first_name %> <%= actor.last_name %></li>
+                    <% if !movie.reviews.empty? %>
+                      <ul class="ul-style-none flex space-between m-0">
+                        <li><%= movie.reviews.pluck(:rating).sum / movie.reviews.count%></li>
+                        <li><%= movie.reviews.count %> reviews</li>
+                      </ul>
                       <% end %>
-                    </ul>
                   </div>
-                  <div class="caracteristics flex space-between">
-                    <span class="white"><strong>Genre:</strong></span>
-                    <ul class="m-0">
-                      <li class="white"><%= movie.genre %></li>
-                    </ul>
-                  </div>
-                  <div class="caracteristics flex space-between">
-                    <span class="white"><strong>Year release:</strong></span>
-                    <p class="white"><%= movie.release_year %></p>
+                </div>
+
+                <div class="verso overlay">
+                  <div class="text flex flex-col">
+                    <div class="caracteristics flex space-between">
+                      <span class="white"><strong>Cast:</strong></span>
+                      <ul class="m-0">
+                        <% movie.actors.each do |actor| %>
+                          <li class="white"><%= actor.first_name %> <%= actor.last_name %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                    <div class="caracteristics flex space-between">
+                      <span class="white"><strong>Genre:</strong></span>
+                      <ul class="m-0">
+                        <li class="white"><%= movie.genre %></li>
+                      </ul>
+                    </div>
+                    <div class="caracteristics flex space-between">
+                      <span class="white"><strong>Year release:</strong></span>
+                      <p class="white"><%= movie.release_year %></p>
+                    </div>
+                    <%= link_to "Watch trailer TO DO !!", movie_path(movie), class: "btn btn-regular btn-secondary btn-size-xs"%>
+                    <%= link_to "About the movie", movie_path(movie), class: "btn btn-regular btn-primary btn-size-xs m-t-16"%>
                   </div>
                 </div>
               </div>
-                <% end %>
-              </div>
-          <% end %>
+            <% end %>
           <% else %>
             <h2 class="white">
               <em>Sorry, there's no movie recommendation yet.</em>
@@ -107,3 +103,13 @@
       </section>
     </div>
 </div>
+
+<script>
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+</script>
