@@ -6,17 +6,17 @@
   <% if @events_today.any? %>
     <% @events_today.each do |event| %>
       <% eventjoin = current_user.event_users.find_by(event_id: event.id) %>
-      <div class="event-card card square-card" >
+      <div class="event-card card square-card" data-controller="changebutton" >
       <% if current_user && event.user_id == current_user.id %>
           <%= button_to event_path(event), class: "bookmark-type-edit" do %>
           <i class="fa-solid fa-pen-to-square"></i>
           <% end %>
       <% elsif eventjoin %>
-          <%= link_to event_user_path(id: event.id, eventuser_id: eventjoin, event_id: event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn bookmark-type-attended" do %>
+          <%= link_to event_user_path(id: event.id, eventuser_id: eventjoin, event_id: event), data: {  action: "click->changebutton#deassist", changebutton_target: "button", eventuser_id: eventjoin.id, event_id: event.id, "turbo-method": :delete }, id: [eventjoin.id, event.id], class: "btn bookmark-type-attended" do %>
           <i class="fa-solid fa-minus"></i>
           <% end %>
       <% else %>
-          <%= button_to event_users_path(event_id: event.id), data: { "turbo-method": :post }, class: "bookmark-type" do %>
+          <%= link_to event_users_path(event_id: event.id), data: {  action: "click->changebutton#assist", changebutton_target: "buttonjoin", "turbo-method": :post }, id: event.id, class: "btn bookmark-type" do %>
           <i class="fa-solid fa-plus"></i>
           <% end %>
       <% end %>

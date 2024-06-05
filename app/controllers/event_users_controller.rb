@@ -1,19 +1,26 @@
 class EventUsersController < ApplicationController
   def create
-    if current_user
-      # raise
       @event = params[:event_id]
       @eventuser = EventUser.new(user_id: current_user.id, event_id: params[:event_id])
-      @eventuser.save!
-      redirect_to event_path(@event), notice: 'You are going to this event!'
-    else
-      redirect_to new_user_session_path
-    end
+      respond_to do |format|
+        if @eventuser.save
+          format.json { render json: { success: true, event_user: @eventuser } }
+        else
+          format.json { render json: { success: false, message: @eventuser.errors.full_messages.join(', ') }, status: :unprocessable_entity }
+        end
+      end
   end
 
   def destroy
     @eventuser = EventUser.find(params[:eventuser_id])
-    @eventuser.destroy
-    redirect_to event_path(params[:event_id]), notice: 'Cancelled successfully!'
+    if @eventuser.destroy
+      respond_to do |format|
+        format.json { render json: { success: true } }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { success: false, message: @eventuser.errors.full_messages.join(', ') }, status: :unprocessable_entity }
+      end
+    end
   end
 end
