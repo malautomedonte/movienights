@@ -5,6 +5,11 @@ class MoviesController < ApplicationController
     else
       @movies = Movie.all
     end
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: "movies/list", locals: {movies: @movies }, formats: [:html] }
+    end
   end
 
   def show
