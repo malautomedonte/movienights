@@ -1,14 +1,22 @@
-.add-friend-profile-others {
-  padding: 70px;
+.title-page-profile-others {
+  text-shadow: 1px 1px 2px rgb(176, 176, 176);
+  letter-spacing: 3px;
 }
 
-.picture-card-profile-img {
+.add-friend-profile-otbers {
+  padding: 15px;
+}
+
+.user-details-page-profile-others {
+  display: flex;
+  margin-right: 10px;
+  padding: 15px;
+
+}
+
+.picture-card-img-profile-others {
   border: 4px solid black;
   height: 250px;
   width: 250px;
   border-radius: 50%;
-  margin-bottom: 25px;
-  margin-left: 25px;
-  margin-top: 25px;
-  // padding: 15px;
 }

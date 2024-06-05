@@ -24,10 +24,14 @@
       <hr>
       <section class="similar-users p-b-42">
         <header class="flex center-vertically m-y-32">
-          <h2>They like the same type of movies as you</h2>
+          <h2>They like the same type of movies as you! 💃</h2>
           <a href="#" class="see-all">See All <i class="fas fa-solid fa-arrow-right"></i></a>
         </header>
-        <%= render 'shared/friends_cards', users: current_user.similar_users %>
+        <% if current_user.similar_users.nil? %>
+          <%= render 'shared/friends_cards', users: current_user.similar_users %>
+          <% else %>
+          <em>No users with similar preferences found at the moment! 🙀</em>
+        <% end %>
       </section>
     </div>
 

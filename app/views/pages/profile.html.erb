@@ -1,16 +1,20 @@
 <div class="container-user-page-details">
-  <div class="user-details-page">
-    <div class="user-card-details">
-      <h2><%= User.find_by(id: params[:id]).username %>'s Profile</h2>
-      <div class="picture-card-profile">
+  <div class="user-details-page-profile-others">
+    <div class="user-card-details-profile-others d-flex align-items-center justify-content-center">
+      <div class="picture-card ms-5">
         <% if @user.photo.attached? %>
           <%= cl_image_tag @user.photo.key, class: "picture-card-profile-img" %>
           <% else %>
-            <%= image_tag "default_avatar.jpeg", alt: "User Image", class: "picture-card-profile-img"%>
+            <%= image_tag "default_avatar.jpeg", alt: "User Image", class: "picture-card-img-profile-others rounded-circle"%>
         <% end %>
       </div>
-      <div class="add-friend-profile-others">
-        <%= link_to "Add as a Friend", friendships_path(friend_id: @user.id), data: { turbo_method: :post }, class: "btn-regular btn-secondary btn-size-s"  %>
+      <div class="user-infos ms-3">
+        <div class="title-page-profile-others">
+          <h2><%= User.find_by(id: params[:id]).username %>'s Profile</h2>
+        </div>
+        <div class="add-friend profile-others mt-3">
+          <%= link_to "Add as a Friend", friendships_path(friend_id: @user.id), data: { turbo_method: :post }, class: "btn-regular btn-secondary btn-size-s"  %>
+        </div>
       </div>
     </div>
   </div>

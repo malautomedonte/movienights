@@ -6,7 +6,7 @@
 
 <div class="container-user-page-details">
   <div class="user-details-page">
-      <h2 class="profile-edit-deets">Your Profile Picture <%= link_to "Edit", edit_user_registration_path, class: 'btn btn-outline-secondary btn-sm' %></h2>
+      <h2 class="profile-edit-deets">Your Profile Picture <%= link_to "Edit", edit_user_registration_path, class: 'btn btn-outline-secondary btn-sm button-user-profile' %></h2>
     <div class="user-card-details">
       <div>
         <% if current_user.photo.attached? %>
@@ -52,7 +52,7 @@
 <div class="container-user-events-page">
   <div class="user-my-events-page">
     <div class="user-organized-events">
-      <h2>You Have Created <%= @my_events.count %> Events So Far</h2>
+      <h2>You Have Created <%= @my_events.count %> Event(s) So Far</h2>
     </div>
     <% @my_events = current_user.events.limit(3)%>
     <%= render 'shared/my_events_user_profile' %>
@@ -60,7 +60,7 @@
 
   <div class="user-join-events-page">
     <div class="user-attending-events">
-      <h2>You Are Attending <%= @attended_events.count %> Events So Far</h2>
+      <h2>You Are Attending <%= @attended_events.count %> Event(s) So Far</h2>
     </div>
         <% @attended_events.first(3).each do |attended| %>
          <%= link_to event_path(attended.event), class: "link-style" do %>
@@ -103,7 +103,7 @@
 
 <div class="user-friends-page">
   <% if current_user.friends.empty? %>
-    <h2><em>Sorry, you have no friends... Yet!</em></h2>
+    <p class="text-muted"><em>Sorry, you have no friends... Yet!  😎 </em></h2>
     <% else %>
       <%= render 'shared/friends_cards_user_profile', friends: current_user.friends %>
   <% end %>
