@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
     if params[:query].present?
       @movies = Movie.global_search(params[:query])
     else
-      @movies = Movie.all
+      @movies = Movie.order(release_year: :asc)
     end
 
     respond_to do |format|
