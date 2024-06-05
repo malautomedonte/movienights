@@ -18,6 +18,7 @@
 
 //bottom only
 .m-b-8 {margin-bottom: 8px;}
+.m-b-16 {margin-bottom: 16px;}
 
 //left only
 .m-l-24 {margin-left:24px;}
@@ -89,6 +90,14 @@
 
 .space-between {
   justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.text-align-right {
+  text-align: right;
 }
 
 .center-vertically {

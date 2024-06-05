@@ -23,7 +23,7 @@
           <div class="d-none" data-popup-target="createForm">
             <div class='overlay-blur'></div>
               <%#= render "/shared/popup" %>
-              <div class="create-event">
+              <div class="create-event form">
                 <div id="closebutton">
                 <h5 class="event-page">Create a new Event</h5>
                 <i class="fa-regular fa-circle-xmark mouseover" data-action="click->popup#closeform"></i>
@@ -38,8 +38,8 @@
                     <%= form.input :theatre, collection: theatres.keys %>
                   </div>
 
-                  <div class="form-actions">
-                    <%= form.button :submit, class: "create-button" %>
+                  <div class="form-actions m-t-32">
+                    <%= form.button :submit, class: "btn create-button btn btn-regular btn-primary btn-size-s w-100" %>
                   </div>
                 <% end %>
               </div>
