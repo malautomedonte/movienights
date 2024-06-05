@@ -1,7 +1,20 @@
-
+.card.movie-card {
+  &:hover {
+    background-color: $black;
+    color: $white;
+  }
+  &:hover {
+    background-color: $black;
+    color: $white;
+    h4 {
+      color: $white;
+    }
+  }
+}
 .movie-card {
   position: relative;
   flex: 0 0 232px;
+  color: $black;
   .poster {
     height: 324px;
     overflow: hidden;
@@ -20,12 +33,17 @@
       opacity: 1;
     }
   }
+
   .verso {
     .text {
       position: absolute;
+      height: 324px;
+      overflow: none;
       top: 0;
       left: 0;
-      font-size: .9em;
+    }
+    .caracteristics {
+      font-size: .8em;
     }
   }
 }
@@ -52,9 +70,10 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100%;
+  height: 324px;
   width: 100%;
   opacity: 0;
   transition: .5s ease;
-  background-color: rgba(0, 0, 0, .6);
+  background-color: rgba(0, 0, 0, .8);
+  border-radius: 10px 10px 0 0;
 }
