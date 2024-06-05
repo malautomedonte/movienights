@@ -155,9 +155,11 @@ movies = [
   "zone of interest",
   "leviathan",
   "12 angry men",
-  "do the right thing",
-  "8½"
+  "do the right thing"
 ]
+
+movie = Movie.new(title: "The third dev", release_year: "2024", poster_url: "https://res.cloudinary.com/dvxwyw52y/image/upload/v1717598157/MV5BYjE2OTdhMWUtOGJlMy00ZDViLWIzZjgtYjZkZGZmMDZjYmEyXkEyXkFqcGdeQXVyNzkwMjQ5NzM_._V1_SX300_vn2jxv.jpg", genre: "Film-Noir, Mystery, Thriller", description: "An out of work pulp fiction novelist, Holly Martins, arrives in a post war Vienna divided into sectors by the victorious allies, and where a shortage of supplies has led to a flourishing black market. He arrives at the invitation of an ex-school friend, Harry Lime, who has offered him a job, only to discover that Lime has recently died in a peculiar traffic accident. From talking to Lime's friends and associates Martins soon notices that some of the stories are inconsistent, and determines to discover what really happened to Harry Lime.")
+movie.save!
 
 movies.each do |movie|
   omdb_endpoint = "http://www.omdbapi.com/?t=#{movie}&apikey=a881ace5&plot=full"
