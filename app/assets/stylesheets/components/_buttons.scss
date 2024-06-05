@@ -11,55 +11,29 @@
   }
 }
 
-.button {
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 10px 0;
-  background-color: $primary-dark; /* Primary button color */
-  color: #fff;
-  font-size: 16px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+// .button {
+//   padding: 10px 20px;
+//   margin: 10px 0;
+//   background-color: $primary-dark; /* Primary button color */
+//   color: #fff;
+//   font-size: 16px;
+//   text-align: center;
+//   text-decoration: none;
+//   cursor: pointer;
+//   transition: background-color 0.3s ease, transform 0.3s ease;
 
-  &:hover {
-    background-color: #2980b9; /* Darker shade on hover */
-    transform: translateY(-2px); /* Slight lift on hover */
-  }
+//   &:hover {
+//     background-color: #2980b9; /* Darker shade on hover */
+//     transform: translateY(-2px); /* Slight lift on hover */
+//   }
 
-  &:active {
-    background-color: #1c5985; /* Even darker shade on click */
-    transform: translateY(0); /* Reset lift on click */
-  }
-}
+//   &:active {
+//     background-color: #1c5985; /* Even darker shade on click */
+//     transform: translateY(0); /* Reset lift on click */
+//   }
+// }
 
 .button-sign-up {
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 5px;
-  background-color: grey; /* Primary button color */
-  color: #fff;
-  font-size: 16px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-
-  &:hover {
-    background-color: rgb(216, 145, 11); /* Darker shade on hover */
-    transform: translateY(-2px); /* Slight lift on hover */
-  }
-
-  &:active {
-    background-color: #1c5985; /* Even darker shade on click */
-    transform: translateY(0); /* Reset lift on click */
-  }
-}
-
-.button-sign-in {
   display: inline-block;
   padding: 10px 20px;
   margin: 10px 0;
@@ -128,6 +102,18 @@
   font-weight: 600;
 }
 
+
+//BUTTON MODAL -----------------------------------------------------------------------------------------------
+
+.mouseover {
+  cursor: pointer;
+  font-size: 28px;
+  color: $primary-dark;
+  &:hover {
+   color: $primary-darker;
+  }
+}
+
 // BUTTON BOOKMARK TYPE -----------------------------------------------------------------------------------------------
 
 .bookmark-type {
@@ -150,7 +136,6 @@
     transition: 0.3s ease;
   }
 }
-
 
 .bookmark-type-attended {
   background-color: #609966;

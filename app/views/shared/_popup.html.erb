@@ -7,9 +7,9 @@
   "b-ware Ladenkino" => 'Gärtnerstraße 19, 10245 Berlin', "Kino International" => 'Karl-Marx-Allee 33, 10178 Berlin'
   } %>
 
-<div class="create-event">
+<div class="create-event form">
   <div id="closebutton">
-  <h5 class="event-page">Create a new Event</h5>
+  <h5 class="event-page">Create a new event</h5>
   <i class="fa-regular fa-circle-xmark mouseover" data-action="click->popup#closeform"></i>
   </div>
 
@@ -22,8 +22,8 @@
       <%= form.input :theatre, collection: theatres.keys %>
     </div>
 
-    <div class="form-actions">
-      <%= form.button :submit, class: "create-button" %>
+    <div class="form-actions m-t-32">
+      <%= form.button :submit, class: "create-button btn btn-regular btn-primary btn-size-s w-100" %>
     </div>
   <% end %>
 </div>

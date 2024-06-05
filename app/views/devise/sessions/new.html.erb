@@ -1,9 +1,9 @@
 <body>
   <div class="wrapper-sign-in">
     <div class="background-animation">
-      <div class="container-sign-in-form">
-        <h2 class="sign-in-title">Log in to Movie Nights!</h2>
-        <p class="sign-in-paragraph">You must be signed in in order to proceed.</p>
+      <div class="container-sign-in-form form">
+        <h2 class="sign-in-title white">Log in to Movie Nights!</h2>
+        <p class="sign-in-paragraph white">You must be signed in in order to proceed.</p>
 
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="form-inputs">
@@ -15,9 +15,12 @@
             <%= f.input :password,
                         required: false,
                         input_html: { autocomplete: "current-password" } %>
+              <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                <%= link_to "Forgot your password?", new_password_path(resource_name), class: "white" %><br />
+              <% end %>
             <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
           <div class="form-actions">
-            <%= f.button :submit, "Log in", class: "button-sign-in" %>
+            <%= f.button :submit, "Log in", class: "button-sign-in btn-primary btn-regular btn-size-s" %>
           </div>
         <% end %>
           </div>
