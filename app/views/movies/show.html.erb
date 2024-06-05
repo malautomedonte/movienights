@@ -52,29 +52,42 @@
       </h5>
 
       <h5>Directed by:
-      <% @movie.directors.each do |director| %>
-        <% unless @movie.directors.last == director %>
-          <span> <%= director.first_name %> <%= director.last_name %> • </span>
+        <% if @movie.title == "The third dev" %>
+          <span> Carol Reed </span>
         <% else %>
-          <span><%= director.first_name %> <%= director.last_name %> </span>
+          <% @movie.directors.each do |director| %>
+            <% unless @movie.directors.last == director %>
+              <span> <%= director.first_name %> <%= director.last_name %> • </span>
+            <% else %>
+              <span><%= director.first_name %> <%= director.last_name %> </span>
+            <% end %>
+          <% end %>
         <% end %>
-      <% end %>
       </h5>
 
 
       <h5>Cast:
-      <% @movie.actors.each do |actor| %>
-        <% unless @movie.actors.last == actor %>
-          <span><%= actor.first_name %> <%= actor.last_name %> • </span>
+        <% if @movie.title == "The third dev" %>
+          <span> Roberto Piazzolla • Joseph Cotten • Alida Valli</span>
         <% else %>
-          <span><%= actor.first_name %> <%= actor.last_name %> </span>
+          <% @movie.actors.each do |actor| %>
+            <% unless @movie.actors.last == actor %>
+              <span><%= actor.first_name %> <%= actor.last_name %> • </span>
+            <% else %>
+              <span><%= actor.first_name %> <%= actor.last_name %> </span>
+            <% end %>
+          <% end %>
         <% end %>
-      <% end %>
       </h5>
 
       <hr>
       <h3>Storyline</h3>
       <p> <%= @movie.description %></p>
+        <% if @movie.title == "The third dev" %>
+          <div id="third-dev">
+            <button class="btn-regular btn-secondary btn-size-s mt-1"> <%= link_to "Watch Trailer", "https://res.cloudinary.com/dvxwyw52y/video/upload/v1717595922/RobertoLime_cqrxxv.mp4", :style=>'text-decoration: none;' %> </button>
+          </div>
+        <% end %>
       <hr>
 
         <div class="review">
@@ -94,6 +107,8 @@
             <%= render partial: 'reviews/review', locals: { review: review } %>
               <% end %>
         </div>
+
+
       </div>
 
   </div>
