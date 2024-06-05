@@ -44,59 +44,9 @@
           </button>
           <% if current_user.preferred_content.present? %>
             <% current_user.preferred_content.each do |movie| %>
-              <div class="movie-card card">
-                <div class="recto">
-                  <div class="poster">
-                    <%= image_tag movie.poster_url, alt: "movie title poster"%>
-                  </div>
-                  <div class="text">
-                    <div class="truncate-2-lines">
-                      <h4><%= movie.title %></h4>
-                    </div>
-                    <% movie.directors.each do |director| %>
-                      <span><%= director.first_name %> <%= director.last_name %></span>
-                    <% end %>
-                    <% if !movie.reviews.empty? %>
-                      <ul class="ul-style-none flex space-between m-0">
-                        <li><% (movie.reviews.pluck(:rating).sum / movie.reviews.count).to_i.times do %>
-                          <i class="fa-solid fa-star"></i>
-                          <% end %>
-                        </li>
-                        <li><%= movie.reviews.count %> reviews</li>
-                      </ul>
-                      <% end %>
-                  </div>
-                </div>
 
-                <div class="verso overlay">
-                  <div class="flex flex-col space-between h-100">
-                    <div class="p-t-16">
-                      <div class="caracteristics flex space-between p-y-4 p-x-16">
-                        <span class="white"><strong>Cast:</strong></span>
-                        <ul class="m-0">
-                          <% movie.actors.each do |actor| %>
-                            <li class="white"><%= actor.first_name %> <%= actor.last_name %></li>
-                          <% end %>
-                        </ul>
-                      </div>
-                      <div class="caracteristics flex space-between p-y-4 p-x-16">
-                        <span class="white"><strong>Genre:</strong></span>
-                        <ul class="m-0">
-                          <li class="white"><%= movie.genre %></li>
-                        </ul>
-                      </div>
-                      <div class="caracteristics flex space-between p-y-4 p-x-16">
-                        <span class="white"><strong>Year release:</strong></span>
-                        <p class="white"><%= movie.release_year %></p>
-                      </div>
-                    </div>
-                    <div class="p-b-16 p-x-16">
-                      <%= link_to "Watch trailer TO DO !!", movie_path(movie), class: "btn btn-regular btn-secondary btn-size-xs w-100"%>
-                      <%= link_to "About the movie", movie_path(movie), class: "btn btn-regular btn-primary btn-size-xs m-t-16 w-100"%>
-                    </div>
-                  </div>
-                </div>
-              </div>
+             <%= render "shared/movie_card", movie: movie %>
+
             <% end %>
           <% else %>
             <h2 class="white">
@@ -110,13 +60,3 @@
       </section>
     </div>
 </div>
-
-<script>
-function on() {
-  document.getElementById("overlay").style.display = "block";
-}
-
-function off() {
-  document.getElementById("overlay").style.display = "none";
-}
-</script>

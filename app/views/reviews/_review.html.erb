@@ -1,7 +1,11 @@
 <div class="review-card">
 <div class="card-header">
   <div class="user-info">
-    <%= cl_image_tag review.user.photo.key, height: 50, width: 50, crop: :thumb %>
+   <% if review.user.photo.attached? %>
+    <%= cl_image_tag review.user.photo.key, class: "avatar", height: 50, width: 50, crop: :thumb %>
+  <% else %>
+    <%= image_tag "default_avatar.jpeg", alt: "hello", class: "avatar"%>
+  <% end %>
     <h5><%= review.user.username %></h5>
   </div>
   <div class="card-rating">
