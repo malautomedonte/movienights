@@ -31,18 +31,6 @@ html, body {
   box-sizing: border-box;
 }
 
-.container-sign-up-form {
-  width: 100%;
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 70px;
-  border: 10px solid black;
-  border-radius: 10px;
-  background-color: #5d747f;
-  color: #FFEDC7;
-  box-shadow: 10px 10px 10px rgb(16, 50, 105);
-}
-
 .sign-up-title {
   text-align: center;
   padding: 20px 10px 20px 10px;
@@ -50,38 +38,14 @@ html, body {
   border-radius: 10px;
 }
 
-.sign-up-title-p {
-  text-align: center;
-  padding: 20px 0 20px 0;
-}
-
-.sign-up-card-details {
-  border: 5px solid rgb(216, 145, 11);
-  box-shadow: 10px 10px 10px rgb(16, 50, 105);
-  padding: 20px 15px 20px 15px;
-  border-radius: 10px;
-}
-
-.user-preferences {
-  border: 5px solid rgb(216, 145, 11);
-  box-shadow: 10px 10px 10px rgb(16, 50, 105);
-  padding: 30px 15px 0 15px;
-  margin-top: 30px;
-  border-radius: 10px;
-}
-
-.buttons-registration {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-}
-
 .p-registration {
   justify-content: center;
   padding-top: 25px;
 }
 
+.text-small {
+  font-size: .86em;
+}
 
 @keyframes scroll {
   0% {

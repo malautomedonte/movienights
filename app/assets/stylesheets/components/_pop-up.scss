@@ -1,10 +1,13 @@
-.form {
+.form-modal {
   position: absolute;
   top: 10;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
+}
+
+.form {
   margin: 0;
   padding:48px;
   border-radius: 10px;

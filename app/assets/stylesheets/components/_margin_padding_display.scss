@@ -97,10 +97,6 @@
   justify-content: center;
 }
 
-.text-align-right {
-  text-align: right;
-}
-
 .center-vertically {
   align-items: center;
 }
@@ -119,4 +115,12 @@
 
 .display-inline {
   display: inline-block;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.text-align-center {
+  text-align: center;
 }
