@@ -13,17 +13,25 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-          <% if action_name == "index" && controller_name == "events" %>
+          <% if controller_name == "events" %>
             <%= link_to "Events", events_path, class: "btn nav-link-in" %>
-            <% else %>
+          <% else %>
             <%= link_to "Events", events_path, class: "nav-link" %>
           <% end %>
           </li>
           <li class="nav-item">
+          <% if controller_name == "friendships" %>
+            <%= link_to "Friends", friendships_path, class: "btn nav-link-in" %>
+          <% else %>
             <%= link_to "Friends", friendships_path, class: "nav-link" %>
+          <% end %>
           </li>
            <li class="nav-item">
-            <%= link_to "Movies", movies_path, class: "nav-link" %>
+          <% if controller_name == "movies" %>
+            <%= link_to "Movies", movies_path, class: "btn nav-link-in" %>
+          <% else %>
+             <%= link_to "Movies", movies_path, class: "nav-link" %>
+          <% end %>
           </li>
           <li class="nav-item dropdown">
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
