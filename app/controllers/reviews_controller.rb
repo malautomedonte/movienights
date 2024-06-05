@@ -11,10 +11,10 @@ class ReviewsController < ApplicationController
     @movie = Movie.find(params[:movie_id])
     @review.movie = @movie
     if @review.save!
-      redirect_to movies_path
+      redirect_to movies_path(@movie)
     else
       flash[:alert] = "Something went wrong."
-      redirect_to movies_path
+      redirect_to movies_path(@movie)
     end
   end
 

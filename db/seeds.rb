@@ -67,7 +67,6 @@ movies = [
   "home alone",
   "a woman under the influence",
   "once upon a time in america",
-  "vertigo",
   "psycho",
   "the sky above berlin",
   "it's a wonderful life",
@@ -155,8 +154,7 @@ movies = [
   "zone of interest",
   "leviathan",
   "12 angry men",
-  "do the right thing",
-  "8½"
+  "do the right thing"
 ]
 
 movies.each do |movie|
