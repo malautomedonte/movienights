@@ -17,19 +17,20 @@
         <p><%= event.location %></p>
       </div>
 
-      <div class="participants-info">
-        <% if event.user.photo.attached? %>
-        <%= image_tag event.user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %>
-          <p>Host</p>
-          <%= User.find(event.user_id).username %>
-        <% else %>
-          <%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %>
-          <p>Host</p>
-          <%= User.find(event.user_id).username %>
-        <% end %>
-        <p class="text-muted"><%= event.event_users.count %> participants </p>
+      <div class="self-end">
+        <div class="participants-info">
+          <% if event.user.photo.attached? %>
+          <%= image_tag event.user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %>
+            <p>Host</p>
+            <%= User.find(event.user_id).username %>
+          <% else %>
+            <%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %>
+            <p>Host</p>
+            <%= User.find(event.user_id).username %>
+          <% end %>
+          <p class="text-muted"><%= event.event_users.count %> participants </p>
+        </div>
       </div>
-
 
     </div>
     <% end %>
