@@ -24,12 +24,14 @@
               </div>
               <div class="date-box">
                 <h3><%= event.date.strftime("%d") %></h3>
-                <p><%= event.date.strftime("%a") %></p>
+                <p><%= event.date.strftime("%b") %></p>
               </div>
               <div class="movie-theater">
                 <h5><%= event.theatre %></h5>
                 <p><%= event.location %></p>
               </div>
+
+            <div class="self-end">
               <div class="participants-info">
                 <% if event.user.photo.attached? %>
                 <%= image_tag event.user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %> Host : <%=     User.find(event.user_id).username %>
@@ -40,6 +42,8 @@
                 <% end %>
                 <p>Participants <%= event.event_users.count %></p>
               </div>
+            </div>
+
             </div>
           <% end %>
         <% end %>
@@ -59,22 +63,26 @@
               </div>
               <div class="date-box">
                 <h3><%= attended.event.date.strftime("%d") %></h3>
-                <p><%= attended.event.date.strftime("%a") %></p>
+                <p><%= attended.event.date.strftime("%b") %></p>
               </div>
               <div class="movie-theater">
                 <h5><%= attended.event.theatre %></h5>
                 <p><%= attended.event.location %></p>
               </div>
-              <div class="participants-info">
-                <% if attended.event.user.photo.attached? %>
-                <%= image_tag attended.event.user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %> Host : <%=     User.find(attended.event.user_id).username %>
-                <% else %>
-                <%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %>
-                <p>Host</p>
-                <%= User.find(attended.event.user_id).username %></p>
-                <% end %>
-                <p>Participants <%= attended.event.event_users.count %></p>
-              </div>
+
+                <div class="self-end">
+                  <div class="participants-info">
+                    <% if attended.event.user.photo.attached? %>
+                    <%= image_tag attended.event.user.photo, crop: :fill, class: "avatar", alt: "dropdown menu" %> Host : <%=     User.find(attended.event.user_id).username %>
+                    <% else %>
+                    <%= image_tag "default_avatar.jpeg", class: "avatar", alt: "default avatar" %>
+                    <p>Host</p>
+                    <%= User.find(attended.event.user_id).username %></p>
+                    <% end %>
+                    <p>Participants <%= attended.event.event_users.count %></p>
+                  </div>
+                </div>
+
             </div>
           <% end %>
         <% end %>
