@@ -3,17 +3,29 @@
     <div class="user-card-details-profile-others d-flex align-items-center justify-content-center">
       <div class="picture-card ms-5">
         <% if @user.photo.attached? %>
-          <%= cl_image_tag @user.photo.key, class: "picture-card-profile-img" %>
-          <% else %>
-            <%= image_tag "default_avatar.jpeg", alt: "User Image", class: "picture-card-img-profile-others rounded-circle"%>
+          <%= cl_image_tag @user.photo.key, class: "picture-card-img-profile-others rounded-circle" %>
+        <% else %>
+          <%= image_tag "default_avatar.jpeg", alt: "User Image", class: "picture-card-img-profile-others rounded-circle" %>
         <% end %>
       </div>
       <div class="user-infos ms-3">
         <div class="title-page-profile-others">
-          <h2><%= User.find_by(id: params[:id]).username %>'s Profile</h2>
+          <h2><%= @user.username %>'s Profile</h2>
         </div>
         <div class="add-friend profile-others mt-3">
-          <%= link_to "Add as a Friend", friendships_path(friend_id: @user.id), data: { turbo_method: :post }, class: "btn-regular btn-secondary btn-size-s"  %>
+          <% friendship = current_user.friendships.find_by(friend_id: @user.id) || current_user.inverse_friendships.find_by(user_id: @user.id) %>
+          <% if friendship.nil? %>
+            <%= link_to "Add as a Friend", friendships_path(friend_id: @user.id), data: { turbo_method: :post }, class: "btn-regular btn-secondary btn-size-s" %>
+          <% elsif friendship.pending? %>
+            <% if friendship.friend_id == current_user.id %>
+              <%= link_to "Accept", accept_friendship_path(friendship), data: { turbo_method: :patch }, class: "btn-regular btn-primary btn-size-s" %>
+              <%= link_to "Reject", reject_friendship_path(friendship), data: { turbo_method: :patch }, class: "btn-regular btn-danger btn-size-s" %>
+            <% else %>
+              <button class="btn-regular btn-secondary btn-size-s" disabled>Pending</button>
+            <% end %>
+          <% else %>
+            <button class="btn-regular btn-success btn-size-s" disabled>Friends</button>
+          <% end %>
         </div>
       </div>
     </div>
@@ -21,48 +33,45 @@
   <div class="user-preferences-page">
     <div class="user-preferences-card">
       <div class="user-preferences-genres">
-        <h2><%= User.find_by(id: params[:id]).username %>'s Favorite genres</h2>
-          <p><%= @user.genres.pluck(:title).join(', ') %></p>
+        <h2><%= @user.username %>'s Favorite genres</h2>
+        <p><%= @user.genres.pluck(:title).join(', ') %></p>
       </div>
       <div class="user-preferences-directors">
-        <h2><%= User.find_by(id: params[:id]).username %>'s Favorite Directors</h2>
-          <p><%= @user.directors.pluck(:last_name).join(', ') %></p>
+        <h2><%= @user.username %>'s Favorite Directors</h2>
+        <p><%= @user.directors.pluck(:last_name).join(', ') %></p>
       </div>
       <div class="user-preferences-actors">
-        <h2><%= User.find_by(id: params[:id]).username %>'s Favorite Actors</h2>
-          <p><%= @user.actors.pluck(:last_name).join(', ') %></p>
+        <h2><%= @user.username %>'s Favorite Actors</h2>
+        <p><%= @user.actors.pluck(:last_name).join(', ') %></p>
       </div>
     </div>
   </div>
 </div>
 
 <div class="user-watchlist page">
-    <div class="background_movies p-l-64 p-t-32">
-      <section class="movie-recommendations m-y-24 p-b-42">
-        <header class="flex center-vertically m-y-32 m-r-64">
-          <h2 class="white">Movie recommendations</h2>
-          <a href="#" class="see-all white">See All <i class="fas fa-solid fa-arrow-right"></i></a>
-        </header>
-
-        <div class="movies-horizontal-list"  data-controller="scroll">
-          <button class="scroll-button left" data-action="click->scroll#scrollLeft">
-            <i class="fas fa-circle-chevron-left"></i>
-          </button>
-          <% if @user.preferred_content.present? %>
-            <% @user.preferred_content.each do |movie| %>
-
-             <%= render "shared/movie_card", movie: movie %>
-
-            <% end %>
-          <% else %>
-            <h2 class="white">
-              <em>Sorry, there's no movie recommendation yet.</em>
-            </h2>
+  <div class="background_movies p-l-64 p-t-32">
+    <section class="movie-recommendations m-y-24 p-b-42">
+      <header class="flex center-vertically m-y-32 m-r-64">
+        <h2 class="white">Movie recommendations</h2>
+        <a href="#" class="see-all white">See All <i class="fas fa-solid fa-arrow-right"></i></a>
+      </header>
+      <div class="movies-horizontal-list" data-controller="scroll">
+        <button class="scroll-button left" data-action="click->scroll#scrollLeft">
+          <i class="fas fa-circle-chevron-left"></i>
+        </button>
+        <% if @user.preferred_content.present? %>
+          <% @user.preferred_content.each do |movie| %>
+            <%= render "shared/movie_card", movie: movie %>
           <% end %>
-          <button class="scroll-button right" data-action="click->scroll#scrollRight">
-            <i class="fas fa-circle-chevron-right"></i>
-          </button>
-        </div>
-      </section>
-    </div>
+        <% else %>
+          <h2 class="white">
+            <em>Sorry, there's no movie recommendation yet.</em>
+          </h2>
+        <% end %>
+        <button class="scroll-button right" data-action="click->scroll#scrollRight">
+          <i class="fas fa-circle-chevron-right"></i>
+        </button>
+      </div>
+    </section>
+  </div>
 </div>
