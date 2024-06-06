@@ -20,7 +20,7 @@
             <%= link_to "Edit", edit_event_path(@event), class: "btn btn-regular btn-primary btn-size-s" %>
           <% elsif eventjoin %>
             <span class="font-white"><p>You are attending!</p></span>
-            <%= link_to "Cancel", event_user_path(eventuser_id: eventjoin, event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "cancel-button" %>
+            <%= link_to "Cancel", event_user_path(eventuser_id: eventjoin, event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-regular btn-cancel btn-size-s" %>
           <% else %>
             <%= link_to "Join this event!", event_users_path(event_id: @event.id), data: { "turbo-method": :post }, class: "btn button-red" %>
         <% end %>
@@ -64,11 +64,11 @@
             <% eventjoin = current_user.event_users.find_by(event_id: @event.id) if current_user %>
               <% if current_user && @event.user_id == current_user.id %>
                 <p>This is your event!</p>
-                <%= link_to "Cancel", event_path(event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-                <%= link_to "Edit", edit_event_path(@event), class: "btn btn-warning" %>
+                <%= link_to "Cancel", event_path(event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-regular btn-cancel btn-size-s" %>
+                <%= link_to "Edit", edit_event_path(@event), class: "btn btn-regular btn-primary btn-size-s" %>
               <% elsif eventjoin %>
                 <p>You are attending!</p>
-                <%= link_to "Cancel", event_user_path(eventuser_id: eventjoin, event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "cancel-button" %>
+                <%= link_to "Cancel", event_user_path(eventuser_id: eventjoin, event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-regular btn-cancel btn-size-s" %>
               <% else %>
                 <%= link_to "Join this event!",   event_users_path(event_id: @event.id), data: { "turbo-method": :post }, class: "btn button-red" %>
               <% end %>
@@ -131,7 +131,7 @@
             placeholder: "Leave a message",
             wrapper_html: {class: "flex-grow-1"}
           %>
-          <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+          <%= f.submit "Send", class: "btn btn-regular btn-primary btn-size-xs mb-3" %>
           <% end %>
         </div>
 
