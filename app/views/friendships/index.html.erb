@@ -1,8 +1,8 @@
 <header class="header-friends-list flex space-between center-vertically m-y-32 m-r-64 p-x-64">
-  <h1 id="title-friends-list">Here's Your Friends, <%= current_user.username %>! You currently have <%= current_user.friends.count %> Friend(s) 👯‍♀️</h1>
+  <h1 id="title-friends-list">Here are Your Friends, <%= current_user.username %>! You currently have <%= current_user.friends.count %> <%= "Friends".pluralize(current_user.friends.count) %> 👯‍♀️</h1>
 </header>
 <header class="header-friends-list flex space-between center-vertically m-y-32 m-r-64 p-x-64">
-  <h2 id="title-friends-list">...And <%= current_user.friendships.pending.count %> pending request(s)! ⏳</h2>
+  <h3 id="title-friends-list">...and <%= current_user.friendships.pending.count %> pending <%= "request".pluralize(current_user.friendships.pending.count) %>! ⏳</h3>
 </header>
 
 <div class="container-friends-list">

@@ -120,7 +120,6 @@
 
       <h2>Messages</h2>
       <h4>Your message</h4>
-      <p>Max 300 characters</p>
 
       <div data-controller="event-subscription" data-event-subscription-event-id-value="<%= @event.id %>">
         <div class="chat">
@@ -129,7 +128,7 @@
           %>
           <%= f.input :content,
             label: false,
-            placeholder: "Leave a message for your moviebuddies",
+            placeholder: "Leave a message",
             wrapper_html: {class: "flex-grow-1"}
           %>
           <%= f.submit "Send", class: "btn btn-primary mb-3" %>
