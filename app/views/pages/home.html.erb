@@ -22,6 +22,7 @@
         <%= render 'shared/event_cards' %>
       </section>
       <hr>
+
       <section class="similar-users p-b-42">
         <header class="flex center-vertically m-y-32">
           <h2>They like the same type of movies as you! 💃</h2>
@@ -29,7 +30,7 @@
         </header>
         <% if current_user.preferred_content.present?  %>
           <%= render 'shared/friends_cards', users: @similar_users %>
-          <% else %>
+        <% else %>
           <em>No users with similar preferences found at the moment! 🙀</em>
         <% end %>
       </section>
