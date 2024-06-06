@@ -4,7 +4,7 @@ class EventUsersController < ApplicationController
       @eventuser = EventUser.new(user_id: current_user.id, event_id: params[:event_id])
       respond_to do |format|
         if @eventuser.save
-          format.json { render json: { success: true, event_user: @eventuser } }
+          format.json { render json: { success: true, message: 'You have successfully joined the event.', event_user: @eventuser } }
         else
           format.json { render json: { success: false, message: @eventuser.errors.full_messages.join(', ') }, status: :unprocessable_entity }
         end
@@ -15,7 +15,7 @@ class EventUsersController < ApplicationController
     @eventuser = EventUser.find(params[:eventuser_id])
     if @eventuser.destroy
       respond_to do |format|
-        format.json { render json: { success: true } }
+        format.json { render json: { success: true, message: "You have successfully cancelled your attendance for the event." } }
       end
     else
       respond_to do |format|
