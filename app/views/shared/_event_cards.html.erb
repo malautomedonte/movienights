@@ -1,5 +1,5 @@
 <div class="event-cards-container" data-controller="scroll">
-  <% if @events_today.count > 5 %>
+  <% if @events_today.count > 2 %>
     <button class="scroll-button left" data-action="click->scroll#scrollLeft">
     <i class="fas fa-circle-chevron-left"></i>
   <% end %>
@@ -50,7 +50,7 @@
   <% else %>
     <em>Sorry, there are no events yet. Create one and share the fun! 🙌</em>
   <% end %>
-  <% if @events_today.count > 5 %>
+  <% if @events_today.count > 2 %>
     <button class="scroll-button right" data-action="click->scroll#scrollRight"><i class="fas fa-circle-chevron-right"></i></button>
   <% end %>
 </div>

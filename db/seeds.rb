@@ -349,7 +349,7 @@ theatres = { "Moviemento" => 'Kottbusser Damm 22, 10967 Berlin', "Neues Off cine
   }
 
 
-5.times do
+10.times do
   cinema = theatres.to_a.sample[0]
   movie = Movie.all.sample
 
@@ -369,7 +369,7 @@ theatres = { "Moviemento" => 'Kottbusser Damm 22, 10967 Berlin', "Neues Off cine
 end
 puts "#{Event.count} Events created 🎉"
 
-5.times do
+10.times do
   cinema = theatres.to_a.sample[0]
   movie = Movie.all.sample
 
