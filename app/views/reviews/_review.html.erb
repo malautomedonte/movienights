@@ -6,7 +6,7 @@
   <% else %>
     <%= image_tag "default_avatar.jpeg", alt: "hello", class: "avatar"%>
   <% end %>
-    <h5><%= review.user.username %></h5>
+    <h5><%= review.user.username %> on <%= review.created_at.strftime("%d %B %Y") %></h5>
   </div>
   <div class="card-rating">
   <% review.rating.to_i.times do %>
