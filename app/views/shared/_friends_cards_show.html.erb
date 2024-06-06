@@ -19,9 +19,18 @@
                 <li class="m-t-8"><span class="tag"><%= title %></span></li>
               <% end %>
             </ul>
-            <% unless current_user.friends.include?(participant) %>
+
+
+            <% if current_user.id != participant.id %>
               <button class="btn-regular btn-secondary btn-size-s">+ friend</button>
+              <% elsif current_user.friends.include?(participant) %>
+                <button class="btn-regular btn-secondary btn-size-s">✔️ friend</button>
+                <% else current_user.friends.include?(participant) %>
             <% end %>
+
+            <%# unless current_user.friends.include?(participant) || current_user.id == participant.id %>
+              <%# <button class="btn-regular btn-secondary btn-size-s">+ friend</button> %>
+            <%# end %>
               <%# <%= link_to '+ friend', friend_path(friend), class: 'btn-regular btn-secondary btn-size-s' %>
           </div>
         </div>

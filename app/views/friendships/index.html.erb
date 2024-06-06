@@ -1,5 +1,8 @@
 <header class="header-friends-list flex space-between center-vertically m-y-32 m-r-64 p-x-64">
-  <h1 id="title-friends-list">Your Friends, <%= current_user.username %>! 👯‍♀️</h1>
+  <h1 id="title-friends-list">Here are Your Friends, <%= current_user.username %>! You currently have <%= current_user.friends.count %> Friend(s) 👯‍♀️</h1>
+</header>
+<header class="header-friends-list flex space-between center-vertically m-y-32 m-r-64 p-x-64">
+  <h2 id="title-friends-list">...And <%= current_user.friendships.pending.count %> pending request(s)! ⏳</h2>
 </header>
 
 <div class="container-friends-list">
@@ -24,6 +27,14 @@
               <% friend.genres.pluck(:title).each do |title| %>
                 <li class="m-t-8"><span class="tag"><%= title %></span></li>
               <% end %>
+            <% if friendship.pending? %>
+              <% if friendship.friend_id == current_user.id %>
+                <%= link_to "Accept", accept_friendship_path(friendship), data: { turbo_method: :patch }, class: "btn-regular btn-primary btn-size-s" %>
+                <%= link_to "Reject", reject_friendship_path(friendship), data: { turbo_method: :patch }, class: "btn-regular btn-danger btn-size-s" %>
+              <% else %>
+                <button class="btn-regular btn-secondary btn-size-s" disabled>Pending Request</button>
+            <% end %>
+          <% end %>
               <hr class="friends-list-hr">
             </ul>
           </div>
@@ -31,7 +42,7 @@
       <% end %>
     </div>
   <% else %>
-    <em>No users with similar preferences found.</em>
+    <em>Still no friends to display! Add some!</em>
   <% end %>
 </div>
 </div>

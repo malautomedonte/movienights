@@ -260,7 +260,7 @@ puts "Creating preferences for users..."
 # end
 
 User.all.each do |user|
-  rand(3..5).times do
+  3.times do
     user_genre = UserGenre.new(user: user, genre_id: Genre.pluck(:id).sample)
     user_genre.save!
   end
