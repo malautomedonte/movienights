@@ -74,7 +74,7 @@ export default class extends Controller {
       }
     })
     .then(data => {
-      console.log(data);
+      // console.log(data);
       if (data.success) {
     const eventId = this.buttonTarget.id.split(" ")[1];
     console.log(eventId);

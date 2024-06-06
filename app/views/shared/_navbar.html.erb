@@ -1,5 +1,5 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon<%= "d-none" unless user_signed_in? %>">
+  <div class="container-fluid <%= "d-none" unless user_signed_in? %>">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "https://static.vecteezy.com/system/resources/previews/002/405/453/original/movie-night-logo-neon-signs-style-text-vector.jpg" %>
       <h2>Movie Nights</h2>
