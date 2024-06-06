@@ -5,12 +5,13 @@
 #container-events-horizontal {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   background-color: white;
   border: 1px solid gray;
   border-radius: 0 8px 8px 0;
   box-shadow: rgba(128, 128, 128, 0.527) 0px 4px 4px ;
   margin: 2.75rem 0;
+  gap: 2rem;
 
   h5 {
     padding-top: 1.25rem;
@@ -26,6 +27,10 @@
   p {
     margin-bottom: 0.25rem;
   }
+}
+
+.self-end {
+  margin-left: auto;
 }
 
 .date-box {
@@ -59,6 +64,7 @@
 }
 
 .participants-info {
+  justify-self: flex-end;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
