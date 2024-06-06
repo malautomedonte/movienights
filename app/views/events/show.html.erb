@@ -14,7 +14,8 @@
       <div>
         <% eventjoin = current_user.event_users.find_by(event_id: @event.id) if current_user %>
           <% if current_user && @event.user_id == current_user.id %>
-            <p style="color: white">This is your event!</p>
+            <p class="white">This is your event!</p>
+
             <%= link_to "Cancel", event_path(event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
             <%= link_to "Edit", edit_event_path(@event), class: "btn btn-warning" %>
           <% elsif eventjoin %>

@@ -235,28 +235,43 @@ puts "#{MovieGenre.count} MovieGenres created 🤝🏼"
 # Seeding UserActors, UserDirectors and UserGenres
 
 puts "Creating preferences for users..."
-40.times do
-  user_genre = UserGenre.new(
-    user: User.all.sample,
-    genre_id: Genre.pluck(:id).sample
-  )
-  user_genre.save!
-end
+# 40.times do
+#   user_genre = UserGenre.new(
+#     user: User.all.sample,
+#     genre_id: Genre.pluck(:id).sample
+#   )
+#   user_genre.save!
+# end
 
-40.times do
-  user_actor = UserActor.new(
-    user: User.all.sample,
-    actor_id: Actor.pluck(:id).sample
-  )
-  user_actor.save!
-end
+# 40.times do
+#   user_actor = UserActor.new(
+#     user: User.all.sample,
+#     actor_id: Actor.pluck(:id).sample
+#   )
+#   user_actor.save!
+# end
 
-40.times do
-  user_director = UserDirector.new(
-    user: User.all.sample,
-    director_id: Director.pluck(:id).sample
-  )
-  user_director.save!
+# 40.times do
+#   user_director = UserDirector.new(
+#     user: User.all.sample,
+#     director_id: Director.pluck(:id).sample
+#   )
+#   user_director.save!
+# end
+
+User.all.each do |user|
+  rand(3..5).times do
+    user_genre = UserGenre.new(user: user, genre_id: Genre.pluck(:id).sample)
+    user_genre.save!
+  end
+  rand(3..5).times do
+    user_actor = UserActor.new(user: user, actor_id: Actor.pluck(:id).sample)
+    user_actor.save!
+  end
+  rand(3..5).times do
+    user_director = UserDirector.new(user: user, director_id: Director.pluck(:id).sample)
+    user_director.save!
+  end
 end
 
 # UserGenre.create!(user: User.all.sample, genre_id: Genre.pluck(:id).sample)
@@ -321,7 +336,6 @@ end
 # UserDirector.create(user: user_emma, director_id: Director.pluck(:id).sample)
 # UserDirector.create(user: user_emma, director_id: Director.pluck(:id).sample)
 
-
 # Seeding events & event_users
 puts "Creating events"
 
@@ -335,7 +349,7 @@ theatres = { "Moviemento" => 'Kottbusser Damm 22, 10967 Berlin', "Neues Off cine
   }
 
 
-20.times do
+5.times do
   cinema = theatres.to_a.sample[0]
   movie = Movie.all.sample
 
@@ -345,7 +359,48 @@ theatres = { "Moviemento" => 'Kottbusser Damm 22, 10967 Berlin', "Neues Off cine
     user_id: User.pluck(:id).sample,
     movie_id: movie.id,
     # date: DateTime.now,
-    date: DateTime.new(2024, 6, rand(6..14), 20, 30, 0),
+    date: DateTime.new(2024, 6, 6, 20, 30, 0),
+    theatre: cinema,
+    location: theatres[cinema]
+  )
+  event.save!
+  EventUser.create(user: event.user, event: event)
+  # EventUser.create(user: User.pluck(:id).sample, event: event)
+end
+puts "#{Event.count} Events created 🎉"
+
+5.times do
+  cinema = theatres.to_a.sample[0]
+  movie = Movie.all.sample
+
+  event = Event.new(
+    title: movie.title,
+    description: movie.description,
+    user_id: User.pluck(:id).sample,
+    movie_id: movie.id,
+    # date: DateTime.now,
+    date: DateTime.new(2024, 6, 7, 20, 30, 0),
+    theatre: cinema,
+    location: theatres[cinema]
+  )
+  event.save!
+  EventUser.create(user: event.user, event: event)
+  # EventUser.create(user: User.pluck(:id).sample, event: event)
+end
+puts "#{Event.count} Events created 🎉"
+
+
+35.times do
+  cinema = theatres.to_a.sample[0]
+  movie = Movie.all.sample
+
+  event = Event.new(
+    title: movie.title,
+    description: movie.description,
+    user_id: User.pluck(:id).sample,
+    movie_id: movie.id,
+    # date: DateTime.now,
+    date: DateTime.new(2024, 6, rand(7..14), 20, 30, 0),
     theatre: cinema,
     location: theatres[cinema]
   )
@@ -357,7 +412,7 @@ puts "#{Event.count} Events created 🎉"
 
 # Seeding reviews
 puts "Creating reviews"
-40. times do
+80. times do
   review = Review.new(
     content: Faker::Movie.quote,
     user_id: User.pluck(:id).sample,
@@ -365,7 +420,7 @@ puts "Creating reviews"
     rating: rand(0..5)
     )
     review.save!
-  end
+end
 puts "#{Review.count} Reviews created 💬"
 
 puts "Seeds are done 🌱🌱🌱"
