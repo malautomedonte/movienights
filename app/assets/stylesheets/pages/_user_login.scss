@@ -22,18 +22,6 @@ body {
   border-radius: 4px;
 }
 
-.background-animation {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  animation: scroll 100s linear infinite;
-  background: url("regular-contrast-endless-pattern-with-intertwine-three-dimensional-figures-continuous-illusory-geometric-background") repeat;
-  background-size: cover;
-  z-index: -1;
-}
-
 .container-sign-in-form {
   width: 100%;
   max-width: 600px;
