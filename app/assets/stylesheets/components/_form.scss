@@ -4,11 +4,14 @@
   }
 }
 
+
 form {
+  &:not(.new_review)  {
+    color: $white !important;
+  }
   label {
     font-size: .8em;
     font-weight: 500;
-    color: $white !important;
   }
 
   input, .form-control, .form-select {

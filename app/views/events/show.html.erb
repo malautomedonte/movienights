@@ -16,8 +16,8 @@
           <% if current_user && @event.user_id == current_user.id %>
             <p class="white">This is your event!</p>
 
-            <%= link_to "Cancel", event_path(event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-            <%= link_to "Edit", edit_event_path(@event), class: "btn btn-warning" %>
+            <%= link_to "Cancel", event_path(event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-regular btn-cancel btn-size-s" %>
+            <%= link_to "Edit", edit_event_path(@event), class: "btn btn-regular btn-primary btn-size-s" %>
           <% elsif eventjoin %>
             <span class="font-white"><p>You are attending!</p></span>
             <%= link_to "Cancel", event_user_path(eventuser_id: eventjoin, event_id: @event), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "cancel-button" %>
@@ -39,7 +39,7 @@
       <p id="genre-box"><%= @event.movie.genre %></p>
       <p><%= @event.movie.description %></p>
       <div class="address">
-        <h3>Full adress: </h3>
+        <h3>Full address: </h3>
         <p><i class="fa-solid fa-location-dot"></i></p>
         <p><%= @event.theatre %> <p><%= @event.location %></p>
       </div>

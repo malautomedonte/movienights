@@ -17,24 +17,35 @@
             <%= image_tag "default_avatar.jpeg", alt: "User Image", class: "avatar"%>
           <% end %>
           <div class="text m-b-8">
-            <h3><%= link_to friend.username, profile_path(friend) %></h3>
-            <p class="m-0"><%= friend.directors.pluck(:last_name).join(', ') %></p>
-            <p class="m-0"><%= friend.actors.pluck(:last_name).join(', ') %></p>
+            <h3><%= link_to friend.username, profile_path(friend) %>
+                <% if friendship.pending? %>
+                  <% if friendship.friend_id == current_user.id %>
+                    <%= link_to "Accept", accept_friendship_path(friendship), data: { turbo_method: :patch }, class: "btn-regular btn-primary btn-size-s" %>
+                    <%= link_to "Reject", reject_friendship_path(friendship), data: { turbo_method: :patch }, class: "btn-regular btn-danger btn-size-s" %>
+                  <% else %>
+                    <button class="btn-regular btn-secondary btn-size-s" disabled>Pending Request</button>
+                  <% end %>
+              <% end %>
+            </h3>
+            <div class="directors-index-friends">
+            <p class="favorite-authors-p">Favorite Directors:</p>
+            <% friend.directors.first(3).each do |director| %>
+                <span><%= director.first_name %> <%= director.last_name %> </span>
+            <% end %>
+            </div>
+            <div class="actors-index-friends">
+            <p class="favorite-authors-p">Favorite Actors:</p>
+            <% friend.actors.first(3).each do |actor| %>
+              <span><%= actor.first_name %> <%= actor.last_name %> </span>
+            <% end %>
+            </div>
             <p class="m-0"><%= friend.reviews.count %> movies reviewed</p>
             <p class="m-0"><%= friend.events.count %> events attended</p>
             <p class="m-0">Has <%= friend.friends.count %> friends</p>
             <ul class="display-inline ul-style-none w-100">
-              <% friend.genres.pluck(:title).each do |title| %>
+              <% friend.genres.pluck(:title).first(3).each do |title| %>
                 <li class="m-t-8"><span class="tag"><%= title %></span></li>
               <% end %>
-            <% if friendship.pending? %>
-              <% if friendship.friend_id == current_user.id %>
-                <%= link_to "Accept", accept_friendship_path(friendship), data: { turbo_method: :patch }, class: "btn-regular btn-primary btn-size-s" %>
-                <%= link_to "Reject", reject_friendship_path(friendship), data: { turbo_method: :patch }, class: "btn-regular btn-danger btn-size-s" %>
-              <% else %>
-                <button class="btn-regular btn-secondary btn-size-s" disabled>Pending Request</button>
-            <% end %>
-          <% end %>
               <hr class="friends-list-hr">
             </ul>
           </div>

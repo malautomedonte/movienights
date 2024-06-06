@@ -10,7 +10,7 @@
   transition: 0.3s;
 
   h2 {
-    color: #FFEDC7;
+    color: $white;
     padding-top: 10px;
   }
 }
@@ -32,12 +32,11 @@
 }
 
 .navbar-expand-sm .navbar-nav .nav-link {
-  color: #FFEDC7;
+  color: $white;
   font-family: "Rubik", "Helvetica", "sans-serif";
   font-weight: 500;
-  font-size:23px;
+  font-size:22px;
   padding: 20px;
-
 }
 
 .navbar {
@@ -46,7 +45,7 @@
   .avatar { margin-left: 6px };
 }
 .nav-link-in {
-  color: #FFEDC7;
+  color: $white;
   background-color: $primary-darker;
   font-family: "Rubik", "Helvetica", "sans-serif";
   font-weight: 500;
@@ -55,7 +54,7 @@
 }
 
 .navbar-expand-sm .navbar-nav .nav-link:hover {
-  color: #db3535;
+  color: $primary-dark;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
 
@@ -69,7 +68,7 @@
 }
 
 .drop-font:hover {
-  color: whitesmoke;
+  color: $white;
   font-weight: bold;
-  background-color: #db3535;
+  background-color: $primary-dark;
 }

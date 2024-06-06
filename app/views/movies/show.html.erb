@@ -14,38 +14,16 @@
 
     <div class="description" style="margin-left: 80px;">
 
-
-      <div class="movie-header">
-        <h1 style="margin-bottom: 0px;"> <%= @movie.title %></h1>
-
-        <div data-controller="popup">
-          <button class="button-red" data-action="click->popup#showform"><h5>Create an event</h5></button>
-          <div class="d-none" data-popup-target="createForm">
-            <div class='overlay-blur'></div>
-              <%#= render "/shared/popup" %>
-              <div class="create-event form form-modal">
-                <div id="closebutton">
-                <h5 class="event-page">Create a new Event</h5>
-                <i class="fa-regular fa-circle-xmark mouseover" data-action="click->popup#closeform"></i>
-                </div>
-
-                <%= simple_form_for @event, data: {controller: "flatpickr"} do |form| %>
-                  <div class="form-input">
-                    <%= form.input :movie, collection: Movie.all, selected: params[:id] %>
-                    <%= form.input :description %>
-                    <%= form.input :date, as: :string, input_html: { data: {flatpickr_target: "date"}} %>
-                    <%= form.input :location %>
-                    <%= form.input :theatre, collection: theatres.keys %>
-                  </div>
-
-                  <div class="form-actions m-t-32">
-                    <%= form.button :submit, class: "btn create-button btn btn-regular btn-primary btn-size-s w-100" %>
-                  </div>
-                <% end %>
-              </div>
-          </div>
+    <header class="flex space-between center-vertically m-y-32">
+      <h1 class="inline m-0"><%= @movie.title %></h1>
+      <div data-controller="popup">
+        <button class="btn btn-regular btn-primary btn-size-s" data-action="click->popup#showform">+ Create an event</button>
+        <div class="d-none" data-popup-target="createForm">
+          <div class='overlay-blur'></div>
+        <%= render "shared/popup" %>
         </div>
       </div>
+    </header>
 
       <h5>Released: <%= @movie.release_year %></h5>
       <h5>Genres:
