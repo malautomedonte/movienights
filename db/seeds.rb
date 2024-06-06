@@ -42,6 +42,9 @@ puts "#{User.count} Users created 🤦🏼 🤦🏼‍♀️ 🤦🏻‍♂️ �
 # Seeding Movies
 puts "Creating movies, actors, directors and genres"
 movies = [
+  "angels with dirty faces",
+  "crime and punishment",
+  "payment deferred",
   "batman",
   "superman",
   "spiderman",
