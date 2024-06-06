@@ -1,6 +1,9 @@
 <div class="container" data-controller="search-movies" >
+  <header class="flex space-between center-vertically m-y-32">
+    <h1 class="inline">Movies</h1>
+  </header>
   <div class="col-sm-6">
-    <h2>Search by Movie, Actor or Director</h2>
+    <h2 class="inline">Search by Movie, Actor or Director</h2>
     <%= form_with url: movies_path, method: :get, html: {class: "d-flex my-5", data: {search_movies_target: "form"}} do |f| %>
     <%= text_field_tag :query,
       params[:query],
