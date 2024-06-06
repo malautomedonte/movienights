@@ -6,7 +6,7 @@
   background: #000000;
   box-shadow: 0 0 50px rgb(41, 40, 40);
   width: 100%;
-  border-radius: 6px;
+
   transition: 0.3s;
 
   h2 {
@@ -57,4 +57,19 @@
 .navbar-expand-sm .navbar-nav .nav-link:hover {
   color: #db3535;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.border-round {
+  border-radius: 8px;
+}
+
+.drop-font {
+  color: #5b5b5b;
+  font-weight: bold;
+}
+
+.drop-font:hover {
+  color: whitesmoke;
+  font-weight: bold;
+  background-color: #db3535;
 }
