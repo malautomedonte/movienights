@@ -25,7 +25,9 @@
       <section class="similar-users p-b-42">
         <header class="flex center-vertically m-y-32">
           <h2>They like the same type of movies as you! 💃</h2>
-          <a href="#" class="see-all">See All <i class="fas fa-solid fa-arrow-right"></i></a>
+         <%= link_to friendships_path, class:"see-all" do %>
+         See All <i class="fas fa-solid fa-arrow-right"></i>
+         <% end %>
         </header>
         <% if current_user.preferred_content.present?  %>
           <%= render 'shared/friends_cards', users: @similar_users %>
@@ -39,7 +41,9 @@
       <section class="movie-recommendations m-y-24 p-b-42">
         <header class="flex center-vertically m-y-32 m-r-64">
           <h2 class="white">Movie recommendations</h2>
-          <a href="#" class="see-all white">See All <i class="fas fa-solid fa-arrow-right"></i></a>
+          <%= link_to movies_path, class:"see-all white" do %>
+          See All <i class="fas fa-solid fa-arrow-right"></i>
+          <% end %>
         </header>
 
         <div class="movies-horizontal-list"  data-controller="scroll">
