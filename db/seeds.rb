@@ -10,6 +10,9 @@ Actor.destroy_all
 Director.destroy_all
 Genre.destroy_all
 Friendship.destroy_all
+UserGenre.destroy_all
+UserActor.destroy_all
+UserDirector.destroy_all
 
 # Seeding users
 puts "Creating users"
@@ -18,6 +21,21 @@ user_clemence = User.create!(email: 'clemence.lc@gmail.com', password: '123456',
 user_marco = User.create!(email: 'picture@marcobaass.com', password: '123456', username: "Marcito", location: "Munich")
 user_emma = User.create!(email: 'emma@test.com', password: '123456', username: "Emma", location: "Sweden")
 user_roberto = User.create!(email: 'sertopico@gmail.com', password: '123456', username: "Il Professore", location: "Rome")
+
+User.create!(email: 'foo@gmail.com', password: '123456', username: "QuentinBearantino", location: "Berlin")
+User.create!(email: 'boo@gmail.com', password: '123456', username: "WesSanderson", location: "Berlin")
+User.create!(email: 'goo@gmail.com', password: '123456', username: "BillabongJoon-ho", location: "Berlin")
+User.create!(email: 'soo@gmail.com', password: '123456', username: "MartinBoarsese", location: "Berlin")
+User.create!(email: 'coo@gmail.com', password: '123456', username: "AkiraBurrowsawa", location: "Berlin")
+User.create!(email: 'yoo@gmail.com', password: '123456', username: "DavidGrinch", location: "Berlin")
+User.create!(email: 'loo@gmail.com', password: '123456', username: "StevenPeelberg", location: "Berlin")
+User.create!(email: 'roo@gmail.com', password: '123456', username: "NicolasRage", location: "Berlin")
+User.create!(email: 'zoo@gmail.com', password: '123456', username: "PerishHilton", location: "Berlin")
+User.create!(email: 'voo@gmail.com', password: '123456', username: "WillemDafriend", location: "Berlin")
+User.create!(email: 'hoo@gmail.com', password: '123456', username: "TomSofty", location: "Berlin")
+User.create!(email: 'joo@gmail.com', password: '123456', username: "AlCapuccino", location: "Berlin")
+User.create!(email: 'moo@gmail.com', password: '123456', username: "ReeseWithoutaspoon", location: "Berlin")
+
 
 puts "#{User.count} Users created 🤦🏼 🤦🏼‍♀️ 🤦🏻‍♂️ 🤦🏼‍♀️"
 
@@ -32,7 +50,6 @@ movies = [
   "black panther",
   "avengers",
   "dune",
-  "james bond",
   "force majeure",
   "lord of the rings",
   "harry potter",
@@ -111,7 +128,6 @@ movies = [
   "american pie",
   "furiosa",
   "robot dreams",
-  "am i ok?",
   "bad boys: ride or die",
   "hit man",
   "i used to be funny",
@@ -122,7 +138,6 @@ movies = [
   "tuesday",
   "the bikeriders",
   "green border",
-  "janet planet",
   "kinds of kindness",
   "thelma",
   "trigger warning",
@@ -134,13 +149,10 @@ movies = [
   "longlegs",
   "sing sing",
   "touch",
-  "twisters",
   "deadpool & wolverine",
   "didi",
   "cuckoo",
-  "kneecap",
   "borderlands",
-  "good one",
   "poor things",
   "drive",
   "taxi driver",
@@ -151,11 +163,23 @@ movies = [
   "triangle of sadness",
   "eyes wide shut",
   "midsommar",
-  "citizen kane",
   "zone of interest",
   "leviathan",
   "12 angry men",
-  "do the right thing"
+  "do the right thing",
+  "The Grand Illusion",
+  "Seven Samurai",
+  "Shoplifters",
+  "Burning",
+  "Toni Erdmann",
+  "The Graduate",
+  "in the mood for love",
+  "there will be blood",
+  "mullholland drive",
+  "mystic river",
+  "jamon jamon",
+  "mother!",
+  "biutiful"
 ]
 
 movie = Movie.new(title: "The third dev", release_year: "2024", poster_url: "https://res.cloudinary.com/dvxwyw52y/image/upload/v1717598157/MV5BYjE2OTdhMWUtOGJlMy00ZDViLWIzZjgtYjZkZGZmMDZjYmEyXkEyXkFqcGdeQXVyNzkwMjQ5NzM_._V1_SX300_vn2jxv.jpg", genre: "Film-Noir, Mystery, Thriller", description: "An out of work pulp fiction novelist, Holly Martins, arrives in a post war Vienna divided into sectors by the victorious allies, and where a shortage of supplies has led to a flourishing black market. He arrives at the invitation of an ex-school friend, Harry Lime, who has offered him a job, only to discover that Lime has recently died in a peculiar traffic accident. From talking to Lime's friends and associates Martins soon notices that some of the stories are inconsistent, and determines to discover what really happened to Harry Lime.")
@@ -211,67 +235,106 @@ puts "#{MovieGenre.count} MovieGenres created 🤝🏼"
 # Seeding UserActors, UserDirectors and UserGenres
 
 puts "Creating preferences for users..."
+# 40.times do
+#   user_genre = UserGenre.new(
+#     user: User.all.sample,
+#     genre_id: Genre.pluck(:id).sample
+#   )
+#   user_genre.save!
+# end
 
-UserGenre.create(user: user_roberto, genre_id: Genre.pluck(:id).sample)
-UserGenre.create(user: user_roberto, genre_id: Genre.pluck(:id).sample)
-UserGenre.create(user: user_roberto, genre_id: Genre.pluck(:id).sample)
+# 40.times do
+#   user_actor = UserActor.new(
+#     user: User.all.sample,
+#     actor_id: Actor.pluck(:id).sample
+#   )
+#   user_actor.save!
+# end
 
-UserActor.create(user: user_roberto, actor_id: Actor.pluck(:id).sample)
-UserActor.create(user: user_roberto, actor_id: Actor.pluck(:id).sample)
-UserActor.create(user: user_roberto, actor_id: Actor.pluck(:id).sample)
+# 40.times do
+#   user_director = UserDirector.new(
+#     user: User.all.sample,
+#     director_id: Director.pluck(:id).sample
+#   )
+#   user_director.save!
+# end
 
-UserDirector.create(user: user_roberto, director_id: Director.pluck(:id).sample)
-UserDirector.create(user: user_roberto, director_id: Director.pluck(:id).sample)
-UserDirector.create(user: user_roberto, director_id: Director.pluck(:id).sample)
+User.all.each do |user|
+  rand(3..5).times do
+    user_genre = UserGenre.new(user: user, genre_id: Genre.pluck(:id).sample)
+    user_genre.save!
+  end
+  rand(3..5).times do
+    user_actor = UserActor.new(user: user, actor_id: Actor.pluck(:id).sample)
+    user_actor.save!
+  end
+  rand(3..5).times do
+    user_director = UserDirector.new(user: user, director_id: Director.pluck(:id).sample)
+    user_director.save!
+  end
+end
 
-UserGenre.create(user: user_jeremy, genre_id: Genre.pluck(:id).sample)
-UserGenre.create(user: user_jeremy, genre_id: Genre.pluck(:id).sample)
-UserGenre.create(user: user_jeremy, genre_id: Genre.pluck(:id).sample)
+# UserGenre.create!(user: User.all.sample, genre_id: Genre.pluck(:id).sample)
 
-UserActor.create(user: user_jeremy, actor_id: Actor.pluck(:id).sample)
-UserActor.create(user: user_jeremy, actor_id: Actor.pluck(:id).sample)
-UserActor.create(user: user_jeremy, actor_id: Actor.pluck(:id).sample)
+# UserGenre.create(user: user_roberto, genre_id: Genre.pluck(:id).sample)
+# UserGenre.create(user: user_roberto, genre_id: Genre.pluck(:id).sample)
+# UserGenre.create(user: user_roberto, genre_id: Genre.pluck(:id).sample)
 
-UserDirector.create(user: user_jeremy, director_id: Director.pluck(:id).sample)
-UserDirector.create(user: user_jeremy, director_id: Director.pluck(:id).sample)
-UserDirector.create(user: user_jeremy, director_id: Director.pluck(:id).sample)
+# UserActor.create(user: user_roberto, actor_id: Actor.pluck(:id).sample)
+# UserActor.create(user: user_roberto, actor_id: Actor.pluck(:id).sample)
+# UserActor.create(user: user_roberto, actor_id: Actor.pluck(:id).sample)
 
-UserGenre.create(user: user_marco, genre_id: Genre.pluck(:id).sample)
-UserGenre.create(user: user_marco, genre_id: Genre.pluck(:id).sample)
-UserGenre.create(user: user_marco, genre_id: Genre.pluck(:id).sample)
+# UserDirector.create(user: user_roberto, director_id: Director.pluck(:id).sample)
+# UserDirector.create(user: user_roberto, director_id: Director.pluck(:id).sample)
+# UserDirector.create(user: user_roberto, director_id: Director.pluck(:id).sample)
 
-UserActor.create(user: user_marco, actor_id: Actor.pluck(:id).sample)
-UserActor.create(user: user_marco, actor_id: Actor.pluck(:id).sample)
-UserActor.create(user: user_marco, actor_id: Actor.pluck(:id).sample)
+# UserGenre.create(user: user_jeremy, genre_id: Genre.pluck(:id).sample)
+# UserGenre.create(user: user_jeremy, genre_id: Genre.pluck(:id).sample)
+# UserGenre.create(user: user_jeremy, genre_id: Genre.pluck(:id).sample)
 
-UserDirector.create(user: user_marco, director_id: Director.pluck(:id).sample)
-UserDirector.create(user: user_marco, director_id: Director.pluck(:id).sample)
-UserDirector.create(user: user_marco, director_id: Director.pluck(:id).sample)
+# UserActor.create(user: user_jeremy, actor_id: Actor.pluck(:id).sample)
+# UserActor.create(user: user_jeremy, actor_id: Actor.pluck(:id).sample)
+# UserActor.create(user: user_jeremy, actor_id: Actor.pluck(:id).sample)
 
-UserGenre.create(user: user_clemence, genre_id: Genre.pluck(:id).sample)
-UserGenre.create(user: user_clemence, genre_id: Genre.pluck(:id).sample)
-UserGenre.create(user: user_clemence, genre_id: Genre.pluck(:id).sample)
+# UserDirector.create(user: user_jeremy, director_id: Director.pluck(:id).sample)
+# UserDirector.create(user: user_jeremy, director_id: Director.pluck(:id).sample)
+# UserDirector.create(user: user_jeremy, director_id: Director.pluck(:id).sample)
 
-UserActor.create(user: user_clemence, actor_id: Actor.pluck(:id).sample)
-UserActor.create(user: user_clemence, actor_id: Actor.pluck(:id).sample)
-UserActor.create(user: user_clemence, actor_id: Actor.pluck(:id).sample)
+# UserGenre.create(user: user_marco, genre_id: Genre.pluck(:id).sample)
+# UserGenre.create(user: user_marco, genre_id: Genre.pluck(:id).sample)
+# UserGenre.create(user: user_marco, genre_id: Genre.pluck(:id).sample)
 
-UserDirector.create(user: user_clemence, director_id: Director.pluck(:id).sample)
-UserDirector.create(user: user_clemence, director_id: Director.pluck(:id).sample)
-UserDirector.create(user: user_clemence, director_id: Director.pluck(:id).sample)
+# UserActor.create(user: user_marco, actor_id: Actor.pluck(:id).sample)
+# UserActor.create(user: user_marco, actor_id: Actor.pluck(:id).sample)
+# UserActor.create(user: user_marco, actor_id: Actor.pluck(:id).sample)
 
-UserGenre.create(user: user_emma, genre_id: Genre.pluck(:id).sample)
-UserGenre.create(user: user_emma, genre_id: Genre.pluck(:id).sample)
-UserGenre.create(user: user_emma, genre_id: Genre.pluck(:id).sample)
+# UserDirector.create(user: user_marco, director_id: Director.pluck(:id).sample)
+# UserDirector.create(user: user_marco, director_id: Director.pluck(:id).sample)
+# UserDirector.create(user: user_marco, director_id: Director.pluck(:id).sample)
 
-UserActor.create(user: user_emma, actor_id: Actor.pluck(:id).sample)
-UserActor.create(user: user_emma, actor_id: Actor.pluck(:id).sample)
-UserActor.create(user: user_emma, actor_id: Actor.pluck(:id).sample)
+# UserGenre.create(user: user_clemence, genre_id: Genre.pluck(:id).sample)
+# UserGenre.create(user: user_clemence, genre_id: Genre.pluck(:id).sample)
+# UserGenre.create(user: user_clemence, genre_id: Genre.pluck(:id).sample)
 
-UserDirector.create(user: user_emma, director_id: Director.pluck(:id).sample)
-UserDirector.create(user: user_emma, director_id: Director.pluck(:id).sample)
-UserDirector.create(user: user_emma, director_id: Director.pluck(:id).sample)
+# UserActor.create(user: user_clemence, actor_id: Actor.pluck(:id).sample)
+# UserActor.create(user: user_clemence, actor_id: Actor.pluck(:id).sample)
+# UserActor.create(user: user_clemence, actor_id: Actor.pluck(:id).sample)
 
+# UserDirector.create(user: user_clemence, director_id: Director.pluck(:id).sample)
+# UserDirector.create(user: user_clemence, director_id: Director.pluck(:id).sample)
+# UserDirector.create(user: user_clemence, director_id: Director.pluck(:id).sample)
+
+# UserGenre.create(user: user_emma, genre_id: Genre.pluck(:id).sample)
+# UserGenre.create(user: user_emma, genre_id: Genre.pluck(:id).sample)
+# UserGenre.create(user: user_emma, genre_id: Genre.pluck(:id).sample)
+
+# UserActor.create(user: user_emma, actor_id: Actor.pluck(:id).sample)
+# UserActor.create(user: user_emma, actor_id: Actor.pluck(:id).sample)
+# UserActor.create(user: user_emma, actor_id: Actor.pluck(:id).sample)
+
+# UserDirector.create(user: user_emma, director_id: Director.pluck(:id).sample)
+# UserDirector.create(user: user_emma, director_id: Director.pluck(:id).sample)
+# UserDirector.create(user: user_emma, director_id: Director.pluck(:id).sample)
 
 # Seeding events & event_users
 puts "Creating events"
@@ -286,7 +349,7 @@ theatres = { "Moviemento" => 'Kottbusser Damm 22, 10967 Berlin', "Neues Off cine
   }
 
 
-20.times do
+5.times do
   cinema = theatres.to_a.sample[0]
   movie = Movie.all.sample
 
@@ -296,7 +359,48 @@ theatres = { "Moviemento" => 'Kottbusser Damm 22, 10967 Berlin', "Neues Off cine
     user_id: User.pluck(:id).sample,
     movie_id: movie.id,
     # date: DateTime.now,
-    date: DateTime.new(2024, 6, rand(6..14), 20, 30, 0),
+    date: DateTime.new(2024, 6, 6, 20, 30, 0),
+    theatre: cinema,
+    location: theatres[cinema]
+  )
+  event.save!
+  EventUser.create(user: event.user, event: event)
+  # EventUser.create(user: User.pluck(:id).sample, event: event)
+end
+puts "#{Event.count} Events created 🎉"
+
+5.times do
+  cinema = theatres.to_a.sample[0]
+  movie = Movie.all.sample
+
+  event = Event.new(
+    title: movie.title,
+    description: movie.description,
+    user_id: User.pluck(:id).sample,
+    movie_id: movie.id,
+    # date: DateTime.now,
+    date: DateTime.new(2024, 6, 7, 20, 30, 0),
+    theatre: cinema,
+    location: theatres[cinema]
+  )
+  event.save!
+  EventUser.create(user: event.user, event: event)
+  # EventUser.create(user: User.pluck(:id).sample, event: event)
+end
+puts "#{Event.count} Events created 🎉"
+
+
+35.times do
+  cinema = theatres.to_a.sample[0]
+  movie = Movie.all.sample
+
+  event = Event.new(
+    title: movie.title,
+    description: movie.description,
+    user_id: User.pluck(:id).sample,
+    movie_id: movie.id,
+    # date: DateTime.now,
+    date: DateTime.new(2024, 6, rand(7..14), 20, 30, 0),
     theatre: cinema,
     location: theatres[cinema]
   )
@@ -308,7 +412,7 @@ puts "#{Event.count} Events created 🎉"
 
 # Seeding reviews
 puts "Creating reviews"
-40. times do
+80. times do
   review = Review.new(
     content: Faker::Movie.quote,
     user_id: User.pluck(:id).sample,
@@ -316,7 +420,7 @@ puts "Creating reviews"
     rating: rand(0..5)
     )
     review.save!
-  end
+end
 puts "#{Review.count} Reviews created 💬"
 
 puts "Seeds are done 🌱🌱🌱"
