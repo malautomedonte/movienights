@@ -7,7 +7,7 @@
       <div class="user-cards flex flex-wrap">
         <% users.each do |user| %>
           <% friendship = current_user.friendships.find_by(friend_id: user.id) || current_user.inverse_friendships.find_by(user_id: user.id) %>
-          <% unless friendship&.accepted? %>
+          <% unless friendship&.accepted? || friendship&.pending?%>
             <div class="user-card flex flex-wrap">
               <% if user.photo.attached? %>
                 <%= cl_image_tag user.photo.key, class: "avatar" %>
