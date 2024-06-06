@@ -7,6 +7,16 @@ class PagesController < ApplicationController
     @movies = Movie.all
     @events = Event.all
     @events_today = Event.where('date between ? and ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day)
+
+    @similar_users = current_user.similar_users
+    @similar_users.each_with_index do |user|
+      @existing_friendship = Friendship.find_by(user_id: current_user.id, friend_id: user.id) ||
+      Friendship.find_by(user_id: user.id, friend_id: current_user.id)
+
+      if @existing_friendship
+        @similar_users.delete(user)
+      end
+    end
   end
 
   def index
