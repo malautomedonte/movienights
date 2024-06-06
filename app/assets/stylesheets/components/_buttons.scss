@@ -11,28 +11,6 @@
   }
 }
 
-// .button {
-//   padding: 10px 20px;
-//   margin: 10px 0;
-//   background-color: $primary-dark; /* Primary button color */
-//   color: #fff;
-//   font-size: 16px;
-//   text-align: center;
-//   text-decoration: none;
-//   cursor: pointer;
-//   transition: background-color 0.3s ease, transform 0.3s ease;
-
-//   &:hover {
-//     background-color: #2980b9; /* Darker shade on hover */
-//     transform: translateY(-2px); /* Slight lift on hover */
-//   }
-
-//   &:active {
-//     background-color: #1c5985; /* Even darker shade on click */
-//     transform: translateY(0); /* Reset lift on click */
-//   }
-// }
-
 .button-sign-up {
   display: inline-block;
   padding: 10px 20px;
@@ -85,6 +63,16 @@
   color: $black;
   &:hover {
     background-color: $primary-dark;
+    color: $white;
+  }
+}
+
+.btn-cancel {
+  background-color: $warning-base;
+  border: 1px solid $primary-light;
+  color: $white;
+  &:hover {
+    background-color: $warning-dark;
     color: $white;
   }
 }

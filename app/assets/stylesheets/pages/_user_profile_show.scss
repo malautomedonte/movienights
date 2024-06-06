@@ -1,5 +1,5 @@
 body {
-  background-color: #E6F4FE;
+  background-color: $secondary-light;
 }
 
 .h1-user-profile {
@@ -20,9 +20,8 @@ body {
 .container-user-page-details {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 20px;
-  background-color: #FEDCDC;
-  border-top: 4px solid grey;
+  background-color: $primary-light;
+  border-top: 4px solid $gray;
 }
 .user-card-details {
   display: flex;
@@ -42,7 +41,7 @@ body {
 
 .user-preferences-card {
   padding: 25px;
-  border-left: 4px solid grey;
+  border-left: 4px solid $gray;
 }
 
 .user-preferences-genres {
@@ -63,31 +62,17 @@ body {
   text-shadow: 1px 1px 2px rgb(176, 176, 176);
 }
 
-.see-all-my-stuff {
-  background-color: #E6F4FE;
-  padding-bottom: 15px;
-  padding-top: 25px;
-  padding-left: 35px;
-  text-shadow: 1px 1px 2px rgb(176, 176, 176);
-}
-
-.see-all-link {
-  text-decoration: none;
-  padding-left: 15px;
-  background-color: #E6F4FE;
-}
-
 .user-attending-events, .user-organized-events {
   padding: 5px;
   letter-spacing: 2px;
-  text-shadow: 1px 1px 2px rgb(176, 176, 176);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, .7);
 }
 
 .container-user-events-page {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 25px;
-  background-color: #E6F4FE;
+  padding: 24px 64px;
+  background-color: $secondary-light;
 }
 
 .user-join-events-page {
@@ -112,6 +97,6 @@ body {
 }
 
 .user-friends-page {
-  padding: 25px;
-  background-color: #E6F4FE;
+  padding: 24px 64px;
+  background-color: $secondary-light;
 }

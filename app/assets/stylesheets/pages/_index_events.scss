@@ -48,7 +48,7 @@ max-width: 100%;
  }
 
  .upcoming-section {
-  background-color: $bg-3;
+  background: $secondary-base;
   padding: 3rem 7%;
  }
 
@@ -75,16 +75,8 @@ max-width: 100%;
 }
 
 .ticket {
-  color: $bg-5;
+  color: $secondary-dark;
   padding-right: 0.25rem;
-}
-
-.create-button {
-  background-color: #FFEDC7;
-}
-
-.create-button:hover {
-  background-color: #ffedc782;
 }
 
 // .event-details {
