@@ -7,10 +7,14 @@
             <%= cl_image_tag participant.photo.key, class: "avatar" %>
             <% else %>
             <%= image_tag "default_avatar.jpeg", alt: "hello", class: "avatar"%>
-        <% end %>
+          <% end %>
           <div class="text m-b-8">
             <h4>
+              <% if current_user.id != participant.id %>
               <h3><%= link_to participant.username, profile_path(participant) %></h3>
+              <% else %>
+              <h3><%= link_to participant.username, pages_user_profile_path %></h3>
+              <% end %>
             </h4>
             <p class="m-0"><%= participant.directors.pluck(:last_name).join(', ') %></p>
             <p class="m-0"><%= participant.actors.pluck(:last_name).join(', ') %></p>
@@ -19,13 +23,22 @@
                 <li class="m-t-8"><span class="tag"><%= title %></span></li>
               <% end %>
             </ul>
-
-
+            <% friendship = current_user.friendships.find_by(friend_id: participant.id) || current_user.inverse_friendships.find_by(user_id: participant.id) %>
             <% if current_user.id != participant.id %>
-              <button class="btn-regular btn-secondary btn-size-s">+ friend</button>
-              <% elsif current_user.friends.include?(participant) %>
+                <% if friendship.nil? %>
+                  <%= link_to "+ Friend", friendships_path(friend_id: participant.id), data: { turbo_method: :post }, class: "btn-regular btn-secondary btn-size-s"  %>
+                <% elsif friendship.pending? %>
+                  <% if friendship.friend_id == current_user.id %>
+                    <%= link_to "Accept", accept_friendship_path(friendship), data: { turbo_method: :patch }, class: "btn-regular btn-primary btn-size-s"  %>
+                    <%= link_to "Reject", reject_friendship_path(friendship), data: { turbo_method: :patch }, class: "btn-regular btn-danger btn-size-s"  %>
+                  <% else %>
+                    <button class="btn-regular btn-secondary btn-size-s" disabled>Pending</button>
+                  <% end %>
+                <% end %>
+            <% elsif current_user.friends.include?(participant) %>
                 <button class="btn-regular btn-secondary btn-size-s">✔️ friend</button>
-                <% else current_user.friends.include?(participant) %>
+            <% else %>
+            <p>You are going</p>
             <% end %>
 
             <%# unless current_user.friends.include?(participant) || current_user.id == participant.id %>
