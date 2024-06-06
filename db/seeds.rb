@@ -44,7 +44,7 @@ puts "Creating movies, actors, directors and genres"
 movies = [
   "angels with dirty faces",
   "crime and punishment",
-  "payment deferred",
+  "touch of evil",
   "batman",
   "superman",
   "spiderman",
