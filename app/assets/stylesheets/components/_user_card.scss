@@ -1,3 +1,11 @@
 .user-card img {
   margin-right: 16px;
 }
+
+.user-card {
+  min-width: 20rem;
+}
+
+.user-card.flex.flex-wrap {
+  margin-right: 3rem;
+}

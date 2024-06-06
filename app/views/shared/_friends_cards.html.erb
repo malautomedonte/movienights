@@ -4,7 +4,7 @@
   <% end %>
 
   <% if users.any? %>
-      <div class="user-cards flex flex-wrap">
+      <div class="user-cards flex">
         <% users.each do |user| %>
           <% friendship = current_user.friendships.find_by(friend_id: user.id) || current_user.inverse_friendships.find_by(user_id: user.id) %>
           <% unless friendship&.accepted? %>
