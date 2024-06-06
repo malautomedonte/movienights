@@ -21,19 +21,24 @@
 
         <div class="form-inputs">
           <div class="sign-up-card-details">
-          <%= f.input :photo, as: :file %>
+          <%= f.input :photo, as: :file,
+              label: "Please upload a profile picture!" %>
           <%= f.input :username,
+              label: "Please choose your Username!",
               required: true,
               autofocus: true %>
           <%= f.input :email,
+              label: "Please insert your E-Mail Address!",
               required: true,
               autofocus: true,
               input_html: { autocomplete: "email" } %>
           <%= f.input :password,
+              label: "Please choose a Password!",
               required: true,
               hint: (content_tag(:span, "#{@minimum_password_length} characters minimum", class: 'white text-small') if @minimum_password_length),
               input_html: { autocomplete: "new-password" } %>
           <%= f.input :password_confirmation,
+              label: "Please confirm your Password!",
               required: true,
               input_html: { autocomplete: "new-password" } %>
           </div>
