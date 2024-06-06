@@ -3,7 +3,7 @@
     <div class="user-card-details-profile-others d-flex align-items-center justify-content-center">
       <div class="picture-card ms-5">
         <% if @user.photo.attached? %>
-          <%= cl_image_tag @user.photo.key, class: "picture-card-img-profile-others rounded-circle" %>
+          <%= image_tag @user.photo, class: "picture-card-img-profile-others rounded-circle" %>
         <% else %>
           <%= image_tag "default_avatar.jpeg", alt: "User Image", class: "picture-card-img-profile-others rounded-circle" %>
         <% end %>
