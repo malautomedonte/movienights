@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.order(date: :asc)
+    @events = Event.where('date >= ?', DateTime.now.end_of_day + 1.second).order(:date)
     # @events = Event.all
     @events_today = Event.where('date between ? and ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day)
     @event = Event.new
@@ -20,9 +20,9 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @message = Message.new
     @marker = [{
-        lat: @event.latitude,
-        lng: @event.longitude
-      }]
+                  lat: @event.latitude,
+                  lng: @event.longitude
+    }]
   end
 
 
