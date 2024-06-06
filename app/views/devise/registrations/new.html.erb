@@ -3,10 +3,19 @@
     <div class="background-animation"></div>
   </div>
   <div class="wrapper-sign-up">
-    <div class="container-sign-up-form">
-      <h2 class="sign-up-title">Sign up for Movie Nights!</h2>
-      <p class="sign-up-title-p">The best place to find friends and watch movies together!</p>
-
+    <div class="form container-sign-in-form">
+      <header class="flex flex-col center-vertically">
+        <%= image_tag "https://static.vecteezy.com/system/resources/previews/002/405/453/original/movie-night-logo-neon-signs-style-text-vector.jpg", class: "logo" %>
+        <p class="text-align-center w-100 white h4 m-b-24"><em>The best place to find friends and <br> watch movies together!</em></p>
+        <hr>
+        <div class="flex w-100 space-between center-vertically m-b-16">
+          <h2 class="white">Create an account</h2>
+          <span class="white">or</span>
+          <div class="buttons-login">
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </header>
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
 
@@ -22,15 +31,16 @@
               input_html: { autocomplete: "email" } %>
           <%= f.input :password,
               required: true,
-              hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+              hint: (content_tag(:span, "#{@minimum_password_length} characters minimum", class: 'white text-small') if @minimum_password_length),
               input_html: { autocomplete: "new-password" } %>
           <%= f.input :password_confirmation,
               required: true,
               input_html: { autocomplete: "new-password" } %>
           </div>
-
-          <div class="user-preferences">
+          <hr class="white m-24">
           <!-- Ask the user for preferences -->
+          <div class="user-preferences">
+          <p class="white h4">Tell us about your preferences</p>
           <%= f.input :genres,
               label: "Choose your favorite genres (up to three)",
               collection: Genre.all,
@@ -50,12 +60,12 @@
               input_html: {multiple: true, data: {controller: "tom-select"}} %>
           </div>
         </div>
-        <div class="buttons-registration">
+        <div class="m-t-24 flex flex-col justify-center">
           <div class="form-actions">
-              <%= f.button :submit, "Sign up", class: "button-sign-up" %>
+              <%= f.button :submit, "Create an account", class: "button-sign-up btn btn-primary btn-regular btn-size-s w-100" %>
           </div>
       <% end %>
-              <p class="p-registration">Or...</p>
+          <hr class="white m-24">
           <%= render "devise/shared/links" %>
        </div>
     </div>

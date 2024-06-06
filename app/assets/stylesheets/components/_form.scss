@@ -13,9 +13,18 @@ form {
 
   input, .form-control, .form-select {
     border-radius: 24px;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    -ms-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
     &:placeholder {
       color: $gray;
     }
   }
 
+  .form-control:focus, .focus .ts-control {
+    color: $black;
+    outline: 3px solid #8080ff;
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  }
 }
