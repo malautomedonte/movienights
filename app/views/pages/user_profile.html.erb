@@ -1,12 +1,18 @@
-<% if current_user %>
-  <h1 class="h1-user-profile">Welcome to Your Dashboard, <%= @user.username %>!</h1>
-<% else %>
-  <h1 class="h1-user-profile">Profile of <%= @user.username %></h1>
-<% end %>
+
+<header class="flex space-between center-vertically m-y-32 m-x-64">
+  <% if current_user %>
+  <h1 class="inline">Welcome to Your Dashboard, <%= @user.username %>!</h1>
+  <% else %>
+  <h1 class="inline">Profile of <%= @user.username %></h1>
+  <% end %>
+</header>
 
 <div class="container-user-page-details">
-  <div class="user-details-page">
-      <h2 class="profile-edit-deets">Your Profile Picture <%= link_to "Edit Your Profile", edit_user_registration_path, class: 'btn btn-outline-secondary btn-sm button-user-profile' %></h2>
+  <div class="user-details-page m-x-64 m-t-24">
+    <header class="flex space-between center-vertically">
+      <h2 class="inline">Your Profile Picture</h2>
+      <%= link_to "Edit Your Profile", edit_user_registration_path, class: 'btn-regular btn-secondary btn-size-xs btn' %>
+    </header>
     <div class="user-card-details">
       <div>
         <% if current_user.photo.attached? %>
@@ -41,27 +47,21 @@
   </div>
 </div>
 
-<div class="see-all-my-stuff">
-  <h2>Your Events
-    <%= link_to events_path, class: "see-all-link" do %>
-      See All <i class="fas fa-arrow-right"></i>
-    <% end %>
-  </h2>
-</div>
+<header class="flex center-vertically m-y-32 m-x-64">
+  <h2>Your Events 💃</h2>
+  <%= link_to events_path, class: "see-all" do %> See All <i class="fas fa-arrow-right"></i>
+  <% end %>
+</header>
 
 <div class="container-user-events-page">
   <div class="user-my-events-page">
-    <div class="user-organized-events">
-      <h2>You Have Created <%= @my_events.count %> Event(s) So Far</h2>
-    </div>
+    <h3>You Have Created <%= @my_events.count %> Event(s) So Far</h3>
     <% @my_events = current_user.events.limit(3)%>
     <%= render 'shared/my_events_user_profile' %>
   </div>
 
   <div class="user-join-events-page">
-    <div class="user-attending-events">
-      <h2>You Are Attending to <%= @attended_events.count %> Event(s) So Far</h2>
-    </div>
+    <h3>You Are Attending to <%= @attended_events.count %> Event(s) So Far</h3>
         <% @attended_events.first(3).each do |attended| %>
          <%= link_to event_path(attended.event), class: "link-style" do %>
             <div id="container-events-horizontal">
@@ -93,13 +93,13 @@
   <hr><hr>
 </div>
 
-<div class="see-all-my-stuff">
-  <h2>Your Friends
-    <%= link_to friendships_path, class: "see-all-link" do %>
-      See All <i class="fas fa-arrow-right"></i>
-    <% end %>
-  </h2>
-</div>
+<header class="flex center-vertically m-y-32 m-x-64">
+  <h2>Your Friends </h2>
+  <%= link_to friendships_path, class: "see-all" do %>
+  See All <i class="fas fa-arrow-right"></i>
+  <% end %>
+</header>
+
 
 <div class="user-friends-page">
   <% if current_user.friends.empty? %>

@@ -3,17 +3,16 @@
   <div id="events-grid">
 
     <div id="events-left">
-
-      <div id="header-eventcards">
-        <h1 class="event-page"><i class="fa-solid fa-ticket ticket"></i> Events</h1>
+      <header class="flex space-between center-vertically m-y-32">
+        <h1 class="inline">Events</h1>
         <div data-controller="popup">
-          <button class="button-red" data-action="click->popup#showform"><h5>+ Create an event</h5></button>
+          <button class="btn btn-regular btn-primary btn-size-s" data-action="click->popup#showform">+ Create an event</button>
           <div class="d-none" data-popup-target="createForm">
             <div class='overlay-blur'></div>
-            <%= render "shared/popup" %>
+          <%= render "shared/popup" %>
           </div>
         </div>
-      </div>
+      </header>
 
       <h2>Today</h2>
 
