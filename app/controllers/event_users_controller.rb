@@ -5,8 +5,10 @@ class EventUsersController < ApplicationController
       respond_to do |format|
         if @eventuser.save
           format.json { render json: { success: true, message: 'You have successfully joined the event.', event_user: @eventuser } }
+          format.html { redirect_to event_path(@event), notice: 'You have successfully joined the event.' }
         else
           format.json { render json: { success: false, message: @eventuser.errors.full_messages.join(', ') }, status: :unprocessable_entity }
+          format.html { redirect_to event_path(@event), alert: @eventuser.errors.full_messages.join(', ') }
         end
       end
   end

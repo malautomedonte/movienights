@@ -91,7 +91,7 @@
         <% else %>
           <% organizer = User.find(@event.user_id) %>
           <% if organizer.photo.attached? %>
-            <%= cl_image_tag organizer.photo.key, class: "avatar" %>
+            <%= image_tag organizer.photo, class: "avatar" %>
           <% else %>
             <%= image_tag "default_avatar.jpeg", alt: "hello", class: "avatar"%>
           <% end %>

@@ -10,7 +10,7 @@
           <% unless friendship&.accepted? %>
             <div class="user-card flex flex-wrap">
               <% if user.photo.attached? %>
-                <%= cl_image_tag user.photo.key, class: "avatar" %>
+                <%= image_tag user.photo, class: "avatar" %>
               <% else %>
                 <%= image_tag "default_avatar.jpeg", alt: "hello", class: "avatar"%>
               <% end %>

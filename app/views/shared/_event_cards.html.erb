@@ -36,11 +36,20 @@
           <p><i class="fas fa-thin fa-location-dot p-r-8"></i><%= event.theatre %></p>
             <div class="flex center-vertically m-t-8">
           <% if current_user && current_user.id == event.user_id %>
-              <img class="avatar-small m-r-8" src="" alt="profil picture">
+            <% if current_user.photo.attached? %>
+              <%= image_tag current_user.photo, class: "avatar-small m-r-8" %>
+            <% else %>
+              <%= image_tag "default_avatar.jpeg", alt: "User Image", class: "picture-card-img rounded-circle" %>
+            <% end %>
               <p>You are the host</p>
           <% else %>
-              <img class="avatar-small m-r-8" src="" alt="profil picture">
+            <% if event.user.photo.attached? %>
+              <%= image_tag event.user.photo, class: "avatar-small m-r-8" %>
               <p><%= event.user.username %></p>
+            <% else %>
+              <%= image_tag "default_avatar.jpeg", class: "avatar-small m-r-8", alt: "default avatar" %>
+              <p><%= event.user.username %></p>
+            <% end %>
           <% end %>
             </div>
           <%= link_to '', event_path(event) %>
