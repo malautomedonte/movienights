@@ -39,7 +39,7 @@
             <% if current_user.photo.attached? %>
               <%= image_tag current_user.photo, class: "avatar-small m-r-8" %>
             <% else %>
-              <%= image_tag "default_avatar.jpeg", alt: "User Image", class: "picture-card-img rounded-circle" %>
+              <%= image_tag "default_avatar.jpeg", alt: "User Image", class: "avatar-small m-r-8" %>
             <% end %>
               <p>You are the host</p>
           <% else %>
