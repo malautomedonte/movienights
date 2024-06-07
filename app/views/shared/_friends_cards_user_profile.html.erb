@@ -3,7 +3,7 @@
       <% friends.each do |friend| %>
         <div class="user-card flex flex-wrap">
           <% if friend.photo.attached? %>
-            <%= cl_image_tag friend.photo.key, class: "avatar" %>
+            <%= image_tag friend.photo, class: "avatar" %>
           <% else %>
             <%= image_tag "default_avatar.jpeg", alt: "User Image", class: "avatar"%>
           <% end %>
