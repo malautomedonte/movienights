@@ -107,8 +107,18 @@
               <li class="m-t-8"><span class="tag"><%= title %></span></li>
             <% end %>
           </ul>
-          <% unless current_user.friends.include?(organizer) %>
+          <% friendship = current_user.friendships.find_by(friend_id: organizer.id) || current_user.inverse_friendships.find_by(user_id: organizer.id) %>
+          <% if friendship.nil? %>
             <%= link_to "+ Friend", friendships_path(friend_id: organizer.id), data: { turbo_method: :post }, class: "btn-regular btn-secondary btn-size-s"  %>
+          <% elsif friendship.pending? %>
+              <% if friendship.friend_id == current_user.id %>
+                <%= link_to "Accept", accept_friendship_path(friendship), data: { turbo_method: :patch }, class: "btn-regular btn-primary btn-size-s"  %>
+                <%= link_to "Reject", reject_friendship_path(friendship), data: { turbo_method: :patch }, class: "btn-regular btn-danger btn-size-s"  %>
+              <% else %>
+                <button class="btn-regular btn-secondary btn-size-s" disabled>Pending</button>
+              <% end %>
+          <% else %>
+                <button class="btn-regular btn-secondary btn-size-s">✔️ friend</button>
           <% end %>
         </div>
         <% end %>
