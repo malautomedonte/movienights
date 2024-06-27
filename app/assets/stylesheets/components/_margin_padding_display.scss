@@ -21,6 +21,7 @@
 .m-b-16 {margin-bottom: 16px;}
 
 //left only
+.m-l-8 {margin-left:8px;}
 .m-l-24 {margin-left:24px;}
 .m-l-64 {margin-left:64px;}
 
@@ -90,6 +91,16 @@
 
 .flex-col {
   flex-direction: column;
+}
+
+.flex-to-row-992 {
+  display: flex;
+}
+
+@media (max-width: 992px) {
+  .flex-to-row-992 {
+    display: inline;
+  }
 }
 
 .space-between {

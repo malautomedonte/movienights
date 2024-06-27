@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   get '/pages/myevents', to: 'pages#myevents'
   get '/friendrequests', to: 'friendships#friend_requests'
   get '/pages/user_profile', to: 'pages#user_profile'
+  get 'about', to: 'pages#about'
 end

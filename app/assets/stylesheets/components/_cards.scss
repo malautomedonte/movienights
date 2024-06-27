@@ -14,12 +14,36 @@
   }
 }
 
-.event-card.card {
-  flex: 0 0 300px;
-  padding: 10px; /* Adjust padding as needed */
+.card-not-clickable {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 10px; /* Adjust margin as needed */
+  background-color: $white; /* Light gray background */
+  border-radius: 10px; /* Rounded corners */
+  border: 1px solid $medium-gray;
+  p {
+    margin-bottom: .4rem;
+  }
 }
 
-#my-events .event-card.card {
-  flex: 0 0 31%;
-  padding: 10px; /* Adjust padding as needed */
-}
+  .event-card.card {
+    flex: 0 0 300px;
+    padding: 10px; /* Adjust padding as needed */
+  }
+
+  #my-events .event-card.card {
+    flex: 0 0 31%;
+    padding: 10px; /* Adjust padding as needed */
+  }
+
+  .responsive-square-card {
+    padding: 10px;
+    flex: 0 0 18.2%;
+  }
+
+  @media (max-width: 992px) {
+    .responsive-square-card {
+      flex: 0 0 100%;
+    }
+  }
