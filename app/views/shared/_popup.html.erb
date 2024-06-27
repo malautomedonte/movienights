@@ -18,7 +18,6 @@
       <%= form.input :movie, collection: Movie.all %>
       <%= form.input :description %>
       <%= form.input :date, as: :string, input_html: { data: {flatpickr_target: "date"}} %>
-      <%= form.input :location %>
       <%= form.input :theatre, collection: theatres.keys %>
     </div>
 
