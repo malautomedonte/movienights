@@ -44,4 +44,7 @@ class PagesController < ApplicationController
     @attended_events = current_user.event_users
     @event = Event.new
   end
+
+  def about
+  end
 end
