@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
@@ -25,6 +23,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
         update_user_associations
       end
     end
+        if params[:user][:photo].blank?
+      params[:user].delete(:photo)
+    end
   end
 
   protected
@@ -36,27 +37,27 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create_user_genres
-    chosen_genres = params[:user][:genres]
-    chosen_genres.each do |genre_id|
+    genre_ids = params[:user][:genre_ids] || []
+    genre_ids.each do |genre_id|
       next if genre_id.blank?
       UserGenre.create!(genre_id: genre_id.to_i, user: resource)
-    end if chosen_genres
+    end
   end
 
   def create_user_actors
-    chosen_actors = params[:user][:actors]
-    chosen_actors.each do |actor_id|
+    actor_ids = params[:user][:actor_ids] || []
+    actor_ids.each do |actor_id|
       next if actor_id.blank?
       UserActor.create!(actor_id: actor_id.to_i, user: resource)
-    end if chosen_actors
+    end
   end
 
   def create_user_directors
-    chosen_directors = params[:user][:directors]
-    chosen_directors.each do |director_id|
+    director_ids = params[:user][:director_ids] || []
+    director_ids.each do |director_id|
       next if director_id.blank?
       UserDirector.create!(director_id: director_id.to_i, user: resource)
-    end if chosen_directors
+    end
   end
 
   def update_user_associations
@@ -66,18 +67,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update_user_genres
-    chosen_genres = params[:user][:genres] || []
-    current_user.genres = Genre.where(id: chosen_genres)
+    genre_ids = params[:user][:genre_ids] || []
+    current_user.genres = Genre.where(id: genre_ids)
   end
 
   def update_user_actors
-    chosen_actors = params[:user][:actors] || []
-    current_user.actors = Actor.where(id: chosen_actors)
+    actor_ids = params[:user][:actor_ids] || []
+    current_user.actors = Actor.where(id: actor_ids)
   end
 
   def update_user_directors
-    chosen_directors = params[:user][:directors] || []
-    current_user.directors = Director.where(id: chosen_directors)
+    director_ids = params[:user][:director_ids] || []
+    current_user.directors = Director.where(id: director_ids)
   end
 
   def after_update_path_for(resource)
